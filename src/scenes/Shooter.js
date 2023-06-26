@@ -32,9 +32,9 @@ class Shooter extends Phaser.Scene {
             }
         });
 
-        this.aim = this.physics.add.sprite(128, game.config.height/2, 'aim').setGravityY(25000);
-        this.player = this.physics.add.sprite(128, game.config.height/2, 'george').setGravityY(25000);
-        this.projectileSpawn = this.physics.add.sprite(128, game.config.height/2, 'projectile').setGravityY(25000).setVisible(false);
+        this.aim = this.physics.add.sprite(128, game.config.height/2, 'aim').setGravityY(gravity).setScale(0.5);
+        this.player = this.physics.add.sprite(128, game.config.height/2, 'george').setGravityY(gravity).setScale(0.5);
+        this.projectileSpawn = this.physics.add.sprite(128, game.config.height/2, 'projectile').setGravityY(gravity).setScale(0.5).setVisible(false);
         
         this.projectiles = this.physics.add.group();
 
@@ -49,46 +49,54 @@ class Shooter extends Phaser.Scene {
     }
 
     update() {
-
         this.aim.setVelocityX(0);
         this.player.setVelocityX(0);
         this.projectileSpawn.setVelocityX(0);
-        
-        // if (keyW.isDown) {
-        //     this.aim.setVelocityY(moveSpeed * -1);
-        //     this.player.setVelocityY(moveSpeed * -1);
-        //     this.projectileSpawn.setVelocityY(moveSpeed * -1);
-        // }
 
-        if (keyA.isDown && this.player.x >= 128) {
+        this.aim.setGravityY(gravity);
+        this.player.setGravityY(gravity);
+        this.projectileSpawn.setGravityY(gravity);
+
+        keyW.on('down', () => {
+            if (this.player.body.touching.down) {
+                this.aim.setVelocityY(jumpSpeed);
+                this.player.setVelocityY(jumpSpeed);
+                this.projectileSpawn.setVelocityY(jumpSpeed);
+            }
+        });
+
+        keySPACE.on('down', () => {
+            if (this.player.body.touching.down) {
+                this.aim.setVelocityY(jumpSpeed);
+                this.player.setVelocityY(jumpSpeed);
+                this.projectileSpawn.setVelocityY(jumpSpeed);
+            }
+        });
+
+        if ((keyW.isDown || keySPACE.isDown) && this.player.body.velocity.y > 0) {
+            console.log('floating')
+            this.aim.setGravityY(gravity * 0.1);
+            this.player.setGravityY(gravity * 0.1);
+            this.projectileSpawn.setGravityY(gravity * 0.1);
+        }
+
+        if (keyA.isDown && this.player.x >= 64) {
             this.aim.setVelocityX(moveSpeed * -1);
             this.player.setVelocityX(moveSpeed * -1);
             this.projectileSpawn.setVelocityX(moveSpeed * -1);
-            
         }
 
-        // if (keyS.isDown) {
-        //     this.aim.setVelocityY(moveSpeed);
-        //     this.player.setVelocityY(moveSpeed);
-        //     this.projectileSpawn.setVelocityY(moveSpeed);
-        // }
+        if (keyS.isDown) {
+            this.aim.setGravityY(gravity * 3);
+            this.player.setGravityY(gravity * 3);
+            this.projectileSpawn.setGravityY(gravity * 3);
+        }
 
-        if (keyD.isDown && this.player.x <= game.config.width-128) {
+        if (keyD.isDown && this.player.x <= game.config.width-64) {
             this.aim.setVelocityX(moveSpeed);
             this.player.setVelocityX(moveSpeed);
             this.projectileSpawn.setVelocityX(moveSpeed);
         }
-
-        if (keySPACE.isDown && this.player.body.touching.down) {
-            console.log('jump!');
-            this.aim.setVelocityY(jumpSpeed);
-            this.player.setVelocityY(jumpSpeed);
-            this.projectileSpawn.setVelocityY(jumpSpeed);
-        }
-
-        // keySPACE.on('down', () => {
-        //     console.log('space');
-        // })
 
         this.aimAngle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.aim.x, this.aim.y, this.input.activePointer.x, this.input.activePointer.y);
         if (this.aimAngle >= -90 && this.aimAngle < 90) {
@@ -114,9 +122,9 @@ class Shooter extends Phaser.Scene {
         this.isFiring = true;
         let velocity = this.physics.velocityFromAngle(this.aimAngle, 1);
 
-        this.projectiles.create(this.projectileSpawn.x + velocity.x * 128, 
-                                this.projectileSpawn.y + velocity.y * 128, 'projectile')
-                                .setAngle(this.aimAngle).setScale(0.125)
+        this.projectiles.create(this.projectileSpawn.x + velocity.x * 64, 
+                                this.projectileSpawn.y + velocity.y * 64, 'projectile')
+                                .setAngle(this.aimAngle).setScale(0.0625)
                                 .setVelocity(velocity.x * projectileSpeed, velocity.y * projectileSpeed);
 
         this.time.delayedCall(fireRate, () => {
