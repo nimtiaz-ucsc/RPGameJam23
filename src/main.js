@@ -20,4 +20,6 @@ let gravity = 1000;
 let projectileSpeed = 1000;
 let fireRate = 500;
 
+let spawnRate = 500;
+
 let game = new Phaser.Game(config);
