@@ -47,13 +47,19 @@ class Shooter extends Phaser.Scene {
         this.physics.add.collider(this.projectileSpawn, this.ground);
 
         this.enemies = this.physics.add.group();
-        this.physics.add.overlap(this.projectiles, this.enemies, this.destroyEnemy);
+        this.physics.add.overlap(this.projectiles, this.enemies, this.destroyEnemy, undefined, this);
 
         this.spawnEnemies();
-        
+
+        this.health = 3;
+        this.healthText = this.add.text(10, 10, "hp: " + this.health, { color: '#000000', fontSize: '24px'}).setOrigin(0);
+
+        this.physics.add.overlap(this.player, this.enemies, this.playerDamage, undefined, this);       
     }
 
     update() {
+        this.healthText.setText('hp: ' + this.health);
+
         this.aim.setVelocityX(0);
         this.player.setVelocityX(0);
         this.projectileSpawn.setVelocityX(0);
@@ -61,6 +67,8 @@ class Shooter extends Phaser.Scene {
         this.aim.setGravityY(gravity);
         this.player.setGravityY(gravity);
         this.projectileSpawn.setGravityY(gravity);
+
+        this.isFloating = false;
 
         keyW.on('down', () => {
             if (this.player.body.touching.down) {
@@ -79,15 +87,22 @@ class Shooter extends Phaser.Scene {
         });
 
         if ((keyW.isDown || keySPACE.isDown) && this.player.body.velocity.y > 0) {
+            this.isFloating = true;
             this.aim.setGravityY(gravity * 0.1);
             this.player.setGravityY(gravity * 0.1);
             this.projectileSpawn.setGravityY(gravity * 0.1);
         }
 
         if (keyA.isDown && this.player.x >= 64) {
-            this.aim.setVelocityX(moveSpeed * -1);
-            this.player.setVelocityX(moveSpeed * -1);
-            this.projectileSpawn.setVelocityX(moveSpeed * -1);
+            if(!this.isFloating) {
+                this.aim.setVelocityX(moveSpeed * -1);
+                this.player.setVelocityX(moveSpeed * -1);
+                this.projectileSpawn.setVelocityX(moveSpeed * -1);
+            } else {
+                this.aim.setVelocityX(moveSpeed * -0.5);
+                this.player.setVelocityX(moveSpeed * -0.5);
+                this.projectileSpawn.setVelocityX(moveSpeed * -0.5);
+            }
         }
 
         if (keyS.isDown) {
@@ -97,9 +112,15 @@ class Shooter extends Phaser.Scene {
         }
 
         if (keyD.isDown && this.player.x <= game.config.width-64) {
-            this.aim.setVelocityX(moveSpeed);
-            this.player.setVelocityX(moveSpeed);
-            this.projectileSpawn.setVelocityX(moveSpeed);
+            if(!this.isFloating) {
+                this.aim.setVelocityX(moveSpeed);
+                this.player.setVelocityX(moveSpeed);
+                this.projectileSpawn.setVelocityX(moveSpeed);
+            } else {
+                this.aim.setVelocityX(moveSpeed * 0.5);
+                this.player.setVelocityX(moveSpeed * 0.5);
+                this.projectileSpawn.setVelocityX(moveSpeed * 0.5);
+            }
         }
 
         this.aimAngle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.aim.x, this.aim.y, this.input.activePointer.x, this.input.activePointer.y);
@@ -141,11 +162,8 @@ class Shooter extends Phaser.Scene {
         });
     }
 
-    spawnEnemies() {
-        console.log('spawn')
-        let spawnChance = Phaser.Math.Between(1, 10);
-        if (spawnChance == 1) {
-            console.log('enemy');
+    spawnEnemies() { 
+        if (Phaser.Math.Between(1, spawnChanceMax) <= spawnChanceMin) {
             let spawnHeight = Phaser.Math.Between(1, 3) * game.config.height / 4;
             let enemy = this.enemies.add(this.physics.add.sprite(game.config.width, spawnHeight, 'projectile').setScale(0.25));
             enemy.flipX = true;
@@ -157,7 +175,39 @@ class Shooter extends Phaser.Scene {
     }
 
     destroyEnemy(projectile, enemy) {
-        projectile.destroy();
-        enemy.destroy();        
+        projectile.setVelocity(0);
+        projectile.body.destroy();
+        enemy.body.destroy();
+
+        this.time.delayedCall(50, () => {
+            this.tweens.add({
+                targets: [projectile, enemy],
+                alpha: 0,
+                duration: 500,
+                onComplete: () => {
+                    projectile.destroy();
+                    enemy.destroy();  
+                }
+            })
+        }); 
+    }
+
+    playerDamage(player, enemy) {
+        this.health--;
+        if (this.health == 0) {
+            this.scene.restart();
+        }
+
+        enemy.body.destroy();
+        this.time.delayedCall(50, () => {
+            this.tweens.add({
+                targets: [enemy],
+                alpha: 0,
+                duration: 500,
+                onComplete: () => {
+                    enemy.destroy();  
+                }
+            })
+        });
     }
 }
