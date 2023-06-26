@@ -45,6 +45,9 @@ class Shooter extends Phaser.Scene {
         this.physics.add.collider(this.aim, this.ground);
         this.physics.add.collider(this.player, this.ground);
         this.physics.add.collider(this.projectileSpawn, this.ground);
+
+        this.enemies = this.physics.add.group();
+        this.physics.add.overlap(this.projectiles, this.enemies, this.destroyEnemy);
         
     }
 
@@ -74,7 +77,6 @@ class Shooter extends Phaser.Scene {
         });
 
         if ((keyW.isDown || keySPACE.isDown) && this.player.body.velocity.y > 0) {
-            console.log('floating')
             this.aim.setGravityY(gravity * 0.1);
             this.player.setGravityY(gravity * 0.1);
             this.projectileSpawn.setGravityY(gravity * 0.1);
@@ -116,6 +118,12 @@ class Shooter extends Phaser.Scene {
                 projectile.destroy();
             }
         });
+
+        let spawnChance = Phaser.Math.Between(1, 50);
+        if (spawnChance == 1) {
+            this.spawnEnemies();
+        }
+
     }
 
     fireProjectile() {
@@ -134,5 +142,17 @@ class Shooter extends Phaser.Scene {
                 this.isFiring = false;
             }
         });
+    }
+
+    spawnEnemies() {
+        let spawnHeight = Phaser.Math.Between(1, 3) * game.config.height / 4;
+        let enemy = this.enemies.add(this.physics.add.sprite(game.config.width, spawnHeight, 'projectile').setScale(0.25));
+        enemy.flipX = true;
+        enemy.setVelocityX(moveSpeed * -0.5);
+    }
+
+    destroyEnemy(projectile, enemy) {
+        projectile.destroy();
+        enemy.destroy();        
     }
 }
