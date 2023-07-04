@@ -11,6 +11,6 @@ class Preload extends Phaser.Scene {
 
     create() {
 
-        this.scene.start('shooter');
+        this.scene.start('prefabTest');
     }
 }

@@ -122,7 +122,7 @@ class Shooter extends Phaser.Scene {
                 this.projectileSpawn.setVelocityX(moveSpeed * 0.5);
             }
         }
-
+        
         this.aimAngle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.aim.x, this.aim.y, this.input.activePointer.x, this.input.activePointer.y);
         if (this.aimAngle >= -90 && this.aimAngle < 90) {
             this.player.flipX = false;
