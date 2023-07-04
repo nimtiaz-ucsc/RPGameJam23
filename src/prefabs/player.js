@@ -2,9 +2,9 @@ class Player extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y) {
         super(scene, x, y, 'george');
+        this.aim = new PlayerAim(scene, x, y);
         scene.add.existing(this);
         scene.physics.add.existing(this);
-        this.setScale(0.5)
 
         scene.events.on('update', this.update, this)
 
@@ -14,12 +14,24 @@ class Player extends Phaser.GameObjects.Sprite {
         this.keyD = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         this.keySPACE = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-        this.health = 3;
-        this.isFloating = false;
-        this.body.setGravityY(gravity);
+        this.health = 5;
+
+        this.projectiles = new Phaser.GameObjects.Group;
+
+        scene.input.on('pointerdown', () => {
+            scene.input.mouse.disableContextMenu();
+
+            if(scene.input.activePointer.leftButtonDown()) {
+                console.log('click')
+            }
+        })
     }
 
     update() {
+        this.aim.update();
+        this.aim.x = this.x;
+        this.aim.y = this.y;
+
         this.body.setVelocityX(0);
         this.body.setGravityY(gravity);
         this.isFloating = false;
@@ -62,8 +74,4 @@ class Player extends Phaser.GameObjects.Sprite {
         }
 
     }
-
-
-
-
 }
