@@ -18,6 +18,7 @@ class PrefabTest extends Phaser.Scene {
         this.UIText = this.add.text(10, 10, "HP: " + this.player.health + "\nSCORE: " + this.player.score, { color: '#000000', fontSize: '24px'}).setOrigin(0);
 
         this.enemies = this.physics.add.group();
+        this.enemies.defaults = {};
         this.spawnEnemy();
 
         this.physics.add.overlap(this.player, this.enemies, this.player.damage, undefined, this);
@@ -28,16 +29,22 @@ class PrefabTest extends Phaser.Scene {
     update() {
         if(this.player.isAlive) { this.player.update(); }
 
+        this.enemies.children.entries.forEach(enemy => {
+            enemy.update();
+            if (enemy.x < enemy.body.width * -1) {
+                enemy.kill(this);
+            }
+        })
+
         this.UIText.setText("HP: " + this.player.health + "\nSCORE: " + this.player.score);
         
     }
 
     spawnEnemy() { 
         if (Phaser.Math.Between(1, spawnChanceMax) <= spawnChanceMin) {
-            let spawnHeight = Phaser.Math.Between(1, 3) * game.config.height / 4;
-            let enemy = this.enemies.add(this.physics.add.sprite(game.config.width, spawnHeight, 'projectile').setScale(0.25));
-            enemy.flipX = true;
-            enemy.setVelocityX(moveSpeed * -0.5);
+            let enemyType = Phaser.Math.Between(1, 3);
+            let spawnHeight = enemyType * game.config.height / 4;
+            this.enemies.add(new Enemy(this, game.config.width, spawnHeight, 'projectile', enemyType));
         }
         this.time.delayedCall(spawnRate, () => {
             this.spawnEnemy();
@@ -45,22 +52,24 @@ class PrefabTest extends Phaser.Scene {
     }
 
     destroyEnemy(projectile, enemy) {
-        this.player.score++;
+        this.player.score += enemy.points;
         projectile.body.setVelocity(0);
         projectile.body.destroy();
-        enemy.body.destroy();
-
         this.time.delayedCall(50, () => {
             this.tweens.add({
-                targets: [projectile, enemy],
+                targets: [projectile],
                 alpha: 0,
                 duration: 500,
                 onComplete: () => {
                     projectile.destroy();
-                    enemy.destroy();  
                 }
             })
         }); 
+
+        enemy.health--;
+        if (enemy.health == 0) {
+            enemy.kill(this);
+        }
     }
 
     

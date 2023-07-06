@@ -4,6 +4,7 @@ class Player extends Phaser.GameObjects.Sprite {
         super(scene, x, y, 'george');
         this.setScale(0.5);
         this.aim = new PlayerAim(scene, x, y).setScale(0.5);
+        
         scene.add.existing(this);
         scene.physics.add.existing(this);
 
@@ -143,18 +144,6 @@ class Player extends Phaser.GameObjects.Sprite {
                 });
             }            
         }
-
-        // enemy.body.destroy();
-        // this.time.delayedCall(50, () => {
-        //     this.tweens.add({
-        //         targets: [enemy],
-        //         alpha: 0,
-        //         duration: 500,
-        //         onComplete: () => {
-        //             enemy.destroy();  
-        //         }
-        //     })
-        // });
     }
 
     shoot(scene) {
