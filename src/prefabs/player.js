@@ -104,6 +104,7 @@ class Player extends Phaser.GameObjects.Sprite {
 
     damage(player, enemy) {
         if (!player.isInvincible) {
+            console.log(enemy.constructor.name)
             player.isInvincible = true;
             player.health--;
 
@@ -142,7 +143,21 @@ class Player extends Phaser.GameObjects.Sprite {
                         player.aim.setAlpha(1);
                     }    
                 });
-            }            
+            }
+
+            if (enemy.constructor.name === "Projectile") {
+                enemy.body.destroy();
+                this.time.delayedCall(50, () => {
+                    this.tweens.add({
+                        targets: [enemy],
+                        alpha: 0,
+                        duration: 500,
+                        onComplete: () => {
+                            enemy.destroy();  
+                        }
+                    })
+                }); 
+            }
         }
     }
 

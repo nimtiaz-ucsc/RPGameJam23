@@ -31,6 +31,7 @@ class PrefabTest extends Phaser.Scene {
 
         this.enemies.children.entries.forEach(enemy => {
             enemy.update();
+            this.physics.add.overlap(this.player, enemy.projectiles, this.player.damage, undefined, this);
             if (enemy.x < enemy.body.width * -1) {
                 enemy.kill(this);
             }
@@ -40,7 +41,7 @@ class PrefabTest extends Phaser.Scene {
         
     }
 
-    spawnEnemy() { 
+    spawnEnemy() {
         if (Phaser.Math.Between(1, spawnChanceMax) <= spawnChanceMin) {
             let enemyType = Phaser.Math.Between(1, 3);
             let spawnHeight = enemyType * game.config.height / 4;
