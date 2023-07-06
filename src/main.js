@@ -37,6 +37,8 @@ let spawnChanceMin = 1;
 let spawnChanceMax = 10;
 let spawnRate = 500;
 
+let enemyFireRate = 1500;
+
 let basePoints = 100;
 
 let game = new Phaser.Game(config);

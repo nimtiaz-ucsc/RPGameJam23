@@ -13,6 +13,10 @@ class Enemy extends Phaser.GameObjects.Sprite {
         this.health = type
 
         this.healthText = scene.add.text(x, y - this.body.height/2, this.health, { color: '#000000', fontSize: '24px'}).setOrigin(0.5);
+
+        this.projectiles = new Phaser.GameObjects.Group;
+        if (type != 3) { this.shoot(scene, type); }
+        
         
     }
 
@@ -32,11 +36,30 @@ class Enemy extends Phaser.GameObjects.Sprite {
                 alpha: 0,
                 duration: 500,
                 onComplete: () => {
+                    this.projectiles.destroy();
                     this.healthText.destroy();
                     this.destroy();
                 }
             })
         }); 
+    }
+
+    shoot(scene, type) {
+        if (this.body != undefined) {
+            let angle, velocity;
+            if (type == 1) {
+                angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.x, this.y, scene.player.x, scene.player.y)
+                velocity = scene.physics.velocityFromAngle(angle, 1);
+            } else if (type == 2) {
+                angle = 90;
+                velocity = new Phaser.Math.Vector2(-1, 0);
+            }
+            this.projectiles.add(new Projectile(scene, this.x, this.y,
+                                                    'projectile', velocity,
+                                                    this.body.width, this.body.height, 
+                                                    angle, projectileSpeed/2).setScale(0.0625));
+            scene.time.delayedCall(enemyFireRate, () => { this.shoot(scene, type) });
+        }
     }
 
     
