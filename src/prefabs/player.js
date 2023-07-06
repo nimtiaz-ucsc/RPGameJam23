@@ -2,12 +2,10 @@ class Player extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y) {
         super(scene, x, y, 'george');
-        this.setScale(0.5)
+        this.setScale(0.5);
         this.aim = new PlayerAim(scene, x, y).setScale(0.5);
         scene.add.existing(this);
         scene.physics.add.existing(this);
-
-        //this.scene = scene;
 
         this.keyW = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         this.keyA = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -15,13 +13,19 @@ class Player extends Phaser.GameObjects.Sprite {
         this.keyD = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         this.keySPACE = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
+        this.isAlive = true;
+        this.isInvincible = false;
         this.health = 3;
 
         this.projectiles = new Phaser.GameObjects.Group;
         this.isShooting = false
+        this.score = 0;
+        
 
         scene.input.on('pointerdown', () => {
             scene.input.mouse.disableContextMenu();
+
+            if(this.isAlive) {
 
             if (scene.input.activePointer.leftButtonDown()) {
                 if (!this.isShooting) {
@@ -36,7 +40,7 @@ class Player extends Phaser.GameObjects.Sprite {
             if(scene.input.activePointer.rightButtonDown()) {
                 console.log('right')
             }
-        })
+        }})
     }
 
     update() {
@@ -98,22 +102,59 @@ class Player extends Phaser.GameObjects.Sprite {
     }
 
     damage(player, enemy) {
-        player.health--;
-        if (player.health == 0) {
-            this.scene.restart();
+        if (!player.isInvincible) {
+            player.isInvincible = true;
+            player.health--;
+
+            if (player.health == 0) {
+                player.isAlive = false;
+                player.body.destroy();
+                let gameOverText = this.add.text(game.config.width/2, game.config.height/2, "GAME OVER", { color: '#000000', fontSize: '48px'}).setOrigin(0.5).setAlpha(0);
+                this.time.delayedCall(50, () => {
+                    this.tweens.add({
+                        targets: [gameOverText],
+                        alpha: 1,
+                        duration: 500
+                    })
+                    this.tweens.add({
+                        targets: [player, player.aim],
+                        alpha: 0,
+                        duration: 500,
+                        onComplete: () => {
+                            player.destroy();
+                            this.scene.restart();  
+                        }
+                    });
+                });
+
+            } else {
+                this.tweens.add({
+                    targets:[player, player.aim],
+                    alpha: 0,
+                    duration: iframeTime,
+                    loop: invincibleTime/iframeTime,
+                    yoyo: true,
+                    ease: 'Sine.easeInOut',
+                    onComplete: () => {
+                        player.isInvincible = false;
+                        player.setAlpha(1);
+                        player.aim.setAlpha(1);
+                    }    
+                });
+            }            
         }
 
-        enemy.body.destroy();
-        this.time.delayedCall(50, () => {
-            this.tweens.add({
-                targets: [enemy],
-                alpha: 0,
-                duration: 500,
-                onComplete: () => {
-                    enemy.destroy();  
-                }
-            })
-        });
+        // enemy.body.destroy();
+        // this.time.delayedCall(50, () => {
+        //     this.tweens.add({
+        //         targets: [enemy],
+        //         alpha: 0,
+        //         duration: 500,
+        //         onComplete: () => {
+        //             enemy.destroy();  
+        //         }
+        //     })
+        // });
     }
 
     shoot(scene) {

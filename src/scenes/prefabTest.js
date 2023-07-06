@@ -15,7 +15,7 @@ class PrefabTest extends Phaser.Scene {
         this.physics.add.existing(this.ground, true);        
         this.physics.add.collider([this.player, this.player.aim], this.ground);
 
-        this.healthText = this.add.text(10, 10, "hp: " + this.player.health, { color: '#000000', fontSize: '24px'}).setOrigin(0);
+        this.UIText = this.add.text(10, 10, "HP: " + this.player.health + "\nSCORE: " + this.player.score, { color: '#000000', fontSize: '24px'}).setOrigin(0);
 
         this.enemies = this.physics.add.group();
         this.spawnEnemy();
@@ -26,9 +26,9 @@ class PrefabTest extends Phaser.Scene {
     }
 
     update() {
-        this.player.update();
+        if(this.player.isAlive) { this.player.update(); }
 
-        this.healthText.setText("HP: " + this.player.health);
+        this.UIText.setText("HP: " + this.player.health + "\nSCORE: " + this.player.score);
         
     }
 
@@ -45,6 +45,7 @@ class PrefabTest extends Phaser.Scene {
     }
 
     destroyEnemy(projectile, enemy) {
+        this.player.score++;
         projectile.body.setVelocity(0);
         projectile.body.destroy();
         enemy.body.destroy();

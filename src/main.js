@@ -6,7 +6,7 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true
+            debug: false
         }
     }
 };
@@ -27,11 +27,16 @@ let floatMultiplierX = 0.5;
 let floatMultiplierY = 0.1;
 let fastfallMultiplier = 3;
 
+let iframeTime = 100;
+let invincibleTime = 1000;
+
 let projectileSpeed = 1000;
 let fireRate = 500;
 
 let spawnChanceMin = 1;
 let spawnChanceMax = 10;
 let spawnRate = 500;
+
+let basePoints = 100;
 
 let game = new Phaser.Game(config);
