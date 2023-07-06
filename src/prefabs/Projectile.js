@@ -8,4 +8,14 @@ class Projectile extends Phaser.GameObjects.Sprite {
         this.setAngle(angle);
         this.body.setVelocity(velocity.x * speed, velocity.y * speed);
     }
+
+    update() {
+        if (this.x > game.config.width + this.body.width ||
+            this.x < this.body.width * -1 ||
+            this.y > game.config.height + this.body.height ||
+            this.y < this.body.height * -1) {
+            
+            this.destroy();
+        }
+    }
 }

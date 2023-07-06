@@ -24,6 +24,10 @@ class Enemy extends Phaser.GameObjects.Sprite {
         this.healthText.x = this.x;
         this.healthText.y = this.y - this.body.height;
         this.healthText.setText(this.health);
+
+        this.projectiles.children.entries.forEach(projectile => {
+            projectile.update();
+        })
         
     }
 
@@ -58,7 +62,9 @@ class Enemy extends Phaser.GameObjects.Sprite {
                                                     'projectile', velocity,
                                                     this.body.width, this.body.height, 
                                                     angle, projectileSpeed/2).setScale(0.0625));
-            scene.time.delayedCall(enemyFireRate, () => { this.shoot(scene, type) });
+            scene.time.delayedCall(enemyFireRate, () => { 
+                if (this.body != undefined) { this.shoot(scene, type) }
+            });
         }
     }
 

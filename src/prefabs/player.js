@@ -91,20 +91,13 @@ class Player extends Phaser.GameObjects.Sprite {
         }
 
         this.projectiles.children.entries.forEach(projectile => {
-            if (projectile.x > game.config.width + projectile.body.width ||
-                projectile.x < projectile.body.width * -1 ||
-                projectile.y > game.config.height + projectile.body.height ||
-                projectile.y < projectile.body.height * -1) {
-                
-                projectile.destroy();
-            }
+            projectile.update();
         })
 
     }
 
     damage(player, enemy) {
         if (!player.isInvincible) {
-            console.log(enemy.constructor.name)
             player.isInvincible = true;
             player.health--;
 
@@ -174,6 +167,6 @@ class Player extends Phaser.GameObjects.Sprite {
             } else {
                 this.isShooting = false;
             }
-        })
+        });
     }
 }
