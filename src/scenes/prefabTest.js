@@ -8,11 +8,11 @@ class PrefabTest extends Phaser.Scene {
     }
 
     create() {
-
-        this.player = new Player(this, game.config.width/2, game.config.height/2);
-
         this.ground = this.add.rectangle(0, game.config.height, game.config.width, 64, 0xAAAAAA).setOrigin(0, 1);
-        this.physics.add.existing(this.ground, true);        
+        this.physics.add.existing(this.ground, true);     
+        
+        this.player = new Player(this, game.config.width/8, game.config.height/2);
+
         this.physics.add.collider([this.player, this.player.aim], this.ground);
 
         this.UIText = this.add.text(10, 10, "HP: " + this.player.health + "\nSCORE: " + this.player.score, { color: '#000000', fontSize: '24px'}).setOrigin(0);

@@ -1,12 +1,15 @@
 class Player extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y) {
-        super(scene, x, y, 'george');
-        this.setScale(0.5);
+        super(scene, x, y, 'georgeSprite');
+        //this.setScale(0.5);
         this.aim = new PlayerAim(scene, x, y).setScale(0.5);
 
         scene.add.existing(this);
         scene.physics.add.existing(this);
+
+        //this.anims.play('georgeRun');
+        //console.log(this.anims.currentAnim.key);
 
         this.keyW = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         this.keyA = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -52,15 +55,16 @@ class Player extends Phaser.GameObjects.Sprite {
         this.body.setVelocityX(0);
         this.body.setGravityY(gravity);
         this.isFloating = false;
+        this.isFastfalling = false;
 
         this.keyW.on('down', () => {
-            if (this.body.touching.down) {
+            if (this.body.touching.down && this.body.velocity.y == 0) {
                 this.body.setVelocityY(jumpSpeed);
             }
         });
 
         this.keySPACE.on('down', () => {
-            if (this.body.touching.down) {
+            if (this.body.touching.down && this.body.velocity.y == 0) {
                 this.body.setVelocityY(jumpSpeed);
             }
         });
@@ -79,6 +83,7 @@ class Player extends Phaser.GameObjects.Sprite {
         }
 
         if (this.keyS.isDown) {
+            this.isFastfalling = true;
             this.body.setGravityY(gravity * fastfallMultiplier);
         }
 
@@ -88,6 +93,16 @@ class Player extends Phaser.GameObjects.Sprite {
             } else {
                 this.body.setVelocityX(moveSpeed * floatMultiplierX)
             }
+        }
+
+        if (this.body.touching.down && this.body.velocity.y == 0) {
+            this.playAnim('georgeRun');
+        } else if (this.body.velocity.y < 0) {
+            this.playAnim('georgeRise')
+        } else if (this.isFloating && !this.isFastfalling) {
+            this.playAnim('georgeFloat');
+        } else if (this.body.velocity.y > 0) {
+            this.playAnim('georgeFall')
         }
 
         this.projectiles.children.entries.forEach(projectile => {
@@ -168,5 +183,37 @@ class Player extends Phaser.GameObjects.Sprite {
                 this.isShooting = false;
             }
         });
+    }
+
+    playAnim(key) {
+        if (this.anims.currentAnim === null) {
+            this.anims.play(key);
+        } else if (this.anims.currentAnim.key != key) {
+            let currentAnim = this.anims.currentAnim.key
+            if (key === 'georgeFall') {
+                if (currentAnim === 'georgeRise') {
+                    this.anims.play('georgeFallTransition');
+                    this.on('animationcomplete', () => { this.anims.play(key) })
+                } else if (currentAnim === 'georgeFloat') {
+                    this.anims.play('georgeFloatFallTransition');
+                    this.on('animationcomplete', () => { this.anims.play(key) })
+                }
+            } else if (key === 'georgeRise') {
+                if (currentAnim === 'georgeRun') {
+                    this.anims.play('georgeSquat');
+                    this.on('animationcomplete', () => { this.anims.play(key) })
+                }
+            } else if (key === 'georgeFloat') {
+                if (currentAnim === 'georgeRise' || currentAnim === 'georgeFall') {
+                    this.anims.play('georgeFloatTransition');
+                    this.on('animationcomplete', () => { this.anims.play(key) })
+                }
+            } else if (key === 'georgeRun') {
+                if (currentAnim === 'georgeFall' || currentAnim === 'georgeFloat') {
+                    this.anims.play('georgeLand');
+                    this.on('animationcomplete', () => { this.anims.play(key) })
+                }
+            } else { this.anims.play(key) }
+        }
     }
 }
