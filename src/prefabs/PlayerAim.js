@@ -1,9 +1,11 @@
 class PlayerAim extends Phaser.GameObjects.Sprite {
     
     constructor(scene, x, y) {
-        super(scene, x, y, 'aim');
+        super(scene, x, y, 'george_aim');
         scene.add.existing(this);
         scene.physics.add.existing(this);
+
+        this.play('aim_anim');
 
         scene.events.on('update', this.update, this);
 

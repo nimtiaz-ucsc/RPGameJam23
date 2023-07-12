@@ -52,7 +52,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
         if (this.body != undefined) {
             let angle, velocity, speed;
             if (type == 1) {
-                speed = enemyFireRate * 0.5
+                speed = enemyFireRate * 0.5;
                 angle = 135;
                 velocity = scene.physics.velocityFromAngle(angle, 1);
             } else if (type == 2) {

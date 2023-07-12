@@ -4,11 +4,13 @@ class Preload extends Phaser.Scene {
     }
 
     preload() {
-        this.load.spritesheet('george', 'assets/george/BigGeorgeBody.png', {frameWidth: 256, frameHeight: 256, startFrame: 0, endFrame: 0});
-        this.load.spritesheet('aim', 'assets/george/BigGeorgeAimArm.png', {frameWidth: 256, frameHeight: 256, startFrame: 0, endFrame: 0});
-        this.load.spritesheet('projectile', 'assets/george/BigGeorgeProjectile.png', {frameWidth: 256, frameHeight: 256, startFrame: 0, endFrame: 0});
+        this.load.spritesheet('george', 'assets/george/proto/BigGeorgeBody.png', {frameWidth: 256, frameHeight: 256, startFrame: 0, endFrame: 0});
+        this.load.spritesheet('aim', 'assets/george/proto/BigGeorgeAimArm.png', {frameWidth: 256, frameHeight: 256, startFrame: 0, endFrame: 0});
+        this.load.spritesheet('projectile', 'assets/george/proto/BigGeorgeProjectile.png', {frameWidth: 256, frameHeight: 256, startFrame: 0, endFrame: 0});
 
-        this.load.atlas('georgeSprite', './assets/george/georgeAtlas.png', './assets/george/georgeAtlas.json');
+        this.load.atlas('george_sprite', './assets/george/georgeAtlas.png', './assets/george/georgeAtlas.json');
+        this.load.spritesheet('george_aim', './assets/george/aim.png', {frameWidth: 128, frameHeight: 128, startFrame: 0, endFrame: 3});
+        this.load.spritesheet('george_projectile', './assets/george/projectiles.png', {frameWidth: 16, frameHeight: 16, startFrame: 0, endFrame: 1});
 
         this.load.image('sky', 'assets/bg/sky.png');
         this.load.spritesheet('sun', 'assets/bg/sun.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
@@ -23,7 +25,7 @@ class Preload extends Phaser.Scene {
         // george anims
         this.anims.create({
             key: 'georgeRun',
-            frames: this.anims.generateFrameNames('georgeSprite', {
+            frames: this.anims.generateFrameNames('george_sprite', {
                 prefix: 'run',
                 start: 0,
                 end: 7,
@@ -35,7 +37,7 @@ class Preload extends Phaser.Scene {
 
         this.anims.create({
             key: 'georgeSquat',
-            frames: this.anims.generateFrameNames('georgeSprite', {
+            frames: this.anims.generateFrameNames('george_sprite', {
                 prefix: 'squat',
                 start: 0,
                 end: 2,
@@ -47,7 +49,7 @@ class Preload extends Phaser.Scene {
 
         this.anims.create({
             key: 'georgeRise',
-            frames: this.anims.generateFrameNames('georgeSprite', {
+            frames: this.anims.generateFrameNames('george_sprite', {
                 prefix: 'rise',
                 start: 0,
                 end: 1,
@@ -59,7 +61,7 @@ class Preload extends Phaser.Scene {
 
         this.anims.create({
             key: 'georgeFallTransition',
-            frames: this.anims.generateFrameNames('georgeSprite', {
+            frames: this.anims.generateFrameNames('george_sprite', {
                 prefix: 'fallTransition',
                 start: 0,
                 end: 0,
@@ -71,7 +73,7 @@ class Preload extends Phaser.Scene {
 
         this.anims.create({
             key: 'georgeFall',
-            frames: this.anims.generateFrameNames('georgeSprite', {
+            frames: this.anims.generateFrameNames('george_sprite', {
                 prefix: 'fall',
                 start: 0,
                 end: 1,
@@ -83,7 +85,7 @@ class Preload extends Phaser.Scene {
 
         this.anims.create({
             key: 'georgeFloatTransition',
-            frames: this.anims.generateFrameNames('georgeSprite', {
+            frames: this.anims.generateFrameNames('george_sprite', {
                 prefix: 'floatTransition',
                 start: 0,
                 end: 1,
@@ -95,7 +97,7 @@ class Preload extends Phaser.Scene {
 
         this.anims.create({
             key: 'georgeFloat',
-            frames: this.anims.generateFrameNames('georgeSprite', {
+            frames: this.anims.generateFrameNames('george_sprite', {
                 prefix: 'float',
                 start: 0,
                 end: 1,
@@ -107,7 +109,7 @@ class Preload extends Phaser.Scene {
 
         this.anims.create({
             key: 'georgeFloatFallTransition',
-            frames: this.anims.generateFrameNames('georgeSprite', {
+            frames: this.anims.generateFrameNames('george_sprite', {
                 prefix: 'floatFallTransition',
                 start: 0,
                 end: 1,
@@ -119,7 +121,7 @@ class Preload extends Phaser.Scene {
 
         this.anims.create({
             key: 'georgeLand',
-            frames: this.anims.generateFrameNames('georgeSprite', {
+            frames: this.anims.generateFrameNames('george_sprite', {
                 prefix: 'land',
                 start: 0,
                 end: 1,
@@ -127,6 +129,20 @@ class Preload extends Phaser.Scene {
             }),
             frameRate: 12,
             repeat: 0
+        });
+
+        this.anims.create({
+            key: 'aim_anim',
+            frames: this.anims.generateFrameNumbers('george_aim', {start: 0, end: 3, first: 0}),
+            frameRate: 12,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'projectile_anim',
+            frame: this.anims.generateFrameNumbers('george_projectile', {start: 0, end: 1, end: 0}),
+            frameRate: 12,
+            repeat: -1
         });
 
         // bg anims

@@ -5,6 +5,7 @@ class Projectile extends Phaser.GameObjects.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
 
+
         this.setAngle(angle);
         this.body.setVelocity(velocity.x * speed, velocity.y * speed);
     }

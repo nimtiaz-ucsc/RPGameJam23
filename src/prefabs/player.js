@@ -1,9 +1,9 @@
 class Player extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y) {
-        super(scene, x, y, 'georgeSprite');
+        super(scene, x, y, 'george_sprite');
         //this.setScale(0.5);
-        this.aim = new PlayerAim(scene, x, y).setScale(0.5);
+        this.aim = new PlayerAim(scene, x, y);
 
         scene.add.existing(this);
         scene.physics.add.existing(this);
@@ -173,9 +173,9 @@ class Player extends Phaser.GameObjects.Sprite {
         this.isShooting = true;
         let velocity = scene.physics.velocityFromAngle(this.aim.angle, 1);
         this.projectiles.add(new Projectile(scene, this.x, this.y, 
-                                            'projectile', velocity, 
+                                            'george_projectile', velocity, 
                                             this.body.width, this.body.height, 
-                                            this.aim.angle, projectileSpeed).setScale(0.0625));
+                                            this.aim.angle, projectileSpeed));
         scene.time.delayedCall(fireRate, () => {
             if (scene.input.activePointer.leftButtonDown()) {
                 this.shoot(scene);
