@@ -50,11 +50,13 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
     shoot(scene, type) {
         if (this.body != undefined) {
-            let angle, velocity;
+            let angle, velocity, speed;
             if (type == 1) {
-                angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.x, this.y, scene.player.x, scene.player.y)
+                speed = enemyFireRate * 0.5
+                angle = 135;
                 velocity = scene.physics.velocityFromAngle(angle, 1);
             } else if (type == 2) {
+                speed = enemyFireRate;
                 angle = 90;
                 velocity = new Phaser.Math.Vector2(-1, 0);
             }
@@ -62,7 +64,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
                                                     'projectile', velocity,
                                                     this.body.width, this.body.height, 
                                                     angle, projectileSpeed/2).setScale(0.0625));
-            scene.time.delayedCall(enemyFireRate, () => { 
+            scene.time.delayedCall(speed, () => { 
                 if (this.body != undefined) { this.shoot(scene, type) }
             });
         }

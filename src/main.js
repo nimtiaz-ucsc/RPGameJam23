@@ -6,7 +6,7 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true
+            debug: false
         }
     }
 };
@@ -40,5 +40,7 @@ let spawnRate = 500;
 let enemyFireRate = 1500;
 
 let basePoints = 100;
+
+let bgSpeed = 3;
 
 let game = new Phaser.Game(config);
