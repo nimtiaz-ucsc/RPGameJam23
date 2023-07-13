@@ -8,6 +8,7 @@ class DialogTest extends Phaser.Scene {
     }
 
     create() {
+        this.complete = false;
 
         this.sequence = [
             {
@@ -23,7 +24,7 @@ class DialogTest extends Phaser.Scene {
             },
             {
                 portrait: null,
-                speaker: '',
+                speaker: null,
                 speech: '~ A Brief Intermission ~'
             },
             {
@@ -43,7 +44,7 @@ class DialogTest extends Phaser.Scene {
             },
             {
                 portrait: null,
-                speaker: '',
+                speaker: null,
                 speech: '...'
             },
             {
@@ -53,9 +54,22 @@ class DialogTest extends Phaser.Scene {
             }
         ];
 
-        this.dialog = new Dialog(this, game.config.width/2, game.config.height * 0.8, undefined, this.sequence);
-
-        
+        this.dialog = new Dialog(this, game.config.width/2, game.config.height * 0.8, undefined, this.sequence);        
+    }
+    
+    update() {
+        this.dialog.update();
+        if (this.dialog.complete && !this.complete) {
+            this.complete = true;
+            this.black = this.add.rectangle(0, 0, game.config.width, game.config.height, 0x000000).setOrigin(0).setAlpha(0);
+            this.tweens.add({
+                targets: [this.black],
+                alpha: 1,
+                duration: 1000,
+                onComplete: () => { this.scene.start('prefabTest'); }
+            });
+            
+        }
     }
 
 }

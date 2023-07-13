@@ -88,7 +88,6 @@ class PrefabTest extends Phaser.Scene {
     }
 
     destroyEnemy(projectile, enemy) {
-        this.player.score += enemy.points;
         projectile.body.setVelocity(0);
         projectile.body.destroy();
         this.time.delayedCall(50, () => {
@@ -104,6 +103,7 @@ class PrefabTest extends Phaser.Scene {
 
         enemy.health--;
         if (enemy.health == 0) {
+            this.player.score += enemy.points;
             enemy.kill(this);
         }
     }

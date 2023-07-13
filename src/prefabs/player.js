@@ -8,8 +8,7 @@ class Player extends Phaser.GameObjects.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
 
-        //this.anims.play('georgeRun');
-        //console.log(this.anims.currentAnim.key);
+        this.body.setSize(64, 128);
 
         this.keyW = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         this.keyA = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
