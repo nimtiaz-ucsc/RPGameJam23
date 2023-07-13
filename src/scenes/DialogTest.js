@@ -14,28 +14,49 @@ class DialogTest extends Phaser.Scene {
             {
                 portrait: 'george',
                 speaker: 'Big George',
-                speech: 'Hi, my name is George.'
+                speech: 'Hi, my name is George. BIG George.'
             },
-
+            {
+                speaker: 'Decision Point Time!!!',
+                speech: 'Make a choice...',
+                choice1: {
+                    img: 'portrait_bob',
+                    callback: () => {
+                        this.dialog.index = 6;
+                    }
+                },
+                choice2: {
+                    img: 'portrait_chuck',
+                    callback: () => {
+                        this.dialog.index = 5;
+                    }
+                },
+                choice3: {
+                    img: 'portrait_sam',
+                    callback: () => {
+                        this.dialog.index = 4;
+                    }
+                }
+            },
             {
                 portrait: 'george',
                 speaker: 'Big George',
                 speech: 'Yup. Still George.'
             },
             {
-                portrait: null,
-                speaker: null,
                 speech: '~ A Brief Intermission ~'
             },
             {
                 portrait: 'sam',
                 speaker: 'Lanky Sam',
-                speech: 'That was George. And I am Sam. Lanky Sam.'
+                speech: 'They call me Lanky Sam.',
+                next: 9
             },
             {
                 portrait: 'chuck',
                 speaker: 'Buff Chuck',
-                speech: 'Buff Chuck reporting in.'
+                speech: 'Buff Chuck reporting in.',
+                next: 9
             },
             {
                 portrait: 'bob',
@@ -43,18 +64,20 @@ class DialogTest extends Phaser.Scene {
                 speech: 'And last but not least, Tiny Bob! Hooray!'
             },
             {
-                portrait: null,
-                speaker: null,
                 speech: '...'
             },
             {
                 portrait: 'bob',
                 speaker: 'Tiny Bob',
                 speech: 'You can go now.'
+            },
+            {
+                end: true
             }
         ];
 
-        this.dialog = new Dialog(this, game.config.width/2, game.config.height * 0.8, undefined, this.sequence);        
+        this.dialog = new Dialog(this, game.config.width/2, game.config.height * 0.8, undefined, this.sequence);
+        //new Button(this, game.config.width/2, game.config.height/2, game.config.width/8, game.config.height/4, 0x123456, 5, 0xabcdef, 'img', 'aim', () => {console.log('click')});
     }
     
     update() {

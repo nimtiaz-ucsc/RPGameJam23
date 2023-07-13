@@ -6,7 +6,7 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true
+            debug: false
         }
     }
 };
@@ -17,8 +17,7 @@ let keyCodes = {
     S: Phaser.Input.Keyboard.KeyCodes.S,
     D: Phaser.Input.Keyboard.KeyCodes.D,
     SPACE: Phaser.Input.Keyboard.KeyCodes.SPACE
-} 
-// let keyW, keyA, keyS, keyD, keySPACE
+}
 
 let moveSpeed = 500;
 let jumpSpeed = -750;

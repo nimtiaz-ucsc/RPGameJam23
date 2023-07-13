@@ -12,7 +12,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
         this.points = basePoints * (4 - type);
         this.health = type
 
-        this.healthText = scene.add.text(x, y - this.body.height/2, "", {color: '#f54298', stroke: '#910052', fontSize: '24px', fontFamily: 'Pangolin'}).setOrigin(0.5);
+        this.healthText = scene.add.text(x, y - this.body.height/2, "", {color: '#f54298', stroke: '#910052', fontSize: '100px', fontFamily: 'Pangolin'}).setOrigin(0.5);
 
         this.projectiles = new Phaser.GameObjects.Group;
         if (type != 3) { this.shoot(scene, type); }
@@ -24,7 +24,6 @@ class Enemy extends Phaser.GameObjects.Sprite {
         this.healthText.x = this.x;
         this.healthText.y = this.y - this.body.height;
         this.setHealthText();
-        //this.healthText.setText(this.health);
 
         this.projectiles.children.entries.forEach(projectile => {
             projectile.update();
@@ -75,7 +74,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
         let healthString = "";
 
         for (let i = 0; i < this.health; i++) {
-            healthString += "♥ "
+            healthString += "."
         }
 
         this.healthText.setText(healthString);
