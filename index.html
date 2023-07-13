@@ -11,6 +11,15 @@
             text-align: center;
         }
     </style>
+
+    <style media='screen' type='text/css'>
+        @font-face {
+          font-family: Pangolin;
+          src: url('assets/Pangolin-Regular.ttf');
+        }
+  </style>
+  <div style="font-family:Pangolin; visibility:hidden;">.</div>
+
 </head>
 <body>
     <script src="lib/phaser.js"></script>
@@ -19,8 +28,10 @@
     <script src="src/prefabs/PlayerAim.js"></script>
     <script src="src/prefabs/Player.js"></script>
     <script src="src/prefabs/Enemy.js"></script>
+    <script src="src/prefabs/Dialog.js"></script>
 
     <script src="src/scenes/Preload.js"></script>
+    <script src="src/scenes/DialogTest.js"></script>
     <script src="src/scenes/PrefabTest.js"></script>
     <script src="src/scenes/Shooter.js"></script>
     <script src="src/scenes/Switcher.js"></script>

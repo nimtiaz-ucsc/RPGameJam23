@@ -34,7 +34,7 @@ class PrefabTest extends Phaser.Scene {
 
         this.physics.add.collider([this.player, this.player.aim], this.ground);
 
-        this.UIText = this.add.text(10, 10, "HP: " + this.player.health + "\nSCORE: " + this.player.score, { color: '#000000', fontSize: '24px'}).setOrigin(0);
+        this.UIText = this.add.text(10, 10, "HP: " + this.player.health + "\nSCORE: " + this.player.score, { color: '#000000', fontSize: '24px', fontFamily: 'Pangolin'}).setOrigin(0);
 
         this.enemies = this.physics.add.group();
         this.enemies.defaults = {};

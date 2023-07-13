@@ -19,6 +19,11 @@ class Preload extends Phaser.Scene {
         this.load.spritesheet('grass1', 'assets/bg/grass1.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
         this.load.spritesheet('grass2', 'assets/bg/grass2.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
         this.load.spritesheet('dirt', 'assets/bg/dirt.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
+
+        this.load.image('portrait1', 'assets/portrait1.png');
+        this.load.image('portrait2', 'assets/portrait2.png');
+        this.load.image('portrait3', 'assets/portrait3.png');
+        this.load.image('portrait4', 'assets/portrait4.png');
     }
 
     create() {
@@ -194,6 +199,6 @@ class Preload extends Phaser.Scene {
 
 
 
-        this.scene.start('prefabTest');
+        this.scene.start('dialogTest');
     }
 }
