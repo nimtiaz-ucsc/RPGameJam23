@@ -20,10 +20,12 @@ class Preload extends Phaser.Scene {
         this.load.spritesheet('grass2', 'assets/bg/grass2.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
         this.load.spritesheet('dirt', 'assets/bg/dirt.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
 
-        this.load.image('portrait1', 'assets/portrait1.png');
-        this.load.image('portrait2', 'assets/portrait2.png');
-        this.load.image('portrait3', 'assets/portrait3.png');
-        this.load.image('portrait4', 'assets/portrait4.png');
+        this.load.image('portrait_bob', 'assets/portrait_bob.png');
+        this.load.image('portrait_chuck', 'assets/portrait_chuck.png');
+        this.load.image('portrait_george', 'assets/portrait_george.png');
+        this.load.image('portrait_sam', 'assets/portrait_sam.png');
+
+        this.load.spritesheet('dialog_continue', 'assets/dialog_continue.png', {frameWidth: 32, frameHeight: 32, startFrame: 0, endFrame: 7});
     }
 
     create() {
@@ -191,6 +193,13 @@ class Preload extends Phaser.Scene {
             key: 'dirt_anim',
             frames: this.anims.generateFrameNumbers('dirt', {start: 0, end: 1, first: 0}),
             frameRate: 6,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'continue_anim',
+            frames: this.anims.generateFrameNumbers('dialog_continue', {start: 0, end: 7, first: 0}),
+            frameRate: 18,
             repeat: -1
         });
 
