@@ -23,28 +23,29 @@ class Button extends Phaser.GameObjects.Rectangle {
 
         this.setInteractive( {useHandCursor: true})
 
-        this.on('pointerover', () => {
-            this.setScale(1.1);
-            this.label.setScale(1.1);
-        })
-        
-        this.on('pointerout', () => {
-            this.setScale(1);
-            this.label.setScale(1);
-        })
+        if (this.visible) {            
+            this.on('pointerover', () => {
+                this.setScale(1.1);
+                this.label.setScale(1.1);
+            })
+            
+            this.on('pointerout', () => {
+                this.setScale(1);
+                this.label.setScale(1);
+            })
 
-        this.on('pointerdown', () => {
-            this.setScale(0.9);
-            this.label.setScale(0.9);
-        })
+            this.on('pointerdown', () => {
+                this.setScale(0.9);
+                this.label.setScale(0.9);
+            })
 
-        this.on('pointerup', () => {
-            console.log('pointer up')
-            console.log(this.callback);
-            this.setScale(1);
-            this.label.setScale(1);
-            this.callback();
-        })
+            this.on('pointerup', () => {
+                this.setScale(1);
+                this.label.setScale(1);
+                this.callback();
+            })
+        }
+
     }
 
     visibility(setting) {

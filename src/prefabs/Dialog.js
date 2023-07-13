@@ -8,22 +8,13 @@ class Dialog extends Phaser.GameObjects.Container {
         this.index = 0;
         this.complete = false;
         
-        // this.choice1Box = scene.add.rectangle(game.config.width/4, game.config.height/3, 200, 200, 0xCCF0E4).setOrigin(0.5).setStrokeStyle(6, 0x10302A).setVisible(false).setInteractive({useHandCursor: true});
-        // this.choice1Img = scene.add.sprite(this.choice1Box.x, this.choice1Box.y, 'projectile').setVisible(false).setScale(0.5);
-
         this.choice1 = new Button(scene, game.config.width/4, game.config.height/3, 200, 200, 0xCCF0E4, 6, 0x10302A, 'img', 'projectile', null);
         this.choice1.visibility(false);
 
-        // this.choice2Box = scene.add.rectangle(game.config.width/2, game.config.height/3, 200, 200, 0xCCF0E4).setOrigin(0.5).setStrokeStyle(6, 0x10302A).setVisible(false).setInteractive({useHandCursor: true});
-        // this.choice2Img = scene.add.sprite(this.choice2Box.x, this.choice2Box.y, 'projectile').setVisible(false).setScale(0.5);
-
         this.choice2 = new Button(scene, game.config.width/2, game.config.height/3, 200, 200, 0xCCF0E4, 6, 0x10302A, 'img', 'projectile', null);
         this.choice2.visibility(false);
-
-        // this.choice3Box = scene.add.rectangle(game.config.width/4 * 3, game.config.height/3, 200, 200, 0xCCF0E4).setOrigin(0.5).setStrokeStyle(6, 0x10302A).setVisible(false).setInteractive({useHandCursor: true});
-        // this.choice3Img = scene.add.sprite(this.choice3Box.x, this.choice3Box.y, 'projectile').setVisible(false).setScale(0.5);
         
-        this.choice3 = new Button(scene, game.config.width/4 * 3, game.config.height/3, 200, 200, 0xCCF0E4, 6, 0x10302A, 'img', 'projectile', null);
+        this.choice3 = new Button(scene, game.config.width/4 * 3, game.config.height/3, 200, 200, 0xCCF0E4, 6, 0x10302A, 'img', 'projectile', null)
         this.choice3.visibility(false);
 
         this.choices = false;
@@ -45,9 +36,10 @@ class Dialog extends Phaser.GameObjects.Container {
         this.isTyping = false;
         this.progress(scene);
         
-        scene.input.on('pointerdown', () => {
+        scene.input.on('pointerup', () => {
             scene.input.mouse.disableContextMenu();
             if (!this.choices) {
+                console.log('hola')
                 this.progress(scene);
             }
 
@@ -63,11 +55,13 @@ class Dialog extends Phaser.GameObjects.Container {
         let newSize = Number(size.slice(0, size.length - 2));
 
         if (dimension === 'y') {
+            textObj.setFontSize(36)
             while (textObj.height > max) {
                 newSize--;
                 textObj.setFontSize(newSize)
             }
         } else if (dimension === 'x') {
+            textObj.setFontSize(30)
             while (textObj.width > max) {
                 newSize--;
                 textObj.setFontSize(newSize)
@@ -139,7 +133,6 @@ class Dialog extends Phaser.GameObjects.Container {
             this.choice1.callback = () => {
                 currLine.choice1.callback();
                 this.choices = false;
-                this.progress(scene);
             };
         } else {
             this.choices = false;
@@ -152,7 +145,6 @@ class Dialog extends Phaser.GameObjects.Container {
             this.choice2.callback = () => {
                 currLine.choice2.callback();
                 this.choices = false;
-                this.progress(scene);
             };
         } else {
             this.choices = false;
@@ -165,7 +157,6 @@ class Dialog extends Phaser.GameObjects.Container {
             this.choice3.callback = () => {
                 currLine.choice3.callback();
                 this.choices = false;
-                this.progress(scene);
             };
         } else {
             this.choices = false;
