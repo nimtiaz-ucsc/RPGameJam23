@@ -11,6 +11,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
         this.points = basePoints * (4 - type);
         this.health = type
+        this.dead = false;
 
         this.healthText = scene.add.text(x, y - this.body.height/2, "", {color: '#f54298', stroke: '#910052', fontSize: '100px', fontFamily: 'Pangolin'}).setOrigin(0.5);
 
@@ -33,6 +34,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
     kill(scene) {
         this.body.destroy();
+        this.dead = true;
 
         scene.time.delayedCall(50, () => {
             scene.tweens.add({
@@ -49,7 +51,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
     }
 
     shoot(scene, type) {
-        if (this.body != undefined) {
+        if (!this.dead) {
             let angle, velocity, speed;
             if (type == 1) {
                 speed = enemyFireRate * 0.5;
@@ -65,7 +67,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
                                                     this.body.width, this.body.height, 
                                                     angle, projectileSpeed/2).setScale(0.0625));
             scene.time.delayedCall(speed, () => { 
-                if (this.body != undefined) { this.shoot(scene, type) }
+                if (!this.dead) { this.shoot(scene, type) }
             });
         }
     }

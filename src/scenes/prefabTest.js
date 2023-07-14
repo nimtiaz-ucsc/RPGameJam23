@@ -57,7 +57,7 @@ class PrefabTest extends Phaser.Scene {
 
             this.dirt.tilePositionX += bgSpeed;
             this.grass2.tilePositionX += bgSpeed/2;
-            this.grass1.tilePositionX += bgSpeed/4;
+            this.grass1.tilePositionX += bgSpeed/3;
         }
 
         this.clouds2.tilePositionX += bgSpeed/5;

@@ -17,6 +17,9 @@ class Dialog extends Phaser.GameObjects.Container {
         this.choice3 = new Button(scene, game.config.width/4 * 3, game.config.height/3, 200, 200, 0xCCF0E4, 6, 0x10302A, 'img', 'projectile', null)
         this.choice3.visibility(false);
 
+        this.frame = scene.add.rectangle(game.config.width/2, game.config.height/3 - 15, 800, 400, 0xCCF0E4).setOrigin(0.5).setStrokeStyle(6, 0x10302A).setVisible(false);
+        this.frameImage = scene.add.sprite(game.config.width/2, game.config.height/3 - 15, 'sky').setOrigin(0.5).setScale(0.5).setVisible(false);
+
         this.choices = false;
 
         this.portrait = scene.add.sprite(game.config.width - 75, y - 230, 'portrait_' + this.sequence[0].portrait).setOrigin(1, 0.5).setVisible(false);
