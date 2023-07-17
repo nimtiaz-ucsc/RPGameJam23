@@ -17,6 +17,11 @@ class DialogTest extends Phaser.Scene {
                 speech: 'Hi, my name is George. BIG George.'
             },
             {
+                frame: 'sky',
+                speaker: 'Big George',
+                speech: 'Now check this out!\n:)'
+            },
+            {
                 speaker: 'Decision Point Time!!!',
                 speech: 'Make a choice...',
                 choice1: {
@@ -50,13 +55,13 @@ class DialogTest extends Phaser.Scene {
                 portrait: 'sam',
                 speaker: 'Lanky Sam',
                 speech: 'They call me Lanky Sam.',
-                next: 9
+                next: 10
             },
             {
                 portrait: 'chuck',
                 speaker: 'Buff Chuck',
                 speech: 'Buff Chuck reporting in.',
-                next: 9
+                next: 10
             },
             {
                 portrait: 'bob',

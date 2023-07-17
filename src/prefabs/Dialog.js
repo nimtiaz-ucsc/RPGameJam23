@@ -18,7 +18,7 @@ class Dialog extends Phaser.GameObjects.Container {
         this.choice3.visibility(false);
 
         this.frame = scene.add.rectangle(game.config.width/2, game.config.height/3 - 15, 800, 400, 0xCCF0E4).setOrigin(0.5).setStrokeStyle(6, 0x10302A).setVisible(false);
-        this.frameImage = scene.add.sprite(game.config.width/2, game.config.height/3 - 15, 'sky').setOrigin(0.5).setScale(0.5).setVisible(false);
+        this.frameImage = scene.add.sprite(game.config.width/2, game.config.height/3 - 15, 'sky').setOrigin(0.5).setVisible(false);
 
         this.choices = false;
 
@@ -42,7 +42,6 @@ class Dialog extends Phaser.GameObjects.Container {
         scene.input.on('pointerup', () => {
             scene.input.mouse.disableContextMenu();
             if (!this.choices) {
-                console.log('hola')
                 this.progress(scene);
             }
 
@@ -120,10 +119,12 @@ class Dialog extends Phaser.GameObjects.Container {
                         } else {
                             this.index = currLine.next;
                         }
+                        this.scale(this.speakerText, 180, 'x');
+                        this.scale(this.bodyText, 150, 'y');
                     }
                 },
                 repeat: currLine.speech.length - 1,
-                delay: 50
+                delay: 25
             })
         }
         this.scale(this.speakerText, 180, 'x');
@@ -164,6 +165,14 @@ class Dialog extends Phaser.GameObjects.Container {
         } else {
             this.choices = false;
             this.choice3.visibility(false);
+        }
+
+        if (currLine.frame != undefined) {
+            this.frame.setVisible(true);
+            this.frameImage.setVisible(true).setTexture('frame_' + currLine.frame);
+        } else {
+            this.frame.setVisible(false);
+            this.frameImage.setVisible(false)
         }
     }
 

@@ -8,7 +8,7 @@ class PrefabTest extends Phaser.Scene {
     }
 
     create() {
-        this.sky = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'sky').setOrigin(0);
+        this.sky = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'sky1').setOrigin(0);
         this.sun = this.add.sprite(56, 0, 'sun').setOrigin(0).play('sun_anim');
 
         this.clouds1 = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'clouds1').setOrigin(0);

@@ -12,18 +12,31 @@ class Preload extends Phaser.Scene {
         this.load.spritesheet('george_aim', './assets/george/aim.png', {frameWidth: 128, frameHeight: 128, startFrame: 0, endFrame: 3});
         this.load.spritesheet('george_projectile', './assets/george/projectiles.png', {frameWidth: 16, frameHeight: 16, startFrame: 0, endFrame: 1});
 
-        this.load.image('sky', 'assets/bg/sky.png');
+        this.load.image('sky1', 'assets/bg/sky1.png');
         this.load.spritesheet('sun', 'assets/bg/sun.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('sunset', 'assets/bg/sunset.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('moon', 'assets/bg/moon.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
         this.load.spritesheet('clouds1', 'assets/bg/clouds1.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
         this.load.spritesheet('clouds2', 'assets/bg/clouds2.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
         this.load.spritesheet('grass1', 'assets/bg/grass1.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
         this.load.spritesheet('grass2', 'assets/bg/grass2.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
         this.load.spritesheet('dirt', 'assets/bg/dirt.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
 
-        this.load.image('portrait_bob', 'assets/portrait_bob.png');
-        this.load.image('portrait_chuck', 'assets/portrait_chuck.png');
-        this.load.image('portrait_george', 'assets/portrait_george.png');
-        this.load.image('portrait_sam', 'assets/portrait_sam.png');
+        this.load.image('portrait_bob', 'assets/portraits/bob.png');
+            this.load.image('portrait_bob_sad', 'assets/portraits/bob_sad.png');
+        this.load.image('portrait_chuck', 'assets/portraits/chuck.png');
+            this.load.image('portrait_chuck_sad', 'assets/portraits/chuck_sad.png');
+        this.load.image('portrait_george', 'assets/portraits/george.png');
+            this.load.image('portrait_george_sad', 'assets/portraits/george_sad.png');
+        this.load.image('portrait_sam', 'assets/portraits/sam.png');
+            this.load.image('portrait_sam_sad', 'assets/portraits/sam_sad.png');
+        this.load.image('portrait_dsd', 'assets/portraits/dsd.png');
+        this.load.image('portrait_solveig', 'assets/portraits/solveig.png');
+
+        this.load.image('frame_attack', 'assets/frames/attack.png');
+        this.load.image('frame_blueprint', 'assets/frames/blueprint.png');
+        this.load.image('frame_cave', 'assets/frames/cave.png');
+        this.load.image('frame_village', 'assets/frames/village.png');
 
         this.load.spritesheet('dialog_continue', 'assets/dialog_continue.png', {frameWidth: 32, frameHeight: 32, startFrame: 0, endFrame: 7});
     }
@@ -208,6 +221,6 @@ class Preload extends Phaser.Scene {
 
 
 
-        this.scene.start('dialogTest');
+        this.scene.start('scene1');
     }
 }

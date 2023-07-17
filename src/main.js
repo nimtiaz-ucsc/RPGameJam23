@@ -2,7 +2,8 @@ let config = {
     width:  1080,
     height: 720,
     backgroundColor: '0xFFFFFF',
-    scene: [Preload, DialogTest, PrefabTest, Shooter, Switcher],
+    scene: [Preload, DialogTest, PrefabTest, Shooter, Switcher,
+            Scene1],
     physics: {
         default: 'arcade',
         arcade: {
