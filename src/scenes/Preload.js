@@ -343,31 +343,10 @@ class Preload extends Phaser.Scene {
         });
 
         this.anims.create ( {
-            key: 'switcher_neutral', 
-            frames: this.anims.generateFrameNumbers('switcher', {start: 0, end: 0}),
+            key: 'switch', 
+            frames: this.anims.generateFrameNumbers('switcher', {start: 0, end: 3, first: 0}),
             frameRate: 0,
-            repeat: -1
-        })
-
-        this.anims.create ( {
-            key: 'switcher_sam', 
-            frames: this.anims.generateFrameNumbers('switcher', {start: 1, end: 1}),
-            frameRate: 0,
-            repeat: -1
-        })
-
-        this.anims.create ( {
-            key: 'switcher_chuck', 
-            frames: this.anims.generateFrameNumbers('switcher', {start: 2, end: 2}),
-            frameRate: 0,
-            repeat: -1
-        })
-
-        this.anims.create ( {
-            key: 'switcher_bob', 
-            frames: this.anims.generateFrameNumbers('switcher', {start: 3, end: 3}),
-            frameRate: 0,
-            repeat: -1
+            repeat: 0
         })
 
 
