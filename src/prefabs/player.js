@@ -171,7 +171,7 @@ class Player extends Phaser.GameObjects.Sprite {
         this.isShooting = true;
         let velocity = scene.physics.velocityFromAngle(this.aim.angle, 1);
         this.projectiles.add(new Projectile(scene, this.x, this.y, 
-                                            'george_projectile', velocity, 
+                                            'projectile_' + ally, velocity, 
                                             this.body.width, this.body.height, 
                                             this.aim.angle, projectileSpeed));
         scene.time.delayedCall(fireRate, () => {

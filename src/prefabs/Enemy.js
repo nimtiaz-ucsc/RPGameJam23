@@ -13,6 +13,8 @@ class Enemy extends Phaser.GameObjects.Sprite {
         this.health = type + enemyHealthBuff;
         this.dead = false;
 
+        this.weakness = weakness;
+
         let fontColor;
 
         if (weakness == 'bob') {

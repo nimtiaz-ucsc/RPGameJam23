@@ -69,8 +69,8 @@ class Level1 extends Phaser.Scene {
         this.player.update();
 
         if(this.player.isAlive) {
-            this.progressSprite.x += bgSpeed/45;
-            this.progress.x += bgSpeed/45;
+            this.progressSprite.x += bgSpeed/20;
+            this.progress.x += bgSpeed/20;
         }
         this.clouds1.setFrame(this.clouds1_sprite.frame.name);
         this.clouds2.setFrame(this.clouds2_sprite.frame.name);
@@ -143,23 +143,25 @@ class Level1 extends Phaser.Scene {
     }
 
     destroyEnemy(projectile, enemy) {
-        projectile.body.setVelocity(0);
-        projectile.body.destroy();
-        this.time.delayedCall(50, () => {
-            this.tweens.add({
-                targets: [projectile],
-                alpha: 0,
-                duration: 500,
-                onComplete: () => {
-                    projectile.destroy();
-                }
-            })
-        }); 
+        if (projectile.texture.key.slice(11) == enemy.weakness) {
+            projectile.body.setVelocity(0);
+            projectile.body.destroy();
+            this.time.delayedCall(50, () => {
+                this.tweens.add({
+                    targets: [projectile],
+                    alpha: 0,
+                    duration: 500,
+                    onComplete: () => {
+                        projectile.destroy();
+                    }
+                })
+            }); 
 
-        enemy.health--;
-        if (enemy.health == 0) {
-            this.player.score += enemy.points;
-            enemy.kill(this);
+            enemy.health--;
+            if (enemy.health == 0) {
+                this.player.score += enemy.points;
+                enemy.kill(this);
+            }
         }
     }
 
