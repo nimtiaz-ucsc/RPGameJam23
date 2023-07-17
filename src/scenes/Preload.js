@@ -53,7 +53,7 @@ class Preload extends Phaser.Scene {
         this.load.image('portrait_george', './assets/portraits/george.png');
         this.load.image('portrait_george_sad', './assets/portraits/george_sad.png');
         this.load.image('portrait_sam', './assets/portraits/sam.png');
-        this.load.image('portrait_sam_sad', 'a./ssets/portraits/sam_sad.png');
+        this.load.image('portrait_sam_sad', './assets/portraits/sam_sad.png');
         this.load.image('portrait_dsd', './assets/portraits/dsd.png');
         this.load.image('portrait_solveig', './assets/portraits/solveig.png');
 
@@ -371,6 +371,6 @@ class Preload extends Phaser.Scene {
         })
 
 
-        this.scene.start('level1');
+        this.scene.start('mainMenu');
     }
 }
