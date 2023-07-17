@@ -2,11 +2,11 @@ let config = {
     width:  1080,
     height: 720,
     backgroundColor: '0xFFFFFF',
-    scene: [Preload, DialogTest, Shooter, Switcher, Scene1, Level1],
+    scene: [Preload, MainMenu, Switcher, Scene1, Level1],
     physics: {
         default: 'arcade',
         arcade: {
-            debug: false
+            debug: true
         }
     }
 };

@@ -4,9 +4,10 @@ class Preload extends Phaser.Scene {
     }
 
     preload() {
-        this.load.spritesheet('george', 'assets/george/proto/BigGeorgeBody.png', {frameWidth: 256, frameHeight: 256, startFrame: 0, endFrame: 0});
-        this.load.spritesheet('aim', 'assets/george/proto/BigGeorgeAimArm.png', {frameWidth: 256, frameHeight: 256, startFrame: 0, endFrame: 0});
-        this.load.spritesheet('projectile', 'assets/george/proto/BigGeorgeProjectile.png', {frameWidth: 256, frameHeight: 256, startFrame: 0, endFrame: 0});
+        this.load.image('title_george', 'assets/title_george.png');
+        this.load.image('title_bob', 'assets/title_bob.png');
+        this.load.image('title_chuck', 'assets/title_chuck.png');
+        this.load.image('title_sam', 'assets/title_sam.png');
 
         this.load.atlas('george_sprite', './assets/george/georgeAtlas.png', './assets/george/georgeAtlas.json');
         this.load.spritesheet('george_aim', './assets/george/aim.png', {frameWidth: 128, frameHeight: 128, startFrame: 0, endFrame: 3});
@@ -370,10 +371,6 @@ class Preload extends Phaser.Scene {
         })
 
 
-
-
-
-
-        this.scene.start('level1');
+        this.scene.start('mainMenu');
     }
 }

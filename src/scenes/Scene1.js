@@ -19,16 +19,16 @@ class Scene1 extends Phaser.Scene {
             }, {
                 speech: 'And the only way to break up with a friend is to solve their trick.'
             }, {
-                speech: 'This is Wül Village, a small settlement out in the middle of a large patch of grass, and home to the Wüllen, a race of tiny people made entirely of cotton wool.',
+                speech: 'This is Wuhl Village, a small settlement out in the middle of a large patch of grass, and home to the Wuhlen, a race of tiny people made entirely of cotton wool.',
                 frame: 'village'
             }, {
                 speech: 'Recently, the village has been facing a serious threat: one day, the native insects of the field suddenly fell into a vicious frenzy, attacking anything in sight.',
                 frame: 'attack'
             }, {
-                speech: 'The only possible explanation to what caused this is a ghastly green froth at their mouths, which the Wüllen have simply dubbed "The Foam."',
+                speech: 'The only possible explanation to what caused this is a ghastly green froth at their mouths, which the Wuhlen have simply dubbed "The Foam."',
                 frame: 'attack'
             }, {
-                speech: 'The village also happens to be home to the hero of our story, a particularly adventurous little Wüllen named Big George...',
+                speech: 'The village also happens to be home to the hero of our story, a particularly adventurous little Wuhlen named Big George...',
                 frame: 'village'
             }, {
                 portrait: 'george',
@@ -62,7 +62,7 @@ class Scene1 extends Phaser.Scene {
                 speech: 'This is Buff Chuck.'
             }, {
                 portrait: 'chuck',
-                speech: 'One of the more physically imposing Wüllen, he has been friends with Big George since their youth, watching over him as a protective brotherly figure. ' + 
+                speech: 'One of the more physically imposing Wuhlen, he has been friends with Big George since their youth, watching over him as a protective brotherly figure. ' + 
                         'In fact, it was him who gave Big George his title, as a way to boost his self-confidence.'
             }, {
                 portrait: 'chuck',
@@ -76,7 +76,7 @@ class Scene1 extends Phaser.Scene {
                 speech: 'This is Tiny Bob.' 
             }, {
                 portrait: 'bob',
-                speech: 'Ever enthusiastic and upbeat, there isn\'t much that can bring this perpetually smiling Wüllen\'s spirits down. ' +
+                speech: 'Ever enthusiastic and upbeat, there isn\'t much that can bring this perpetually smiling Wuhlen\'s spirits down. ' +
                         'He is the heart of the group, and his infectious positivity gives them the mental energy and support to keep going in the face of adversity.'
             }, {
                 portrait: 'sam',
@@ -87,7 +87,7 @@ class Scene1 extends Phaser.Scene {
                 speech: 'This is Lanky Sam.'
             }, {
                 portrait: 'sam',
-                speech: 'As one of Wül Village\'s smartest residents, she is an invaluable member of the team, and able to figure out a solution to almost any tricky situation the group may find themselves in.'
+                speech: 'As one of Wuhl Village\'s smartest residents, she is an invaluable member of the team, and able to figure out a solution to almost any tricky situation the group may find themselves in.'
             }, {
                 portrait: 'george',
                 speaker: 'Big George',

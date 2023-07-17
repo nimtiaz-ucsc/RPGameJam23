@@ -35,7 +35,7 @@ class Level1 extends Phaser.Scene {
         this.physics.add.collider([this.player, this.player.aim], this.ground);
         
         this.add.rectangle(-5, -5, 200, 96, 0xCCF0E4).setOrigin(0).setStrokeStyle(4, 0x10302A);
-        this.UIText = this.add.text(10, 20, "HP: " + this.player.health + "\nSCORE: " + this.player.score, { color: '#000000', fontSize: '24px', fontFamily: 'Pangolin'}).setOrigin(0);
+        this.UIText = this.add.text(10, 20, "HP: " + this.player.health + "\nSCORE: " + this.player.score, { color: '#10302A', fontSize: '24px', fontFamily: 'Pangolin'}).setOrigin(0);
 
         this.progressBar = this.add.rectangle(game.config.width/2, 50, game.config.width * 0.5, 10, 0xCCF0E4).setOrigin(0.5).setStrokeStyle(4, 0x10302A);
         this.progress = this.add.rectangle(this.progressBar.x - game.config.width * 0.25, 50, 0, 10, 0x2A8261).setOrigin(0.5).setStrokeStyle(4, 0x10302A);
