@@ -128,6 +128,7 @@ class Player extends Phaser.GameObjects.Sprite {
                                 this.time.delayedCall(1000, () => {
                                     encourageText.setText('but that\'s okay! Try again!')
                                     new Button(this, game.config.width/2, 3 * game.config.height/4 - 25, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'RESTART', () => { this.scene.restart() })
+                                    new Button(this, game.config.width/2, 3 * game.config.height/4 + 50, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'MAIN MENU', () => { this.scene.start('mainMenu') })
                                 })
                             })
                         }
