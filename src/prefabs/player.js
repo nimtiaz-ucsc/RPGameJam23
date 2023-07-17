@@ -2,7 +2,6 @@ class Player extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y) {
         super(scene, x, y, 'george_sprite');
-        //this.setScale(0.5);
         this.aim = new PlayerAim(scene, x, y);
 
         scene.add.existing(this);
@@ -18,7 +17,7 @@ class Player extends Phaser.GameObjects.Sprite {
 
         this.isAlive = true;
         this.isInvincible = false;
-        this.health = 3;
+        this.health = 3 + playerHealthBuff;
 
         this.projectiles = new Phaser.GameObjects.Group;
         this.isShooting = false
@@ -35,19 +34,10 @@ class Player extends Phaser.GameObjects.Sprite {
                     this.shoot(scene);
                 }
             }
-            
-            if(scene.input.activePointer.middleButtonDown()) {
-                console.log('middle')
-            }
-            
-            if(scene.input.activePointer.rightButtonDown()) {
-                console.log('right')
-            }
         }})
     }
 
     update() {
-        this.aim.update();
         this.aim.x = this.x;
         this.aim.y = this.y;
 
@@ -56,41 +46,46 @@ class Player extends Phaser.GameObjects.Sprite {
         this.isFloating = false;
         this.isFastfalling = false;
 
+
         this.keyW.on('down', () => {
-            if (this.body.touching.down && this.body.velocity.y == 0) {
+            if (this.body.touching.down && this.body.velocity.y == 0 && this.isAlive) {
                 this.body.setVelocityY(jumpSpeed);
             }
         });
 
         this.keySPACE.on('down', () => {
-            if (this.body.touching.down && this.body.velocity.y == 0) {
+            if (this.body.touching.down && this.body.velocity.y == 0 && this.isAlive) {
                 this.body.setVelocityY(jumpSpeed);
             }
         });
 
-        if ((this.keyW.isDown || this.keySPACE.isDown) && this.body.velocity.y > 0) {
-            this.isFloating = true;
-            this.body.setGravityY(gravity * floatMultiplierY);
-        }
-
-        if (this.keyA.isDown && this.x >= this.body.width/2) {
-            if (!this.isFloating) {
-                this.body.setVelocityX(moveSpeed * -1);
-            } else {
-                this.body.setVelocityX(moveSpeed * -1 * floatMultiplierX);
+        if (this.isAlive) {
+            this.aim.update();
+            
+            if ((this.keyW.isDown || this.keySPACE.isDown) && this.body.velocity.y > 0) {
+                this.isFloating = true;
+                this.body.setGravityY(gravity * floatMultiplierY);
             }
-        }
 
-        if (this.keyS.isDown) {
-            this.isFastfalling = true;
-            this.body.setGravityY(gravity * fastfallMultiplier);
-        }
+            if (this.keyA.isDown && this.x >= this.body.width/2) {
+                if (!this.isFloating) {
+                    this.body.setVelocityX(moveSpeed * -1);
+                } else {
+                    this.body.setVelocityX(moveSpeed * -1 * floatMultiplierX);
+                }
+            }
 
-        if (this.keyD.isDown && this.x <= game.config.width - this.body.width/2) {
-            if (!this.isFloating) {
-                this.body.setVelocityX(moveSpeed);
-            } else {
-                this.body.setVelocityX(moveSpeed * floatMultiplierX)
+            if (this.keyS.isDown) {
+                this.isFastfalling = true;
+                this.body.setGravityY(gravity * fastfallMultiplier);
+            }
+
+            if (this.keyD.isDown && this.x <= game.config.width - this.body.width/2) {
+                if (!this.isFloating) {
+                    this.body.setVelocityX(moveSpeed);
+                } else {
+                    this.body.setVelocityX(moveSpeed * floatMultiplierX)
+                }
             }
         }
 
@@ -116,23 +111,31 @@ class Player extends Phaser.GameObjects.Sprite {
             player.health--;
 
             if (player.health == 0) {
+                this.complete = true;
                 player.isAlive = false;
-                player.body.destroy();
-                let gameOverText = this.add.text(game.config.width/2, game.config.height/2, "GAME OVER", { color: '#000000', fontSize: '48px'}).setOrigin(0.5).setAlpha(0);
+                player.isInvincible = true;
+                let gameOverBox = this.add.rectangle(game.config.width/2, game.config.height/2, 400, 200, 0xCCF0E4).setOrigin(0.5).setStrokeStyle(4, 0x10302A).setAlpha(0);
+                let gameOverText = this.add.text(game.config.width/2, game.config.height/2 - 25, "GAME OVER", { color: '#10302A', fontSize: '48px', fontFamily: 'Pangolin'}).setOrigin(0.5).setAlpha(0);
+                let encourageText = this.add.text(game.config.width/2, game.config.height/2 + 50, "but that's okay!", { color: '#10302A', fontSize: '24px', fontFamily: 'Pangolin'}).setOrigin(0.5).setAlpha(0);
                 this.time.delayedCall(50, () => {
                     this.tweens.add({
-                        targets: [gameOverText],
+                        targets: [gameOverBox, gameOverText],
                         alpha: 1,
-                        duration: 500
+                        duration: 500,
+                        onComplete: () => {
+                            this.time.delayedCall(1000, () => {
+                                encourageText.setAlpha(1);
+                                this.time.delayedCall(1000, () => {
+                                    encourageText.setText('but that\'s okay! Try again!')
+                                    new Button(this, game.config.width/2, 3 * game.config.height/4 - 25, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'RESTART', () => { this.scene.restart() })
+                                })
+                            })
+                        }
                     })
                     this.tweens.add({
                         targets: [player, player.aim],
                         alpha: 0,
-                        duration: 500,
-                        onComplete: () => {
-                            player.destroy();
-                            this.scene.restart();  
-                        }
+                        duration: 500
                     });
                 });
 
@@ -145,7 +148,7 @@ class Player extends Phaser.GameObjects.Sprite {
                     yoyo: true,
                     ease: 'Sine.easeInOut',
                     onComplete: () => {
-                        player.isInvincible = false;
+                        if (player.isAlive) { player.isInvincible = false; }
                         player.setAlpha(1);
                         player.aim.setAlpha(1);
                     }    
@@ -154,16 +157,12 @@ class Player extends Phaser.GameObjects.Sprite {
 
             if (enemy.constructor.name === "Projectile") {
                 enemy.body.destroy();
-                this.time.delayedCall(50, () => {
-                    this.tweens.add({
-                        targets: [enemy],
-                        alpha: 0,
-                        duration: 500,
-                        onComplete: () => {
-                            enemy.destroy();  
-                        }
-                    })
-                }); 
+                enemy.setAlpha(0);
+                let explosion = this.add.sprite(enemy.x, enemy.y, 'explosion_enemy').setOrigin(0.5).play('explode_enemy');
+                explosion.on('animationcomplete', () => {
+                    enemy.destroy();
+                    explosion.destroy();
+                });
             }
         }
     }

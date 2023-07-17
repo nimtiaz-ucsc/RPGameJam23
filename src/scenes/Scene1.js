@@ -173,7 +173,7 @@ class Scene1 extends Phaser.Scene {
                 targets: [this.black],
                 alpha: 1,
                 duration: 1000,
-                onComplete: () => { this.scene.start('prefabTest'); }
+                onComplete: () => { this.scene.start('level1'); }
             });
             
         }

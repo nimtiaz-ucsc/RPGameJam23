@@ -1,19 +1,31 @@
 class Enemy extends Phaser.GameObjects.Sprite {
     
-    constructor(scene, x, y, texture, type) {
-        super(scene, x, y, texture);
+    constructor(scene, x, y, type, weakness) {
+        super(scene, x, y, 'enemy' + type + "_" + weakness);
         scene.add.existing(this);
         scene.physics.add.existing(this);
 
-        this.setScale(0.25);
-        this.flipX = true;
-        this.body.setVelocityX(moveSpeed * -1 / type);
+        this.play('enemy' + type + "_" + weakness + "_anim");
+
+        this.body.setVelocityX((moveSpeed + enemySpeedBuff) * -1 / type);
 
         this.points = basePoints * (4 - type);
-        this.health = type
+        this.health = type + enemyHealthBuff;
         this.dead = false;
 
-        this.healthText = scene.add.text(x, y - this.body.height/2, "", {color: '#f54298', stroke: '#910052', fontSize: '100px', fontFamily: 'Pangolin'}).setOrigin(0.5);
+        let fontColor;
+
+        if (weakness == 'bob') {
+            fontColor = '#2ce8f5'
+        }
+        if (weakness == 'chuck') {
+            fontColor = '#feae34'
+        }
+        if (weakness == 'sam') {
+            fontColor = '#ff8ce6'
+        }
+
+        this.healthText = scene.add.text(x, y - this.body.height/2, "", {color: fontColor, fontSize: '100px', fontFamily: 'Pangolin'}).setOrigin(0.5);
 
         this.projectiles = new Phaser.GameObjects.Group;
         if (type != 3) { this.shoot(scene, type); }
@@ -22,8 +34,8 @@ class Enemy extends Phaser.GameObjects.Sprite {
     }
 
     update() {
-        this.healthText.x = this.x;
-        this.healthText.y = this.y - this.body.height;
+        this.healthText.x = this.x - 50;
+        this.healthText.y = this.y - 75;
         this.setHealthText();
 
         this.projectiles.children.entries.forEach(projectile => {
@@ -63,9 +75,9 @@ class Enemy extends Phaser.GameObjects.Sprite {
                 velocity = new Phaser.Math.Vector2(-1, 0);
             }
             this.projectiles.add(new Projectile(scene, this.x, this.y,
-                                                    'projectile', velocity,
+                                                    'projectile_enemy', velocity,
                                                     this.body.width, this.body.height, 
-                                                    angle, projectileSpeed/2).setScale(0.0625));
+                                                    angle, projectileSpeed/2));
             scene.time.delayedCall(speed, () => { 
                 if (!this.dead) { this.shoot(scene, type) }
             });

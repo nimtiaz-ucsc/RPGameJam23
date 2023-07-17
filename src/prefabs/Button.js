@@ -13,7 +13,7 @@ class Button extends Phaser.GameObjects.Rectangle {
                 wordWrap: {width: this.width * 0.9} }).setOrigin(0.5);
 
             let size = 1;
-            while (this.label.width < this.width * 0.9 && this.label.height < this.height * 0.9) {
+            while (this.label.width < this.width * 0.8 && this.label.height < this.height * 0.8) {
                 size++;
                 this.label.setFontSize(size);
             }

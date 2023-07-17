@@ -82,7 +82,6 @@ class DialogTest extends Phaser.Scene {
         ];
 
         this.dialog = new Dialog(this, game.config.width/2, game.config.height * 0.8, undefined, this.sequence);
-        //new Button(this, game.config.width/2, game.config.height/2, game.config.width/8, game.config.height/4, 0x123456, 5, 0xabcdef, 'img', 'aim', () => {console.log('click')});
     }
     
     update() {
