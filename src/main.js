@@ -45,6 +45,7 @@ let spawnRate = 1000;
 let enemyFireRate = 1500;
 
 let basePoints = 100;
+let totalScore = 0;
 
 let bgSpeed = 3;
 

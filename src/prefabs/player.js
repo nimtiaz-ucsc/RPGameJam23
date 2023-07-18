@@ -21,7 +21,7 @@ class Player extends Phaser.GameObjects.Sprite {
 
         this.projectiles = new Phaser.GameObjects.Group;
         this.isShooting = false
-        this.score = 0;
+        this.score = totalScore;
         
 
         scene.input.on('pointerdown', () => {

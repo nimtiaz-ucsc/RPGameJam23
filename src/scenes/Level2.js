@@ -103,6 +103,7 @@ class Level2 extends Phaser.Scene {
             this.complete = true;
             this.player.isAlive = false;
             this.player.isInvincible = true;
+            totalScore += this.player.score;
             this.tweens.add({
                 targets: [this.black],
                 alpha: 1,
