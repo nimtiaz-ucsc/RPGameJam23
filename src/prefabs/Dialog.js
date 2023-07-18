@@ -49,7 +49,7 @@ class Dialog extends Phaser.GameObjects.Container {
     }
 
     update() {
-        if (this.isTyping) { this.continue.setVisible(false)} else { this.continue.setVisible(true) }
+        this.continue.setVisible(!(this.isTyping || this.choices))
     }
 
     scale(textObj, max, dimension) {

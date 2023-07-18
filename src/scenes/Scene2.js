@@ -21,7 +21,7 @@ class Scene2 extends Phaser.Scene {
             }, {
                 portrait: 'sam_sad',
                 speaker: 'Lanky Sam',
-                speech: 'Yeah, but I\'ve got no idea what it could be...'
+                speech: 'Yeah, but what could it--'
             }, {
                 portrait: 'chuck',
                 speaker: 'Buff Chuck',
@@ -82,7 +82,7 @@ class Scene2 extends Phaser.Scene {
             }, {
                 speaker: 'Dark Schippie Dues',
                 portrait: 'dsd',
-                speech: 'Ah, well usually I opt for something a little more comfortable, but I learned the hard way that most dimensions tend not to buy things from clowns in poorly-lit shops.'
+                speech: 'Ah, well usually I opt for something a little more comfortable, but learned the hard way that people from most dimensions tend not to buy things from clowns in poorly-lit shops.'
             }, {
                 speaker: 'Big George',
                 portrait: 'george',
@@ -256,6 +256,10 @@ class Scene2 extends Phaser.Scene {
         this.grass1.setFrame(this.grass1_sprite.frame.name);
         this.grass2.setFrame(this.grass2_sprite.frame.name);
         this.dirt.setFrame(this.dirt_sprite.frame.name);
+
+        this.clouds2.tilePositionX += bgSpeed/5;
+        this.clouds1.tilePositionX += bgSpeed/10;
+        this.sunset.x -= bgSpeed/50;
 
         this.dialog.update();
         if (this.dialog.complete && !this.complete) {

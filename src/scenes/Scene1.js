@@ -117,6 +117,14 @@ class Scene1 extends Phaser.Scene {
                 speech: 'Another issue is that the bugs have mutated to be a little more resistant to attacks, but I\'ve whipped up some enhancements to George\'s wool. We\'ll each need to carry one, and he can call on whoever he needs for each one.',
                 frame: 'blueprint'
             }, {
+                speaker: 'Big George',
+                speech: 'Aaaand...?',
+                frame: 'blueprint'
+            }, {
+                speaker: 'Lanky Sam',
+                speech: 'Aaaand... as per George\'s request, they are color coded.',
+                frame: 'blueprint'
+            }, {
                 portrait: 'sam',
                 speaker: 'Lanky Sam',
                 speech: 'Is that clear with everyone?'
@@ -191,6 +199,10 @@ class Scene1 extends Phaser.Scene {
         this.grass1.setFrame(this.grass1_sprite.frame.name);
         this.grass2.setFrame(this.grass2_sprite.frame.name);
         this.dirt.setFrame(this.dirt_sprite.frame.name);
+
+        this.clouds2.tilePositionX += bgSpeed/5;
+        this.clouds1.tilePositionX += bgSpeed/10;
+        this.sun.x -= bgSpeed/50;
 
         this.dialog.update();
         if (this.dialog.complete && !this.complete) {
