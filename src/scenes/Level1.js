@@ -158,7 +158,7 @@ class Level1 extends Phaser.Scene {
                 projectile.destroy();
                 explosion.destroy();
             });
-
+            
             enemy.health--;
             if (enemy.health == 0) {
                 this.player.score += enemy.points;

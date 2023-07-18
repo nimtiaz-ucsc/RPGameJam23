@@ -9,7 +9,7 @@ class MainMenu extends Phaser.Scene {
 
     create() {
         healthBuff = 0;
-        speedBuff = 0;
+        speedBuff = 1;
 
         this.add.tileSprite(0, 0, game.config.width, game.config.height, 'sky3').setOrigin(0);
         this.add.tileSprite(0, 0, game.config.width, game.config.height, 'grass1').setOrigin(0);
