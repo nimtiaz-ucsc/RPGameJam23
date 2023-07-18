@@ -71,8 +71,8 @@ class Level1 extends Phaser.Scene {
         this.player.update();
 
         if(this.player.isAlive) {
-            this.progressSprite.x += bgSpeed/20;
-            this.progress.x += bgSpeed/20;
+            this.progressSprite.x += bgSpeed/15;
+            this.progress.x += bgSpeed/15;
         }
         this.clouds1.setFrame(this.clouds1_sprite.frame.name);
         this.clouds2.setFrame(this.clouds2_sprite.frame.name);
@@ -115,9 +115,7 @@ class Level1 extends Phaser.Scene {
                 duration: 1000,
                 onComplete: () => { this.scene.start('scene2')}
             })
-        }
-        
-        
+        }  
     }
 
     spawnEnemy() {
