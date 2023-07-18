@@ -156,6 +156,17 @@ class Scene1 extends Phaser.Scene {
         this.dirt_sprite = this.add.sprite(0, 0, 'dirt').setVisible(false).play('dirt_anim');
 
         this.dialog = new Dialog(this, game.config.width/2, game.config.height * 0.8, undefined, this.sequence);
+
+        new Button(this, 60, 50, 90, 50, 0xCCF0E4, 6, 0x10302A, 'text', 'SKIP >>', () => { 
+            this.tweens.add({
+                targets: [this.black],
+                alpha: 1,
+                duration: 1000,
+                onComplete: () => { this.scene.start('level1'); }
+            });
+        });
+
+        this.black = this.add.rectangle(0, 0, game.config.width, game.config.height, 0x000000).setOrigin(0).setAlpha(0);
     }
 
     update() {
@@ -168,7 +179,6 @@ class Scene1 extends Phaser.Scene {
         this.dialog.update();
         if (this.dialog.complete && !this.complete) {
             this.complete = true;
-            this.black = this.add.rectangle(0, 0, game.config.width, game.config.height, 0x000000).setOrigin(0).setAlpha(0);
             this.tweens.add({
                 targets: [this.black],
                 alpha: 1,

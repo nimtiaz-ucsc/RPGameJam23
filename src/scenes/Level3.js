@@ -1,6 +1,6 @@
-class Level1 extends Phaser.Scene {
+class Level3 extends Phaser.Scene {
     constructor() {
-        super('level1')
+        super('level3')
     }
 
     preload() {
@@ -8,8 +8,8 @@ class Level1 extends Phaser.Scene {
     }
 
     create() {
-        this.sky = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'sky1').setOrigin(0);
-        this.sun = this.add.sprite(56, 0, 'sun').setOrigin(0).play('sun_anim');
+        this.sky = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'sky3').setOrigin(0);
+        this.moon = this.add.sprite(56, 0, 'moon').setOrigin(0).play('moon_anim');
 
         this.clouds1 = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'clouds1').setOrigin(0);
         this.clouds1_sprite = this.add.sprite(0, 0, 'clouds1').setVisible(false).play('clouds1_anim');
@@ -55,10 +55,10 @@ class Level1 extends Phaser.Scene {
 
             if(!this.complete) {
                 if (this.input.activePointer.rightButtonDown()) {
-                    this.scene.launch('switcher', {level: 'level1'});
+                    this.scene.launch('switcher', {level: 'level3'});
                     this.scene.setVisible(true, 'switcher');
                     this.scene.bringToTop('switcher')
-                    this.scene.pause('level1');
+                    this.scene.pause('level3');
                     
                 }
             }
@@ -71,8 +71,8 @@ class Level1 extends Phaser.Scene {
         this.player.update();
 
         if(this.player.isAlive) {
-            this.progressSprite.x += bgSpeed/20;
-            this.progress.x += bgSpeed/20;
+            this.progressSprite.x += bgSpeed/40;
+            this.progress.x += bgSpeed/40;
         }
         this.clouds1.setFrame(this.clouds1_sprite.frame.name);
         this.clouds2.setFrame(this.clouds2_sprite.frame.name);
@@ -85,7 +85,7 @@ class Level1 extends Phaser.Scene {
         this.grass1.tilePositionX += bgSpeed/3;
         this.clouds2.tilePositionX += bgSpeed/5;
         this.clouds1.tilePositionX += bgSpeed/10;
-        this.sun.x -= bgSpeed/50;
+        this.moon.x -= bgSpeed/50;
 
         this.enemies.children.entries.forEach(enemy => {
             enemy.update();
@@ -112,7 +112,7 @@ class Level1 extends Phaser.Scene {
                 targets: [this.player],
                 x: game.config.width + 128,
                 duration: 1000,
-                onComplete: () => { this.scene.start('level2')}
+                onComplete: () => { this.scene.start('mainMenu')}
             })
         }
         

@@ -17,7 +17,7 @@ class Player extends Phaser.GameObjects.Sprite {
 
         this.isAlive = true;
         this.isInvincible = false;
-        this.health = 3 + playerHealthBuff;
+        this.health = 5 + playerHealthBuff;
 
         this.projectiles = new Phaser.GameObjects.Group;
         this.isShooting = false

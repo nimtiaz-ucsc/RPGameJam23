@@ -7,6 +7,10 @@ class Switcher extends Phaser.Scene {
         //
     }
 
+    init(data) {
+        this.level = data.level;
+    }
+
     create() {
         this.switcher_bg = this.add.rectangle(0, 0, game.config.width, game.config.height, 0xede6c4).setOrigin(0).setAlpha(0);
 
@@ -41,7 +45,7 @@ class Switcher extends Phaser.Scene {
                     duration: 100
                 });
                 
-                this.scene.resume('level1');
+                this.scene.resume(this.level);
                 this.time.delayedCall(100, () => {
                     this.scene.stop();
                 })

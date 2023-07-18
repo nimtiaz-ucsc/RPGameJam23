@@ -8,6 +8,12 @@ class MainMenu extends Phaser.Scene {
     }
 
     create() {
+        playerHealthBuff = 0;
+        enemyHealthBuff = 0;
+
+        fireRateBuff = 0;
+        enemySpeedBuff = 0;
+
         this.add.tileSprite(0, 0, game.config.width, game.config.height, 'sky3').setOrigin(0);
         this.add.tileSprite(0, 0, game.config.width, game.config.height, 'grass1').setOrigin(0);
         this.add.text(50, 40, 'BIG GEORGE AND COMPANY IN...', { color: '#CCF0E4', fontSize: '24px', fontFamily: 'Pangolin'}).setOrigin(0);

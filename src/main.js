@@ -2,7 +2,7 @@ let config = {
     width:  1080,
     height: 720,
     backgroundColor: '0xFFFFFF',
-    scene: [Preload, MainMenu, Switcher, Scene1, Level1],
+    scene: [Preload, MainMenu, Switcher, Scene1, Level1, Level2, Level3],
     physics: {
         default: 'arcade',
         arcade: {
