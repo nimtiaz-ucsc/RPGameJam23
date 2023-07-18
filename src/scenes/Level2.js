@@ -147,20 +147,18 @@ class Level2 extends Phaser.Scene {
     }
 
     destroyEnemy(projectile, enemy) {
-        if (projectile.texture.key.slice(11) == enemy.weakness) {
+        let projectileAlly = projectile.texture.key.slice(11)
+        if (projectileAlly == enemy.weakness) {
             projectile.body.setVelocity(0);
             projectile.body.destroy();
-            this.time.delayedCall(50, () => {
-                this.tweens.add({
-                    targets: [projectile],
-                    alpha: 0,
-                    duration: 500,
-                    onComplete: () => {
-                        projectile.destroy();
-                    }
-                })
-            }); 
+            projectile.setAlpha(0);
 
+            let explosion = this.add.sprite(projectile.x, projectile.y, 'expolsion_' + projectileAlly).setOrigin(0.5).play('explode_' + projectileAlly);
+            explosion.on('animationcomplete', () => {
+                projectile.destroy();
+                explosion.destroy();
+            });
+            
             enemy.health--;
             if (enemy.health == 0) {
                 this.player.score += enemy.points;
@@ -168,6 +166,4 @@ class Level2 extends Phaser.Scene {
             }
         }
     }
-
-    
 }

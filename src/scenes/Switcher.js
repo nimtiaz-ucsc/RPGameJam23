@@ -30,48 +30,46 @@ class Switcher extends Phaser.Scene {
             duration: 100,
         });
 
-        this.input.on('pointerup', () => {
-            if (!this.input.activePointer.middleButtonDown()) {                
-                this.tweens.add({
-                    targets: [this.switcher],
-                    scaleX: 0,
-                    scaleY: 0,
-                    duration: 100,
-                    ease: 'Back.easeIn'
-                });
-                this.tweens.add({
-                    targets: [this.switcher_bg],
-                    alpha: 0,
-                    duration: 100
-                });
-                
-                this.scene.resume(this.level);
-                this.time.delayedCall(100, () => {
-                    this.scene.stop();
-                })
-            }
+        this.input.on('pointerup', () => {              
+            this.tweens.add({
+                targets: [this.switcher],
+                scaleX: 0,
+                scaleY: 0,
+                duration: 100,
+                ease: 'Back.easeIn'
+            });
+            this.tweens.add({
+                targets: [this.switcher_bg],
+                alpha: 0,
+                duration: 100
+            });
+            
+            this.scene.resume(this.level);
+            this.time.delayedCall(100, () => {
+                this.scene.stop();
+            })
             
         })
     }
 
-    update() {
-
-        if (Math.abs(this.input.x - this.switcher.x) <= 35 && Math.abs(this.input.y - this.switcher.y) <= 35) {
-            this.switcher.play({key: 'switch', startFrame: 0});
-            this.switcher_bg.fillColor = 0xede6c4;
-        } else if (this.input.y > this.switcher.y + 35) {
-            this.switcher.play({key: 'switch', startFrame: 3});
-            this.switcher_bg.fillColor = 0xff8552;
-            ally = 'bob';
-        } else if (this.input.x > this.switcher.x + 35 && this.input.y < this.switcher.y + 35) {
-            this.switcher.play({key: 'switch', startFrame: 2});
-            this.switcher_bg.fillColor = 0x484349
-            ally = 'chuck';
-        } else if (this.input.x < this.switcher.x - 35 && this.input.y < this.switcher.y + 35) {
-            this.switcher.play({key: 'switch', startFrame: 1});
-            this.switcher_bg.fillColor = 0x6adb65
-            ally = 'sam';
+    update() {        
+        if (this.input.activePointer.rightButtonDown()) {  
+            if (Math.abs(this.input.x - this.switcher.x) <= 35 && Math.abs(this.input.y - this.switcher.y) <= 35) {
+                this.switcher.play({key: 'switch', startFrame: 0});
+                this.switcher_bg.fillColor = 0xede6c4;
+            } else if (this.input.y > this.switcher.y + 35) {
+                this.switcher.play({key: 'switch', startFrame: 3});
+                this.switcher_bg.fillColor = 0xff8552;
+                ally = 'bob';
+            } else if (this.input.x > this.switcher.x + 35 && this.input.y < this.switcher.y + 35) {
+                this.switcher.play({key: 'switch', startFrame: 2});
+                this.switcher_bg.fillColor = 0x484349
+                ally = 'chuck';
+            } else if (this.input.x < this.switcher.x - 35 && this.input.y < this.switcher.y + 35) {
+                this.switcher.play({key: 'switch', startFrame: 1});
+                this.switcher_bg.fillColor = 0x6adb65
+                ally = 'sam';
+            }
         }
-
     }
 }
