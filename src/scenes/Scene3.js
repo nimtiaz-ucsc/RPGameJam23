@@ -174,7 +174,6 @@ class Scene3 extends Phaser.Scene {
 
         this.clouds2.tilePositionX += bgSpeed/5;
         this.clouds1.tilePositionX += bgSpeed/10;
-        this.moon.x -= bgSpeed/50;
 
         this.dialog.update();
         if (this.dialog.complete && !this.complete) {

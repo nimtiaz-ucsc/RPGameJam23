@@ -212,7 +212,7 @@ class Scene2 extends Phaser.Scene {
             }, {
                 portrait: 'sam',
                 speaker: 'Lanky Sam',
-                speech: 'Fair enough. Now we better get a move on.'
+                speech: 'Fair enough. Now we better get going.'
             }, {
                 end: true
             }
@@ -259,7 +259,6 @@ class Scene2 extends Phaser.Scene {
 
         this.clouds2.tilePositionX += bgSpeed/5;
         this.clouds1.tilePositionX += bgSpeed/10;
-        this.sunset.x -= bgSpeed/50;
 
         this.dialog.update();
         if (this.dialog.complete && !this.complete) {

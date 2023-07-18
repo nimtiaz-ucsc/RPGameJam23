@@ -30,7 +30,7 @@ class Level2 extends Phaser.Scene {
         this.ground = this.add.rectangle(0, game.config.height, game.config.width, 32, 0x733e39).setOrigin(0, 1).setVisible(false);
         this.physics.add.existing(this.ground, true);     
         
-        this.player = new Player(this, game.config.width/8, game.config.height/2);
+        this.player = new Player(this, game.config.width/8, game.config.height - 96);
 
         this.physics.add.collider([this.player, this.player.aim], this.ground);
         
