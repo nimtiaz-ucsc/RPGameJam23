@@ -115,6 +115,9 @@ class Scene2 extends Phaser.Scene {
                 frame: 'artifact_health',
                 speech: 'A tag on the amulet reads, "+1 HP to you, but +1 HP to your foes as well." Whatever that could mean.'
             }, {
+                frame: 'artifact_health',
+                speech: 'Whatever that could mean.'
+            }, {
                 speaker: 'Dark Schippie Dues',
                 portrait: 'dsd',
                 speech: 'But that\'s not all, I also have this!'
@@ -187,7 +190,7 @@ class Scene2 extends Phaser.Scene {
                 speech: 'Farewell!'
             }, {
                 frame: 'shop_sunset',
-                speech: 'The mysterious shopkeeper retreats to the shop building, and can be heard struggling with some machinery in the back.'
+                speech: 'The mysterious shopkeeper retreats further inside, and can be heard struggling with some machinery in the back.'
             }, {
                 frame: 'portal_sunset',
                 speech: 'The ground begins to shake violently once more, and the dark portal opens up again, engulfing the shop whole.'

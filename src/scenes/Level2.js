@@ -120,7 +120,7 @@ class Level2 extends Phaser.Scene {
                 targets: [this.player],
                 x: game.config.width + 128,
                 duration: 1000,
-                onComplete: () => { this.scene.start('level3')}
+                onComplete: () => { this.scene.start('scene3')}
             })
         }
         
