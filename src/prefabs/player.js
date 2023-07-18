@@ -17,7 +17,7 @@ class Player extends Phaser.GameObjects.Sprite {
 
         this.isAlive = true;
         this.isInvincible = false;
-        this.health = 5 + playerHealthBuff;
+        this.health = 5 + healthBuff;
 
         this.projectiles = new Phaser.GameObjects.Group;
         this.isShooting = false
@@ -174,8 +174,8 @@ class Player extends Phaser.GameObjects.Sprite {
         this.projectiles.add(new Projectile(scene, this.x, this.y, 
                                             'projectile_' + ally, velocity, 
                                             this.body.width, this.body.height, 
-                                            this.aim.angle, projectileSpeed));
-        scene.time.delayedCall(fireRate, () => {
+                                            this.aim.angle, projectileSpeed * speedBuff));
+        scene.time.delayedCall(fireRate * speedBuff, () => {
             if (scene.input.activePointer.leftButtonDown()) {
                 this.shoot(scene);
             } else {

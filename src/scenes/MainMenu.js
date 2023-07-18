@@ -8,11 +8,8 @@ class MainMenu extends Phaser.Scene {
     }
 
     create() {
-        playerHealthBuff = 0;
-        enemyHealthBuff = 0;
-
-        fireRateBuff = 0;
-        enemySpeedBuff = 0;
+        healthBuff = 0;
+        speedBuff = 0;
 
         this.add.tileSprite(0, 0, game.config.width, game.config.height, 'sky3').setOrigin(0);
         this.add.tileSprite(0, 0, game.config.width, game.config.height, 'grass1').setOrigin(0);

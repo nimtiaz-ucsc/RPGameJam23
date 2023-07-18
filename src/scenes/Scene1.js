@@ -129,6 +129,22 @@ class Scene1 extends Phaser.Scene {
                 speaker: 'Buff Chuck',
                 speech: 'Affirmative.'
             }, {
+                portrait: 'bob',
+                speaker: 'Tiny Bob',
+                speech: 'Well, actually... These are bugs, right? Why don\'t we just light \'em on fire and be done with it?'
+            }, {
+                portrait: 'george',
+                speaker: 'Big George',
+                speech: 'You mean like lighting my wool on fire? That would be pretty cool...'
+            }, {
+                portrait: 'george_sad',
+                speaker: 'Big George',
+                speech: 'Uh... I mean. No! Definitely not! Nope, nope nope! I\'m not even flammable. But even if I was, there\'s no way I\'d even be cool with it. Like at all. So, no. We can\'t light me on fire. We can\'t.'
+            }, {
+                portrait: 'bob',
+                speaker: 'Tiny Bob',
+                speech: 'Oh. Uh... okay...? Forget I asked.'
+            }, {
                 portrait: 'george',
                 speaker: 'Big George',
                 speech: 'Great! Then let\'s get a move on!'
@@ -157,7 +173,7 @@ class Scene1 extends Phaser.Scene {
 
         this.dialog = new Dialog(this, game.config.width/2, game.config.height * 0.8, undefined, this.sequence);
 
-        new Button(this, 60, 50, 90, 50, 0xCCF0E4, 6, 0x10302A, 'text', 'SKIP >>', () => { 
+        new Button(this, 65, 50, 90, 50, 0xCCF0E4, 6, 0x10302A, 'text', 'SKIP >>', () => { 
             this.tweens.add({
                 targets: [this.black],
                 alpha: 1,

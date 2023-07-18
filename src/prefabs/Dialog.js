@@ -119,6 +119,8 @@ class Dialog extends Phaser.GameObjects.Container {
                         } else {
                             this.index = currLine.next;
                         }
+                        this.speakerText.setFontSize(36);
+                        this.bodyText.setFontSize(30);
                         this.scale(this.speakerText, 180, 'x');
                         this.scale(this.bodyText, 150, 'y');
                     }
@@ -127,6 +129,8 @@ class Dialog extends Phaser.GameObjects.Container {
                 delay: 25
             })
         }
+        this.speakerText.setFontSize(36);
+        this.bodyText.setFontSize(30);
         this.scale(this.speakerText, 180, 'x');
         this.scale(this.bodyText, 150, 'y');
 
@@ -139,7 +143,6 @@ class Dialog extends Phaser.GameObjects.Container {
                 this.choices = false;
             };
         } else {
-            this.choices = false;
             this.choice1.visibility(false);
         }
         if (currLine.choice2 != undefined) {
@@ -151,7 +154,6 @@ class Dialog extends Phaser.GameObjects.Container {
                 this.choices = false;
             };
         } else {
-            this.choices = false;
             this.choice2.visibility(false);
         }
         if (currLine.choice3 != undefined) {
@@ -163,13 +165,15 @@ class Dialog extends Phaser.GameObjects.Container {
                 this.choices = false;
             };
         } else {
-            this.choices = false;
             this.choice3.visibility(false);
+        }
+        if (currLine.choice1 == undefined && currLine.choice2 == undefined && currLine.choice3 == undefined) {
+            this.choices = false;
         }
 
         if (currLine.frame != undefined) {
             this.frame.setVisible(true);
-            this.frameImage.setVisible(true).setTexture('frame_' + currLine.frame);
+            this.frameImage.setVisible(true).setTexture(currLine.frame);
         } else {
             this.frame.setVisible(false);
             this.frameImage.setVisible(false)

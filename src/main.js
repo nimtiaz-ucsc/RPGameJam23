@@ -2,7 +2,7 @@ let config = {
     width:  1080,
     height: 720,
     backgroundColor: '0xFFFFFF',
-    scene: [Preload, MainMenu, Switcher, Scene1, Level1, Level2, Level3],
+    scene: [Preload, MainMenu, Switcher, Scene1, Level1, Scene2, Level2, Level3, DialogTest],
     physics: {
         default: 'arcade',
         arcade: {
@@ -31,14 +31,12 @@ let fastfallMultiplier = 3;
 let iframeTime = 100;
 let invincibleTime = 1000;
 
-let playerHealthBuff = 0;
-let enemyHealthBuff = 0;
+let healthBuff = 0;
 
 let projectileSpeed = 1000;
 let fireRate = 500;
 
-let fireRateBuff = 0;
-let enemySpeedBuff = 0;
+let speedBuff = 1;
 
 let spawnChanceMin = 1;
 let spawnChanceMax = 3;

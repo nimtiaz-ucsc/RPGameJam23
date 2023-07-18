@@ -7,10 +7,10 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
         this.play('enemy' + type + "_" + weakness + "_anim");
 
-        this.body.setVelocityX((moveSpeed + enemySpeedBuff) * -1 / type);
+        this.body.setVelocityX(((moveSpeed) * -1 / type) * speedBuff);
 
         this.points = basePoints * (4 - type);
-        this.health = type + enemyHealthBuff;
+        this.health = type + healthBuff;
         this.dead = false;
 
         this.weakness = weakness;

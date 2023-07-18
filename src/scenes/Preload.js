@@ -55,12 +55,20 @@ class Preload extends Phaser.Scene {
         this.load.image('portrait_sam', './assets/portraits/sam.png');
         this.load.image('portrait_sam_sad', './assets/portraits/sam_sad.png');
         this.load.image('portrait_dsd', './assets/portraits/dsd.png');
-        this.load.image('portrait_solveig', './assets/portraits/solveig.png');
+        this.load.image('portrait_dsd_silhouette', './assets/portraits/dsd_silhouette.png');
+        this.load.image('portrait_solveig_silhouette', './assets/portraits/solveig_silhouette.png');
 
-        this.load.image('frame_attack', './assets/frames/attack.png');
-        this.load.image('frame_blueprint', './assets/frames/blueprint.png');
-        this.load.image('frame_cave', './assets/frames/cave.png');
-        this.load.image('frame_village', './assets/frames/village.png');
+        this.load.image('artifact_health', './assets/artifact_health.png');
+        this.load.image('artifact_speed', './assets/artifact_speed.png');
+
+        this.load.image('attack', './assets/frames/attack.png');
+        this.load.image('blueprint', './assets/frames/blueprint.png');
+        this.load.image('cave', './assets/frames/cave.png');
+        this.load.image('village', './assets/frames/village.png');
+        this.load.image('portal_sunset', './assets/frames/portal_sunset.png');
+        this.load.image('shop_sunset', './assets/frames/shop_sunset.png');
+        this.load.image('portal_night', './assets/frames/portal_night.png');
+        this.load.image('shop_night', './assets/frames/shop_night.png');
 
         this.load.spritesheet('dialog_continue', './assets/dialog_continue.png', {frameWidth: 32, frameHeight: 32, startFrame: 0, endFrame: 7});
 
@@ -350,6 +358,6 @@ class Preload extends Phaser.Scene {
         })
 
 
-        this.scene.start('mainMenu');
+        this.scene.start('scene2');
     }
 }

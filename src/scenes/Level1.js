@@ -43,7 +43,7 @@ class Level1 extends Phaser.Scene {
 
         this.enemies = this.physics.add.group();
         this.enemies.defaults = {};
-        this.spawnEnemy();
+        this.time.delayedCall(2500, () => { this.spawnEnemy(); });
 
         this.physics.add.overlap(this.player, this.enemies, this.player.damage, undefined, this);
         this.physics.add.overlap(this.player.projectiles, this.enemies, this.destroyEnemy, undefined, this);
@@ -112,7 +112,7 @@ class Level1 extends Phaser.Scene {
                 targets: [this.player],
                 x: game.config.width + 128,
                 duration: 1000,
-                onComplete: () => { this.scene.start('level2')}
+                onComplete: () => { this.scene.start('scene2')}
             })
         }
         
