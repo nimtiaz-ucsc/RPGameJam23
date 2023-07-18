@@ -39,7 +39,14 @@ class Level2 extends Phaser.Scene {
 
         this.progressBar = this.add.rectangle(game.config.width/2, 50, game.config.width * 0.5, 10, 0xCCF0E4).setOrigin(0.5).setStrokeStyle(4, 0x10302A);
         this.progress = this.add.rectangle(this.progressBar.x - game.config.width * 0.25, 50, 0, 10, 0x2A8261).setOrigin(0.5).setStrokeStyle(4, 0x10302A);
-        this.progressSprite = this.add.sprite(this.progressBar.x - game.config.width * 0.25, 25, 'dialog_continue').play('continue_anim').setAngle(0)
+        this.progressSprite = this.add.sprite(this.progressBar.x - game.config.width * 0.25, 25, 'dialog_continue').play('continue_anim').setAngle(0);
+
+        new Button(this, game.config.width - 50, 50, 50, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'II', () => {
+            this.scene.launch('pause', {level: 'level2'});
+            this.scene.setVisible(true, 'pause');
+            this.scene.bringToTop('pause');
+            this.scene.pause('level2');
+        });
 
         this.enemies = this.physics.add.group();
         this.enemies.defaults = {};
@@ -71,8 +78,8 @@ class Level2 extends Phaser.Scene {
         this.player.update();
 
         if(this.player.isAlive) {
-            this.progressSprite.x += bgSpeed/20;
-            this.progress.x += bgSpeed/20;
+            this.progressSprite.x += bgSpeed/25;
+            this.progress.x += bgSpeed/25;
         }
         this.clouds1.setFrame(this.clouds1_sprite.frame.name);
         this.clouds2.setFrame(this.clouds2_sprite.frame.name);

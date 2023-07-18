@@ -247,7 +247,7 @@ class Scene2 extends Phaser.Scene {
             });
         });
 
-        this.black = this.add.rectangle(0, 0, game.config.width, game.config.height, 0x000000).setOrigin(0).setAlpha(0);
+        this.black = this.add.rectangle(0, 0, game.config.width, game.config.height, 0x000000).setOrigin(0).setAlpha(0).setDepth(1);
     }
 
     update() {

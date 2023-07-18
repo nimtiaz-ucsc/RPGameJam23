@@ -114,10 +114,21 @@ class Player extends Phaser.GameObjects.Sprite {
                 this.complete = true;
                 player.isAlive = false;
                 player.isInvincible = true;
-                let gameOverBox = this.add.rectangle(game.config.width/2, game.config.height/2, 400, 200, 0xCCF0E4).setOrigin(0.5).setStrokeStyle(4, 0x10302A).setAlpha(0);
-                let gameOverText = this.add.text(game.config.width/2, game.config.height/2 - 25, "GAME OVER", { color: '#10302A', fontSize: '48px', fontFamily: 'Pangolin'}).setOrigin(0.5).setAlpha(0);
-                let encourageText = this.add.text(game.config.width/2, game.config.height/2 + 50, "but that's okay!", { color: '#10302A', fontSize: '24px', fontFamily: 'Pangolin'}).setOrigin(0.5).setAlpha(0);
-                this.time.delayedCall(50, () => {
+                this.tweens.add({
+                    targets: [player, player.aim],
+                    alpha: 0,
+                    duration: 500
+                });
+                let gameOverBg = this.add.rectangle(0, 0, game.config.width, game.config.height, 0x10302A).setOrigin(0).setAlpha(0).setDepth(1);
+                let gameOverBox = this.add.rectangle(game.config.width/2, game.config.height/2, 400, 200, 0xCCF0E4).setOrigin(0.5).setStrokeStyle(4, 0x10302A).setAlpha(0).setDepth(1);
+                let gameOverText = this.add.text(game.config.width/2, game.config.height/2 - 25, "GAME OVER", { color: '#10302A', fontSize: '48px', fontFamily: 'Pangolin'}).setOrigin(0.5).setAlpha(0).setDepth(1);
+                let encourageText = this.add.text(game.config.width/2, game.config.height/2 + 50, "But that's okay!", { color: '#10302A', fontSize: '24px', fontFamily: 'Pangolin'}).setOrigin(0.5).setAlpha(0).setDepth(1);
+                this.time.delayedCall(500, () => {
+                    this.tweens.add({
+                        targets: [gameOverBg],
+                        alpha: 0.5,
+                        duration: 100,
+                    });
                     this.tweens.add({
                         targets: [gameOverBox, gameOverText],
                         alpha: 1,
@@ -126,18 +137,13 @@ class Player extends Phaser.GameObjects.Sprite {
                             this.time.delayedCall(1000, () => {
                                 encourageText.setAlpha(1);
                                 this.time.delayedCall(1000, () => {
-                                    encourageText.setText('but that\'s okay! Try again!')
-                                    new Button(this, game.config.width/2, 3 * game.config.height/4 - 25, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'RESTART', () => { this.scene.restart() })
-                                    new Button(this, game.config.width/2, 3 * game.config.height/4 + 50, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'MAIN MENU', () => { this.scene.start('mainMenu') })
+                                    encourageText.setText('But that\'s okay! Try again!')
+                                    new Button(this, game.config.width/2, 3 * game.config.height/4 - 25, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'RESTART', () => { this.scene.restart() });
+                                    new Button(this, game.config.width/2, 3 * game.config.height/4 + 50, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'MAIN MENU', () => { this.scene.start('mainMenu') });
                                 })
                             })
                         }
                     })
-                    this.tweens.add({
-                        targets: [player, player.aim],
-                        alpha: 0,
-                        duration: 500
-                    });
                 });
 
             } else {

@@ -19,6 +19,9 @@ class Button extends Phaser.GameObjects.Rectangle {
             }
         }
 
+        this.setDepth(1);
+        this.label.setDepth(1);
+
         this.callback = callback;
 
         this.setInteractive( {useHandCursor: true})
