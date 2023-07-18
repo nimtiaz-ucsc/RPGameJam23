@@ -358,6 +358,6 @@ class Preload extends Phaser.Scene {
         })
 
 
-        this.scene.start('level2');
+        this.scene.start('mainMenu');
     }
 }
