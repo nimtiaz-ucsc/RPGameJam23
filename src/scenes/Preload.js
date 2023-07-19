@@ -37,6 +37,7 @@ class Preload extends Phaser.Scene {
         this.load.image('sky1', './assets/bg/sky1.png');
         this.load.image('sky2', './assets/bg/sky2.png');
         this.load.image('sky3', './assets/bg/sky3.png');
+        this.load.image('bg_cave', './assets/bg/cave.png');
         this.load.spritesheet('sun', './assets/bg/sun.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
         this.load.spritesheet('sunset', './assets/bg/sunset.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
         this.load.spritesheet('moon', './assets/bg/moon.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
@@ -56,6 +57,7 @@ class Preload extends Phaser.Scene {
         this.load.image('portrait_sam_sad', './assets/portraits/sam_sad.png');
         this.load.image('portrait_dsd', './assets/portraits/dsd.png');
         this.load.image('portrait_dsd_silhouette', './assets/portraits/dsd_silhouette.png');
+        this.load.image('portrait_solveig', './assets/portraits/solveig.png');
         this.load.image('portrait_solveig_silhouette', './assets/portraits/solveig_silhouette.png');
 
         this.load.image('artifact_health', './assets/artifact_health.png');
@@ -69,6 +71,8 @@ class Preload extends Phaser.Scene {
         this.load.image('shop_sunset', './assets/frames/shop_sunset.png');
         this.load.image('portal_night', './assets/frames/portal_night.png');
         this.load.image('shop_night', './assets/frames/shop_night.png');
+        this.load.image('kill1', './assets/frames/kill1.png');
+        this.load.image('kill2', './assets/frames/kill2.png');
 
         this.load.spritesheet('dialog_continue', './assets/dialog_continue.png', {frameWidth: 32, frameHeight: 32, startFrame: 0, endFrame: 7});
 
@@ -358,6 +362,6 @@ class Preload extends Phaser.Scene {
         })
 
 
-        this.scene.start('mainMenu');
+        this.scene.start('scene4');
     }
 }
