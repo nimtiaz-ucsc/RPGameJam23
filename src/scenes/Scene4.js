@@ -79,9 +79,9 @@ class Scene4 extends Phaser.Scene {
             }, {
                 speaker: 'Lanky Sam',
                 portrait: 'sam',
-                speech: 'Okay, this has to be it. If we just turn into this chamber over here...'
+                speech: 'Okay, this has to be it. If we just crawl through this nook over here...'
             }, {
-                speech: 'The group ducks down into a small opening, and find themselves standing in the biggest section of the cave so far, with a tall ceiling and several flat stone platforms.'
+                speech: 'The group ducks down into a small opening, and find themselves standing in a massive hollowed-out chamber, with a tall ceiling and several flat stone platforms.'
             }, {
                 speech: 'Sitting atop one of the platforms is... something... something strange...'
             }, {
