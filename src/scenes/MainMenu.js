@@ -72,10 +72,20 @@ class MainMenu extends Phaser.Scene {
         });
 
 
-        new Button(this, 4 * game.config.width/5, 5 * game.config.height/6, 300, 100, 0xCCF0E4, 6, 0x10302A, 'text', 'START GAME', () => { this.scene.start('scene1') });
+        new Button(this, 4 * game.config.width/5, 5 * game.config.height/6, 300, 100, 0xCCF0E4, 6, 0x10302A, 'text', 'START GAME', () => { 
+            this.tweens.add({
+                targets: [this.black],
+                alpha: 1,
+                duration: 1000,
+                onComplete: () => { this.scene.start('scene1'); }
+            }); 
+        });
+
         new Button(this, 4 * game.config.width/5 + 25, 4 * game.config.height/6, 250, 75, 0xCCF0E4, 6, 0x10302A, 'text', 'HOW TO PLAY (TBA)', null);
         new Button(this, 4 * game.config.width/5 + 25, 3 * game.config.height/6 + 15, 250, 75, 0xCCF0E4, 6, 0x10302A, 'text', 'ENDLESS MODE (TBA)', null);
         new Button(this, 4 * game.config.width/5 + 25, 2 * game.config.height/6 + 30, 250, 75, 0xCCF0E4, 6, 0x10302A, 'text', 'CREDITS (TBA)', null);
+
+        this.black = this.add.rectangle(0, 0, game.config.width, game.config.height, 0x000000).setOrigin(0).setAlpha(0).setDepth(1);
     }
 
     update() {
