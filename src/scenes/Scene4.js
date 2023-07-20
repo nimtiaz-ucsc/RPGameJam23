@@ -340,10 +340,10 @@ class Scene4 extends Phaser.Scene {
                 portrait: 'george_sad',
                 speech: 'Bob... hold out your left hand.'
             }, {
-                portrait: 'george_sad',
+                frame: 'trick_bob',
                 speech: 'The two perform their secret handshake, but with their non-dominant hands. What was once a longstanding tradition between them to signify their bond, was now being used to break it.'
             }, {
-                portrait: 'bob_sad',
+                frame: 'trick_bob',
                 speech: 'Once it\'s over, the two former friends stand across from each other wistfully.'
             }, {
                 speaker: 'Tiny Bob',
@@ -367,12 +367,12 @@ class Scene4 extends Phaser.Scene {
                 speech: 'Heh. That\'s cute.'
             }, {
                 portrait: 'chuck_sad',
-                speech: 'Chuck turns around and crouches down, allowing George access to his headband.'
+                speech: 'Chuck turns around and crouches down, making it so George is able to reach up to his headband.'
             }, {
-                portrait: 'george_sad',
+                frame: 'trick_chuck',
                 speech: 'George steps up and takes the tails of the headband, and ties them into a neat little bow on the back of Chuck\'s head.'
             }, {
-                portrait: 'george_sad',
+                frame: 'trick_chuck',
                 speech: 'Chuck\'s headband was a gift from George, just as George\'s sunglasses were a gift from Chuck, going back all the way to their childhood. An especially bittersweet choice for a trick.'
             }, {
                 speaker: 'Buff Chuck',
@@ -395,15 +395,15 @@ class Scene4 extends Phaser.Scene {
                 portrait: 'george_sad',
                 speech: 'Huh. No wonder you never let anyone near it.'
             }, {
-                portrait: 'george_sad',
+                frame: 'trick_sam',
                 speech: 'George puts a hand up to Sam\'s forehead, and begins to polish her ring. He swabs his woolly hand back and forth until it practically sparkles.'
             }, {
                 speaker: 'Big George',
-                portrait: 'george_sad',
+                frame: 'trick_sam',
                 speech: 'Wow... I\'ve never seen it so shiny before.'
             }, {
                 speaker: 'Lanky Sam',
-                portrait: 'sam_sad',
+                frame: 'trick_sam',
                 speech: 'Yeah... no one\'s ever had to polish it...'
             }, {
                 speaker: 'Lanky Sam',
@@ -510,7 +510,7 @@ class Scene4 extends Phaser.Scene {
                 frame: 'kill2',
                 speech: 'Three down.'
             }, {
-                speech: 'The cave is filled with silence. Solveig sits alone among the aftermath; cotton bits scattered across the floor.'
+                speech: 'The cave is filled with a dreadful silence. Solveig sits alone among the aftermath; cotton bits scattered across the floor.'
             }, {
                 end: true
             }

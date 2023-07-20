@@ -75,8 +75,12 @@ class Preload extends Phaser.Scene {
         this.load.image('shop_sunset', './assets/frames/shop_sunset.png');
         this.load.image('portal_night', './assets/frames/portal_night.png');
         this.load.image('shop_night', './assets/frames/shop_night.png');
+        this.load.image('trick_bob', './assets/frames/trick_bob.png');
+        this.load.image('trick_chuck', './assets/frames/trick_chuck.png');
+        this.load.image('trick_sam', './assets/frames/trick_sam.png');
         this.load.image('kill1', './assets/frames/kill1.png');
         this.load.image('kill2', './assets/frames/kill2.png');
+        this.load.image('glasses', './assets/frames/glasses.png');
 
         this.load.spritesheet('dialog_continue', './assets/dialog_continue.png', {frameWidth: 32, frameHeight: 32, startFrame: 0, endFrame: 7});
 
@@ -366,6 +370,6 @@ class Preload extends Phaser.Scene {
         })
 
 
-        this.scene.start('mainMenu');
+        this.scene.start('theEnd');
     }
 }
