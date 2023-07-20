@@ -21,7 +21,7 @@ class Scene4 extends Phaser.Scene {
             }, {
                 speaker: 'Buff Chuck',
                 portrait: 'chuck',
-                speech: 'You\'re kidding, right? That took FOREVER. But I guess I can\'t complain now. Whatever is in there better be worth it.'
+                speech: 'You\'re kidding, right? That took FOREVER. But I guess I can\'t complain now. Whatever is in there better be worth it, or I swear--'
             }, {
                 speaker: 'Tiny Bob',
                 portrait: 'bob',
@@ -113,7 +113,7 @@ class Scene4 extends Phaser.Scene {
             }, {
                 speaker: '???',
                 portrait: 'solveig_silhouette',
-                speech: 'Of course Solveig can understand you. Solveig is no barbarian.'
+                speech: 'Of course Solveig can understand you. Solveig is no primitive. And Solveig is no threat to you either. Hee-hee!'
             }, {
                 speaker: 'Big George',
                 portrait: 'george',
@@ -127,7 +127,7 @@ class Scene4 extends Phaser.Scene {
             }, {
                 speaker: 'Big George',
                 portrait: 'george',
-                speech: 'Well hello, Solveig! My name is George. Big George. But George for short. Feel free to call me whatever\'s comfortable for you.'
+                speech: 'Well hello, Solveig! My name is George. Big George. But George for short. Feel free to call me whatever\'s works for you.'
             }, {
                 speaker: 'Solveig',
                 portrait: 'solveig',
@@ -139,14 +139,18 @@ class Scene4 extends Phaser.Scene {
             }, {
                 speaker: 'Lanky Sam',
                 portrait: 'sam',
-                speech: 'We should probably get down to what we came here for. Solveig, are you the one who can give anyone the power to make a fourth friend?'
+                speech: 'We should probably get down to business. We came here for a reason.'
+            }, {
+                speaker: 'Lanky Sam',
+                portrait: 'sam',
+                speech: 'Solveig, are you the one who can give anyone the power to make a fourth friend? Is it true?'
             }, {
                 portrait: 'solveig',
-                speech: 'Solveig\'s eyes perk up at the mention of the fourth friend, and for a brief moment a mischeviousness glint flickers across their face.'
+                speech: 'Solveig\'s eyes perk up at the mention of the fourth friend, and for a brief moment a glint of mischievousness flickers across their face.'
             }, {
                 speaker: 'Solveig',
                 portrait: 'solveig',
-                speech: 'Hee hee-hee hee! Yes! Yes! Yes-yes-yes! You come looking for more friends, yes! Hee hee! Solveig and Solveig\'s friends can definitely help you with this!'
+                speech: 'Hee hee-hee hee! Yes! Yes! Yes-yes-yes! You come looking for more friends, yes! Hee hee! Solveig and Solveig\'s friends can surely help you with this!'
             }, {
                 speaker: 'Tiny Bob',
                 portrait: 'bob',
@@ -162,6 +166,12 @@ class Scene4 extends Phaser.Scene {
             }, {
                 frame: 'cave',
                 speech: '...are skeletons.'
+            }, {
+                frame: 'cave',
+                speech: 'The bones appear to be very weathered down to the point of falling apart. If our heroes had noses, they would be able to smell the awful stench of rotted flesh mixed into the damp air of the cave.'
+            }, {
+                frame: 'cave',
+                speech: 'It\'s impossible to tell how long Solveig has kept these skeletons lying around.'
             }, {
                 speaker: 'Tiny Bob',
                 frame: 'cave',
@@ -185,7 +195,7 @@ class Scene4 extends Phaser.Scene {
             }, {
                 speaker: 'Lanky Sam',
                 portrait: 'sam_sad',
-                speech: 'George... I *hrk!* I think you need to *hrk!*'
+                speech: 'George... I- *hrk!* I think you need to- *hrk!*'
             }, {
                 speaker: 'Buff Chuck',
                 portrait: 'chuck',
@@ -196,7 +206,7 @@ class Scene4 extends Phaser.Scene {
                 speech: 'You got this.'
             }, {
                 portrait: 'george_sad',
-                speech: 'George takes a moment to steel himself. If they turned back now, all that they accomplished on this trip would be for nothing. And they would be of no help for the people back at home fending for their lives against all those Foamy bugs.'
+                speech: 'George takes a moment to steel himself. If they turned back now, all that they endured on this quest would be for nothing. And they would be of no help for the people back at home fending for their lives against all those Foamy bugs.'
             }, {
                 portrait: 'george_sad',
                 speech: 'He had to do this.'
@@ -223,7 +233,7 @@ class Scene4 extends Phaser.Scene {
             }, {
                 speaker: 'Buff Chuck',
                 portrait: 'chuck',
-                speech: 'Are you KIDDING ME?! This is RIDICULOUS! You\'re asking George to solve one of our tricks. But he doesn\'t even know--'
+                speech: 'Are you KIDDING ME?! This is RIDICULOUS! You\'re asking George to solve one of our tricks? He doesn\'t even know--'
             }, {
                 speaker: 'Lanky Sam',
                 portrait: 'sam_sad',
@@ -234,7 +244,7 @@ class Scene4 extends Phaser.Scene {
                 speech: '...'
             }, {
                 speaker: 'Buff Chuck',
-                portrait: 'chuck',
+                portrait: 'chuck_sad',
                 speech: 'What?'
             }, {
                 speaker: 'Lanky Sam',
@@ -247,10 +257,18 @@ class Scene4 extends Phaser.Scene {
             }, {
                 speaker: 'Lanky Sam',
                 portrait: 'sam_sad',
-                speech: 'I had to be prepared. We had no idea what this journey would entail. So I anticpated everything. Including a moment like this. It took me a while to figure them out, but I know all 3 of your tricks.'
+                speech: 'I had to be prepared. We had no idea what this journey would entail. So I anticpated the worst. Including something like this. It took me a while to figure them out, but I know all of your tricks.'
+            }, {
+                speaker: 'Tiny Bob',
+                portrait: 'bob',
+                speech: 'This... this is a joke, right?'
+            }, {
+                speaker: 'Tiny Bob',
+                portrait: 'bob_sad',
+                speech: '...Right?'
             }, {
                 speaker: 'Buff Chuck',
-                portrait: 'chuck',
+                portrait: 'chuck_sad',
                 speech: '...'
             }, {
                 speaker: 'Buff Chuck',
@@ -273,27 +291,226 @@ class Scene4 extends Phaser.Scene {
                 speech: 'I... I\'m sorry.'
             }, {
                 portrait: 'george_sad',
-                speech: 'Sam hands George a small pouch with 4 pieces of paper, a friend\'s trick written down on each one.'
+                speech: 'Sam hands George a small pouch with 3 pieces of paper, a friend\'s trick written down on each one.'
             }, {
                 speech: 'Which will you read?',
                 choice1: {
-                    img: 'portrait_bob_sad',
+                    img: 'bob_choice',
                     callback: () => {
-                        console.log('bob');
+                        //
                     }
                 },
                 choice2: {
-                    img: 'portrait_chuck_sad',
+                    img: 'chuck_choice',
                     callback: () => {
-                        console.log('chuck');
+                        this.dialog.index = 88
                     }
                 },
                 choice3: {
-                    img: 'portrait_sam_sad',
+                    img: 'sam_choice',
                     callback: () => {
-                        console.log('sam');
+                        this.dialog.index = 96;
                     }
                 }
+            }, { // choose bob ---------------------
+                speaker: 'Big George',
+                portrait: 'george_sad',
+                speech: 'I\'m sorry Bob... but I think I have to pick you.'
+            }, {
+                speaker: 'Tiny Bob',
+                portrait: 'bob_sad',
+                speech: 'Wh-what? Come on, George. You can\'t be serious. I\'m just as much a part of this team as anyone else!'
+            }, {
+                speaker: 'Big George',
+                portrait: 'george_sad',
+                speech: 'I\'m really sorry...'
+            }, {
+                portrait: 'george_sad',
+                speech: 'George unfurls the paper with Bob\'s name written on it, and reads what it says.'
+            }, {
+                speaker: 'Big George',
+                portrait: 'george_sad',
+                speech: 'Oh... I didn\'t realize it was that easy... We could have done this on accident!'
+            }, {
+                speaker: 'Tiny Bob',
+                portrait: 'bob_sad',
+                speech: 'George, please...'
+            }, {
+                speaker: 'Big George',
+                portrait: 'george_sad',
+                speech: 'Bob... hold out your left hand.'
+            }, {
+                portrait: 'george_sad',
+                speech: 'The two perform their secret handshake, but with their non-dominant hands. What was once a longstanding tradition between them to signify their bond, was now being used to break it.'
+            }, {
+                portrait: 'bob_sad',
+                speech: 'Once it\'s over, the two former friends stand across from each other wistfully.'
+            }, {
+                speaker: 'Tiny Bob',
+                portrait: 'bob_sad',
+                speech: 'Well... that\'s that I guess...',
+                next: 104
+            }, { // choose chuck ---------------------
+                speaker: 'Big George',
+                portrait: 'george_sad',
+                speech: 'I\'m sorry Chuck... but I think I have to--'
+            }, {
+                speaker: 'Buff Chuck',
+                portrait: 'chuck_sad',
+                speech: 'Yeah? Yeah. Sure. Let\'s get this over with.'
+            }, {
+                portrait: 'george_sad',
+                speech: 'George unfurls the paper with Chuck\'s name written on it, and reads what it says.'
+            }, {
+                speaker: 'Big George',
+                portrait: 'george_sad',
+                speech: 'Heh. That\'s cute.'
+            }, {
+                portrait: 'chuck_sad',
+                speech: 'Chuck turns around and crouches down, allowing George access to his headband.'
+            }, {
+                portrait: 'george_sad',
+                speech: 'George steps up and takes the tails of the headband, and ties them into a neat little bow on the back of Chuck\'s head.'
+            }, {
+                portrait: 'george_sad',
+                speech: 'Chuck\'s headband was a gift from George, just as George\'s sunglasses were a gift from Chuck, going back all the way to their childhood. An especially bittersweet choice for a trick.'
+            }, {
+                speaker: 'Buff Chuck',
+                portrait: 'chuck_sad',
+                speech: 'Hmph. After everything we\'ve been through together... Doesn\'t matter. Go talk to that thing.',
+                next: 104
+            }, { // choose sam --------------------
+                speaker: 'Big George',
+                portrait: 'george_sad',
+                speech: 'I\'m sorry Sam, but I think I have to pick you.'
+            }, {
+                speaker: 'Lanky Sam',
+                portrait: 'sam_sad',
+                speech: 'I understand. It\'s for the best. I\'m sorry you had to choose.'
+            }, {
+                portrait: 'george_sad',
+                speech: 'George unfurls the paper with Sam\'s name written on it, and reads what it says.'
+            }, {
+                speaker: 'Big George',
+                portrait: 'george_sad',
+                speech: 'Huh. No wonder you never let anyone near it.'
+            }, {
+                portrait: 'george_sad',
+                speech: 'George puts a hand up to Sam\'s forehead, and begins to polish her ring. He swabs his woolly hand back and forth until it practically sparkles.'
+            }, {
+                speaker: 'Big George',
+                portrait: 'george_sad',
+                speech: 'Wow... I\'ve never seen it so shiny before.'
+            }, {
+                speaker: 'Lanky Sam',
+                portrait: 'sam_sad',
+                speech: 'Yeah... no one\'s ever had to polish it...'
+            }, {
+                speaker: 'Lanky Sam',
+                portrait: 'sam_sad',
+                speech: 'But it\'s fine. Don\'t let this go to waste, George.'
+            }, { // continue here ---------------
+                portrait: 'george_sad',
+                speech: 'George walks back up to Solveig, determined to finish this quest once and for all.'
+            }, {
+                speaker: 'Big George',
+                portrait: 'george_sad',
+                speech: 'Okay Solveig, I guess we can be friends now. So... can you give me a fourth friend?'
+            }, {
+                speaker: 'Solveig',
+                portrait: 'solveig',
+                speech: 'Hee-hee hee hee-hee! Yes, yes. Solveig will give you what you want. Approach Solveig.'
+            }, {
+                frame: 'kill1',
+                speech: 'Solveig\'s wrinkly, ancient hand emerges from their long flowing hair, and is slowly raised above George\'s head.'
+            }, {
+                speaker: 'Buff Chuck',
+                frame: 'kill1',
+                speech: 'Something about this feels off.'
+            }, {
+                speaker: 'Lanky Sam',
+                frame: 'kill1',
+                speech: 'Yeah, you\'re right... '
+            }, {
+                speaker: 'Tiny Bob',
+                frame: 'kill1',
+                speech: 'Should we do someth--'
+            }, {
+                frame: 'kill1',
+                speech: 'Suddenly, Solveig brings their hand down...'
+            }, {
+                frame: 'kill2',
+                speech: '...and their long claws slash straight through the soft woolly body.'
+            }, {
+                frame: 'kill2',
+                speech: 'Chunks of wool go flying across the cave, and Solveig pounces on the remains of what was once Big George, tearing through whatever is left.'
+            }, {
+                speaker: 'Tiny Bob',
+                portrait: 'bob_sad',
+                speech: '...!'
+            }, {
+                speaker: 'Buff Chuck',
+                portrait: 'chuck_sad',
+                speech: '...!'
+            }, {
+                speaker: 'Lanky Sam',
+                portrait: 'sam_sad',
+                speech: '...!'
+            }, {
+                speaker: 'Solveig',
+                portrait: 'solveig',
+                speech: 'Something you should know about Solveig, Solveig has a secret power, but Solveig\'s secret power is not what you thought. Hee.'
+            }, {
+                speaker: 'Solveig',
+                portrait: 'solveig',
+                speech: 'Solveig has the power to spread lies around the world. Hee-hee. Solveig likes to see the chaos Solveig\'s lies create. Hee!'
+            }, {
+                speaker: 'Solveig',
+                portrait: 'solveig',
+                speech: 'Normally Solveig\'s lies are untraceable, but every once in a while Solveig will create one tiny thread that leads people like you back to Solveig. Hee-hee hee!'
+            }, {
+                speaker: 'Solveig',
+                portrait: 'solveig',
+                speech: 'Solveig likes having friends, but one small problem. Hee-hee! Solveig\'s trick is when someone traces one of Solveig\'s rumors back to Solveig.'
+            }, {
+                speaker: 'Solveig',
+                portrait: 'solveig',
+                speech: 'Hee hee-hee hee! Like this one here. Hee! Solveig could not be friends with him, so Solveig got rid of him.'
+            }, {
+                speaker: 'Solveig',
+                portrait: 'solveig',
+                speech: 'And Solveig\'s secret power must remain secret.'
+            }, {
+                speaker: 'Solveig',
+                portrait: 'solveig',
+                speech: 'So you all must go too.'
+            }, {
+                speaker: 'Solveig',
+                portrait: 'solveig',
+                speech: 'Hee hee.'
+            }, {
+                frame: 'kill1',
+                speech: 'Solveig rushes Tiny Bob, overwhelming him immediately.'
+            }, {
+                frame: 'kill2',
+                speech: 'One down.'
+            }, {
+                frame: 'kill1',
+                speech: 'Solveig then cuts off Lanky Sam as she tries to escape.'
+            }, {
+                frame: 'kill2',
+                speech: 'Two down.'
+            }, {
+                frame: 'kill1',
+                speech: 'Buff Chuck manages to put up a fight, his mastery of the Steel Wool technique coming in handy.'
+            }, {
+                frame: 'kill1',
+                speech: 'But it isn\'t enough.'
+            }, {
+                frame: 'kill2',
+                speech: 'Three down.'
+            }, {
+                speech: 'The cave is filled with silence. Solveig sits alone among the aftermath; cotton bits scattered across the floor.'
             }, {
                 end: true
             }

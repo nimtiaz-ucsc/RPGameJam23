@@ -60,6 +60,10 @@ class Preload extends Phaser.Scene {
         this.load.image('portrait_solveig', './assets/portraits/solveig.png');
         this.load.image('portrait_solveig_silhouette', './assets/portraits/solveig_silhouette.png');
 
+        this.load.image('bob_choice', './assets/portraits/bob_sad_choice.png');
+        this.load.image('chuck_choice', './assets/portraits/chuck_sad_choice.png');
+        this.load.image('sam_choice', './assets/portraits/sam_sad_choice.png');
+
         this.load.image('artifact_health', './assets/artifact_health.png');
         this.load.image('artifact_speed', './assets/artifact_speed.png');
 
@@ -362,6 +366,6 @@ class Preload extends Phaser.Scene {
         })
 
 
-        this.scene.start('scene4');
+        this.scene.start('mainMenu');
     }
 }
