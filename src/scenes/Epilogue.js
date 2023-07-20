@@ -35,7 +35,7 @@ class Epilogue extends Phaser.Scene {
             }, {
                 speaker: 'Dark Schippie Dues',
                 portrait: 'dsd',
-                speech: 'I hope those four friendly fellows I met last time are still around. They were positively delightful! And I do regret that my last interaction with them was... less than savory.'
+                speech: 'I hope those four friendly fellows I met last time are still around. They were positively delightful! And I do regret that my last interaction with them was... not on the best of terms...'
             }, {
                 portrait: 'dsd',
                 speech: 'But Dark Schippie Dues senses something amiss; something doesn\'t feel quite right about the night.'
