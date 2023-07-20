@@ -80,6 +80,7 @@ class Preload extends Phaser.Scene {
         this.load.image('trick_sam', './assets/frames/trick_sam.png');
         this.load.image('kill1', './assets/frames/kill1.png');
         this.load.image('kill2', './assets/frames/kill2.png');
+        this.load.image('village_foam', './assets/frames/village_foam.png');
         this.load.image('glasses', './assets/frames/glasses.png');
 
         this.load.spritesheet('dialog_continue', './assets/dialog_continue.png', {frameWidth: 32, frameHeight: 32, startFrame: 0, endFrame: 7});

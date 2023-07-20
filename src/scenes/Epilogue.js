@@ -44,17 +44,17 @@ class Epilogue extends Phaser.Scene {
                 portrait: 'dsd',
                 speech: 'Hmmm... something\'s off about the air here... It\'s too still...'
             }, {
-                portrait: 'dsd',
-                speech: 'The salesman notices that off in the distance, near his shop\'s landing zone, something shiny lays still in the grass, catching his eye.'
+                frame: 'village_foam',
+                speech: 'The salesman peers off in the distance, and notices what looks like a town or village settlement, but completely covered in a sickly green foamy substance.'
             }, {
                 portrait: 'dsd',
-                speech: 'He approaches to investigate.'
+                speech: 'Continuing to scan his surroundings, something shiny lays still in the grass near his shop\'s landing zone, catching his eye.'
             }, {
                 portrait: 'dsd',
-                speech: 'As he draws near, he notices the entrance to a dark cave near the spot where the shiny object sits.'
+                speech: 'He approaches to investigate. As he draws near, he notices the entrance to a dark cave near the spot where the shiny object sits.'
             }, {
                 portrait: 'dsd',
-                speech: 'Finally, he is able to get a closer look at the mysterious object.'
+                speech: 'When he does get a closer look at the mysterious object, he recoils in shock.'
             }, {
                 speaker: 'Dark Schippie Dues',
                 portrait: 'dsd',
