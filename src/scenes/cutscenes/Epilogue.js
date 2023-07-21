@@ -48,7 +48,7 @@ class Epilogue extends Phaser.Scene {
                 speech: 'The salesman peers off in the distance, and notices what looks like a town or village settlement, but completely covered in a sickly green foamy substance.'
             }, {
                 portrait: 'dsd',
-                speech: 'Continuing to scan his surroundings, something shiny lays still in the grass near his shop\'s landing zone, catching his eye.'
+                speech: 'As he continues to scan his surroundings, something shiny lays still in the grass near his shop\'s landing zone, catching his eye.'
             }, {
                 portrait: 'dsd',
                 speech: 'He approaches to investigate. As he draws near, he notices the entrance to a dark cave near the spot where the shiny object sits.'
