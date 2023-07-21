@@ -1,6 +1,6 @@
-class Level3 extends Phaser.Scene {
+class Level2 extends Phaser.Scene {
     constructor() {
-        super('level3')
+        super('level2')
     }
 
     preload() {
@@ -8,8 +8,8 @@ class Level3 extends Phaser.Scene {
     }
 
     create() {
-        this.sky = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'sky3').setOrigin(0);
-        this.moon = this.add.sprite(56, 0, 'moon').setOrigin(0).play('moon_anim');
+        this.sky = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'sky2').setOrigin(0);
+        this.sunset = this.add.sprite(56, 0, 'sunset').setOrigin(0).play('sunset_anim');
 
         this.clouds1 = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'clouds1').setOrigin(0);
         this.clouds1_sprite = this.add.sprite(0, 0, 'clouds1').setVisible(false).play('clouds1_anim');
@@ -39,13 +39,13 @@ class Level3 extends Phaser.Scene {
 
         this.progressBar = this.add.rectangle(game.config.width/2, 50, game.config.width * 0.5, 10, 0xCCF0E4).setOrigin(0.5).setStrokeStyle(4, 0x10302A);
         this.progress = this.add.rectangle(this.progressBar.x - game.config.width * 0.25, 50, 0, 10, 0x2A8261).setOrigin(0.5).setStrokeStyle(4, 0x10302A);
-        this.progressSprite = this.add.sprite(this.progressBar.x - game.config.width * 0.25, 25, 'dialog_continue').play('continue_anim').setAngle(0);
+        this.progressSprite = this.add.sprite(this.progressBar.x - game.config.width * 0.25, 25, 'dialog_continue').play('continue_anim');
 
         new Button(this, game.config.width - 50, 50, 50, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'II', () => {
-            this.scene.launch('pause', {level: 'level3'});
+            this.scene.launch('pause', {level: 'level2'});
             this.scene.setVisible(true, 'pause');
             this.scene.bringToTop('pause');
-            this.scene.pause('level3');
+            this.scene.pause('level2');
         });
 
         this.enemies = this.physics.add.group();
@@ -62,10 +62,10 @@ class Level3 extends Phaser.Scene {
 
             if(!this.complete) {
                 if (this.input.activePointer.rightButtonDown()) {
-                    this.scene.launch('switcher', {level: 'level3'});
+                    this.scene.launch('switcher', {level: 'level2'});
                     this.scene.setVisible(true, 'switcher');
                     this.scene.bringToTop('switcher')
-                    this.scene.pause('level3');
+                    this.scene.pause('level2');
                     
                 }
             }
@@ -78,8 +78,8 @@ class Level3 extends Phaser.Scene {
         this.player.update();
 
         if(this.player.isAlive) {
-            this.progressSprite.x += bgSpeed/30;
-            this.progress.x += bgSpeed/30;
+            this.progressSprite.x += bgSpeed/25;
+            this.progress.x += bgSpeed/25;
         }
         this.clouds1.setFrame(this.clouds1_sprite.frame.name);
         this.clouds2.setFrame(this.clouds2_sprite.frame.name);
@@ -92,7 +92,7 @@ class Level3 extends Phaser.Scene {
         this.grass1.tilePositionX += bgSpeed/3;
         this.clouds2.tilePositionX += bgSpeed/5;
         this.clouds1.tilePositionX += bgSpeed/10;
-        this.moon.x -= bgSpeed/50;
+        this.sunset.x -= bgSpeed/50;
 
         this.enemies.children.entries.forEach(enemy => {
             enemy.update();
@@ -120,7 +120,7 @@ class Level3 extends Phaser.Scene {
                 targets: [this.player],
                 x: game.config.width + 128,
                 duration: 1000,
-                onComplete: () => { this.scene.start('scene4')}
+                onComplete: () => { this.scene.start('scene3')}
             })
         }
         

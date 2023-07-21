@@ -177,7 +177,8 @@ class Scene2 extends Phaser.Scene {
                 choice2: {
                     img: 'artifact_speed',
                     callback: () => {
-                        speedBuff -= 0.25;
+                        speedBuff *= 0.9;
+                        enemySpeedBuff *= 1.1;
                     }
                 }
             }, {

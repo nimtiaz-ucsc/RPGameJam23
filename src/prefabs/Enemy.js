@@ -7,7 +7,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
         this.play('enemy' + type + "_" + weakness + "_anim");
 
-        this.body.setVelocityX(((moveSpeed) * -1 / type) * speedBuff);
+        this.body.setVelocityX(((moveSpeed) * -1 / type) * enemySpeedBuff);
 
         this.points = basePoints * (4 - type);
         this.health = type + healthBuff;
@@ -80,7 +80,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
                                                     'projectile_enemy', velocity,
                                                     this.body.width, this.body.height, 
                                                     angle, projectileSpeed/2));
-            scene.time.delayedCall(speed, () => { 
+            scene.time.delayedCall(speed * speedBuff, () => { 
                 if (!this.dead) { this.shoot(scene, type) }
             });
         }

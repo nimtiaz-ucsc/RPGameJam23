@@ -2,7 +2,7 @@ let config = {
     width:  1080,
     height: 720,
     backgroundColor: '0xFFFFFF',
-    scene: [Preload, MainMenu, Switcher, Pause, Scene1, Level1, Scene2, Level2, Scene3, Level3, Scene4, TheEnd, Epilogue],
+    scene: [Preload, MainMenu, Switcher, Pause, Scene1, Level1, Scene2, Level2, Scene3, Level3, Scene4, TheEnd, Epilogue, Endless, EndlessShop],
     physics: {
         default: 'arcade',
         arcade: {
@@ -37,6 +37,7 @@ let projectileSpeed = 1000;
 let fireRate = 500;
 
 let speedBuff = 1;
+let enemySpeedBuff = 1;
 
 let spawnChanceMin = 1;
 let spawnChanceMax = 3;
@@ -48,5 +49,7 @@ let basePoints = 100;
 let totalScore = 0;
 
 let bgSpeed = 3;
+
+let endlessLevel = 0;
 
 let game = new Phaser.Game(config);

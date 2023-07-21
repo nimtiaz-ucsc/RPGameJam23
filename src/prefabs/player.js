@@ -122,7 +122,7 @@ class Player extends Phaser.GameObjects.Sprite {
                 let gameOverBg = this.add.rectangle(0, 0, game.config.width, game.config.height, 0x10302A).setOrigin(0).setAlpha(0).setDepth(1);
                 let gameOverBox = this.add.rectangle(game.config.width/2, game.config.height/2, 400, 200, 0xCCF0E4).setOrigin(0.5).setStrokeStyle(4, 0x10302A).setAlpha(0).setDepth(1);
                 let gameOverText = this.add.text(game.config.width/2, game.config.height/2 - 25, "GAME OVER", { color: '#10302A', fontSize: '48px', fontFamily: 'Pangolin'}).setOrigin(0.5).setAlpha(0).setDepth(1);
-                let encourageText = this.add.text(game.config.width/2, game.config.height/2 + 50, "But that's okay!", { color: '#10302A', fontSize: '24px', fontFamily: 'Pangolin'}).setOrigin(0.5).setAlpha(0).setDepth(1);
+                let encourageText = this.add.text(game.config.width/2, game.config.height/2 + 50, "But that's okay!", { color: '#10302A', fontSize: '24px', fontFamily: 'Pangolin', align: 'center'}).setOrigin(0.5).setAlpha(0).setDepth(1);
                 this.time.delayedCall(500, () => {
                     this.tweens.add({
                         targets: [gameOverBg],
@@ -137,8 +137,22 @@ class Player extends Phaser.GameObjects.Sprite {
                             this.time.delayedCall(1000, () => {
                                 encourageText.setAlpha(1);
                                 this.time.delayedCall(1000, () => {
-                                    encourageText.setText('But that\'s okay! Try again!')
-                                    new Button(this, game.config.width/2, 3 * game.config.height/4 - 25, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'RESTART', () => { this.scene.restart() });
+                                    if (this.scene.key == 'endless') {
+                                        encourageText.setText('But that\'s okay! Try again!\nFinal score: ' + (totalScore + player.score));
+                                        encourageText.y -= 10;
+                                    } else {
+                                        encourageText.setText('But that\'s okay! Try again!')
+                                    }
+                                    new Button(this, game.config.width/2, 3 * game.config.height/4 - 25, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'RESTART', () => {
+                                        if (this.scene.key == 'endless') {
+                                            healthBuff = 0;
+                                            speedBuff = 1;
+                                            enemySpeedBuff = 1;
+                                            totalScore = 0;
+                                            endlessLevel = 0;
+                                        }
+                                        this.scene.restart() 
+                                    });
                                     new Button(this, game.config.width/2, 3 * game.config.height/4 + 50, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'MAIN MENU', () => { this.scene.start('mainMenu') });
                                 })
                             })

@@ -1,6 +1,6 @@
-class Level2 extends Phaser.Scene {
+class Level1 extends Phaser.Scene {
     constructor() {
-        super('level2')
+        super('level1')
     }
 
     preload() {
@@ -8,8 +8,8 @@ class Level2 extends Phaser.Scene {
     }
 
     create() {
-        this.sky = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'sky2').setOrigin(0);
-        this.sunset = this.add.sprite(56, 0, 'sunset').setOrigin(0).play('sunset_anim');
+        this.sky = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'sky1').setOrigin(0);
+        this.sun = this.add.sprite(56, 0, 'sun').setOrigin(0).play('sun_anim');
 
         this.clouds1 = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'clouds1').setOrigin(0);
         this.clouds1_sprite = this.add.sprite(0, 0, 'clouds1').setVisible(false).play('clouds1_anim');
@@ -39,18 +39,18 @@ class Level2 extends Phaser.Scene {
 
         this.progressBar = this.add.rectangle(game.config.width/2, 50, game.config.width * 0.5, 10, 0xCCF0E4).setOrigin(0.5).setStrokeStyle(4, 0x10302A);
         this.progress = this.add.rectangle(this.progressBar.x - game.config.width * 0.25, 50, 0, 10, 0x2A8261).setOrigin(0.5).setStrokeStyle(4, 0x10302A);
-        this.progressSprite = this.add.sprite(this.progressBar.x - game.config.width * 0.25, 25, 'dialog_continue').play('continue_anim').setAngle(0);
+        this.progressSprite = this.add.sprite(this.progressBar.x - game.config.width * 0.25, 25, 'dialog_continue').play('continue_anim');
 
         new Button(this, game.config.width - 50, 50, 50, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'II', () => {
-            this.scene.launch('pause', {level: 'level2'});
+            this.scene.launch('pause', {level: 'level1'});
             this.scene.setVisible(true, 'pause');
             this.scene.bringToTop('pause');
-            this.scene.pause('level2');
+            this.scene.pause('level1');
         });
 
         this.enemies = this.physics.add.group();
         this.enemies.defaults = {};
-        this.spawnEnemy();
+        this.time.delayedCall(2500, () => { this.spawnEnemy(); });
 
         this.physics.add.overlap(this.player, this.enemies, this.player.damage, undefined, this);
         this.physics.add.overlap(this.player.projectiles, this.enemies, this.destroyEnemy, undefined, this);
@@ -62,10 +62,10 @@ class Level2 extends Phaser.Scene {
 
             if(!this.complete) {
                 if (this.input.activePointer.rightButtonDown()) {
-                    this.scene.launch('switcher', {level: 'level2'});
+                    this.scene.launch('switcher', {level: 'level1'});
                     this.scene.setVisible(true, 'switcher');
                     this.scene.bringToTop('switcher')
-                    this.scene.pause('level2');
+                    this.scene.pause('level1');
                     
                 }
             }
@@ -78,8 +78,8 @@ class Level2 extends Phaser.Scene {
         this.player.update();
 
         if(this.player.isAlive) {
-            this.progressSprite.x += bgSpeed/25;
-            this.progress.x += bgSpeed/25;
+            this.progressSprite.x += bgSpeed/20;
+            this.progress.x += bgSpeed/20;
         }
         this.clouds1.setFrame(this.clouds1_sprite.frame.name);
         this.clouds2.setFrame(this.clouds2_sprite.frame.name);
@@ -92,7 +92,7 @@ class Level2 extends Phaser.Scene {
         this.grass1.tilePositionX += bgSpeed/3;
         this.clouds2.tilePositionX += bgSpeed/5;
         this.clouds1.tilePositionX += bgSpeed/10;
-        this.sunset.x -= bgSpeed/50;
+        this.sun.x -= bgSpeed/50;
 
         this.enemies.children.entries.forEach(enemy => {
             enemy.update();
@@ -120,11 +120,9 @@ class Level2 extends Phaser.Scene {
                 targets: [this.player],
                 x: game.config.width + 128,
                 duration: 1000,
-                onComplete: () => { this.scene.start('scene3')}
+                onComplete: () => { this.scene.start('scene2')}
             })
-        }
-        
-        
+        }  
     }
 
     spawnEnemy() {
