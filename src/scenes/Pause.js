@@ -19,7 +19,7 @@ class Pause extends Phaser.Scene {
 
         this.continue = new Button(this, game.config.width/2, game.config.height/2 + 60, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'RESUME', () => {
             this.tweens.add({
-                targets: [this.bg, this.box, this.text, this.continue, this.continue.label, this.exit, this.exit.label],
+                targets: [this.bg, this.box, this.text, this.continue, this.continue.label, this.instructions, this.instructions.label, this.exit, this.exit.label],
                 alpha: 0,
                 duration: 100,
                 onComplete: () => {
@@ -30,7 +30,16 @@ class Pause extends Phaser.Scene {
             
         }).setAlpha(0);
         this.continue.label.setAlpha(0);
-        this.exit = new Button(this, game.config.width/2, game.config.height/2 + 125, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'MAIN MENU', () => { 
+
+        this.instructions = new Button(this, game.config.width/2, game.config.height/2 + 125, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'HOW TO PLAY', () => { 
+            this.scene.launch('howToPlay', {level: 'pause'});
+            this.scene.setVisible(true, 'howToPlay');
+            this.scene.bringToTop('howToPlay');
+            this.scene.pause('pause');
+        }).setAlpha(0);
+        this.instructions.label.setAlpha(0);
+
+        this.exit = new Button(this, game.config.width/2, game.config.height/2 + 190, 150, 50, 0xffbffb, 4, 0x61305f, 'text', 'MAIN MENU', () => { 
             this.scene.stop(this.level);
             this.scene.stop();
             this.scene.start('mainMenu');
@@ -44,16 +53,11 @@ class Pause extends Phaser.Scene {
         });
 
         this.tweens.add({
-            targets: [this.box, this.text, this.continue, this.continue.label, this.exit, this.exit.label],
+            targets: [this.box, this.text, this.continue, this.continue.label, this.instructions, this.instructions.label, this.exit, this.exit.label],
             alpha: 1,
             duration: 100,
         });
 
 
     }
-
-
-
-
-
 }

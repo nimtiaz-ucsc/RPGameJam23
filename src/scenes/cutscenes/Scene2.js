@@ -242,7 +242,7 @@ class Scene2 extends Phaser.Scene {
 
         this.dialog = new Dialog(this, game.config.width/2, game.config.height * 0.8, undefined, this.sequence);
 
-        new Button(this, 60, 50, 90, 50, 0xCCF0E4, 6, 0x10302A, 'text', 'SKIP >>', () => { 
+        new Button(this, 60, 50, 90, 50, 0xffbffb, 6, 0x61305f, 'text', 'SKIP >>', () => { 
             this.tweens.add({
                 targets: [this.black],
                 alpha: 1,

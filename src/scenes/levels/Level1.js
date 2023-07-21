@@ -41,7 +41,7 @@ class Level1 extends Phaser.Scene {
         this.progress = this.add.rectangle(this.progressBar.x - game.config.width * 0.25, 50, 0, 10, 0x2A8261).setOrigin(0.5).setStrokeStyle(4, 0x10302A);
         this.progressSprite = this.add.sprite(this.progressBar.x - game.config.width * 0.25, 25, 'dialog_continue').play('continue_anim');
 
-        new Button(this, game.config.width - 50, 50, 50, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'II', () => {
+        new Button(this, game.config.width - 50, 50, 50, 50, 0xffbffb, 4, 0x61305f, 'text', 'II', () => {
             this.scene.launch('pause', {level: 'level1'});
             this.scene.setVisible(true, 'pause');
             this.scene.bringToTop('pause');

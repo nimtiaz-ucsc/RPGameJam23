@@ -74,7 +74,7 @@ class MainMenu extends Phaser.Scene {
         });
 
 
-        new Button(this, 4 * game.config.width/5, 2 * game.config.height/6, 300, 100, 0xCCF0E4, 6, 0x10302A, 'text', 'STORY MODE', () => { 
+        new Button(this, 4 * game.config.width/5, 2 * game.config.height/6, 300, 100, 0xffbffb, 6, 0x61305f, 'text', 'STORY MODE', () => { 
             this.tweens.add({
                 targets: [this.black],
                 alpha: 1,
@@ -92,7 +92,12 @@ class MainMenu extends Phaser.Scene {
             });  
         });
 
-        new Button(this, 4 * game.config.width/5 + 25, 4 * game.config.height/6 - 15, 250, 75, 0xCCF0E4, 6, 0x10302A, 'text', 'HOW TO PLAY (TBA)', () => {});
+        new Button(this, 4 * game.config.width/5 + 25, 4 * game.config.height/6 - 15, 250, 75, 0xCCF0E4, 6, 0x10302A, 'text', 'HOW TO PLAY', () => {
+            this.scene.launch('howToPlay', {level: 'mainMenu'});
+            this.scene.setVisible(true, 'howToPlay');
+            this.scene.bringToTop('howToPlay');
+            this.scene.pause('mainMenu');
+        });
 
         new Button(this, 4 * game.config.width/5 + 25, 5 * game.config.height/6 - 30, 250, 75, 0xCCF0E4, 6, 0x10302A, 'text', 'CREDITS (TBA)', () => {});
 

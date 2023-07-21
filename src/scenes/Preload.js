@@ -86,6 +86,8 @@ class Preload extends Phaser.Scene {
         this.load.spritesheet('dialog_continue', './assets/dialog_continue.png', {frameWidth: 32, frameHeight: 32, startFrame: 0, endFrame: 7});
 
         this.load.spritesheet('switcher', './assets/switcher.png', {frameWidth: 200, frameHeight: 200, startFrame: 0, endFrame: 3});
+
+        this.load.spritesheet('how_to', './assets/how_to_play.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
     }
 
     create() {
@@ -363,9 +365,16 @@ class Preload extends Phaser.Scene {
             repeat: -1
         });
 
-        this.anims.create ( {
+        this.anims.create ({
             key: 'switch', 
             frames: this.anims.generateFrameNumbers('switcher', {start: 0, end: 3, first: 0}),
+            frameRate: 0,
+            repeat: 0
+        })
+        
+        this.anims.create ({
+            key: 'how_to_anim', 
+            frames: this.anims.generateFrameNumbers('how_to', {start: 0, end: 1, first: 0}),
             frameRate: 0,
             repeat: 0
         })
