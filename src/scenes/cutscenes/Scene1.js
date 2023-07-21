@@ -33,7 +33,7 @@ class Scene1 extends Phaser.Scene {
             }, {
                 portrait: 'george',
                 speaker: 'Big George',
-                speech: 'All right! Today\'s the day! My grand quest begins!'
+                speech: 'All right! Today\'s the day, my grand quest begins!'
             }, {
                 portrait: 'george',
                 speech: 'This is Big George.'
@@ -110,7 +110,7 @@ class Scene1 extends Phaser.Scene {
                 speech: 'Of course.'
             }, {
                 speaker: 'Lanky Sam',
-                speech: 'So, we\'ll have George take the lead on this. He can pluck chunks of cotton from himself and lob them at the bugs, which can incapacitate them if he throws enough at them.',
+                speech: 'George will take the lead on this. He can pluck chunks of cotton from himself and lob them at the bugs, which can incapacitate them if he throws enough at them.',
                 frame: 'blueprint'
             }, {
                 speaker: 'Lanky Sam',
@@ -143,7 +143,7 @@ class Scene1 extends Phaser.Scene {
             }, {
                 portrait: 'george',
                 speaker: 'Big George',
-                speech: 'You mean like lighting my wool on fire? That would be pretty cool...'
+                speech: 'You mean like setting my wool on fire before we throw it at them? That would be pretty cool...'
             }, {
                 portrait: 'george_sad',
                 speaker: 'Big George',

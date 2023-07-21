@@ -168,7 +168,7 @@ class Scene4 extends Phaser.Scene {
                 speech: '...are skeletons.'
             }, {
                 frame: 'cave',
-                speech: 'The bones appear to be very weathered down to the point of falling apart. If our heroes had noses, they would be able to smell the awful stench of rotted flesh mixed into the damp air of the cave.'
+                speech: 'The bones appear to be severely weathered down, to the point of falling apart. If our heroes had noses, they would be able to smell the awful stench of rotted flesh mixed into the damp air of the cave.'
             }, {
                 frame: 'cave',
                 speech: 'It\'s impossible to tell how long Solveig has kept these skeletons lying around.'
@@ -440,7 +440,7 @@ class Scene4 extends Phaser.Scene {
                 speech: 'Suddenly, Solveig brings their hand down...'
             }, {
                 frame: 'kill2',
-                speech: '...and their long claws slash straight through the soft woolly body.'
+                speech: '...long claws slashing straight through the soft woolly body.'
             }, {
                 frame: 'kill2',
                 speech: 'Chunks of wool go flying across the cave, and Solveig pounces on the remains of what was once Big George, tearing through whatever is left.'

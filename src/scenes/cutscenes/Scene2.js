@@ -113,7 +113,7 @@ class Scene2 extends Phaser.Scene {
                 speech: 'It is also totally not at all cursed to grant your foes similar benefits.'
             }, {
                 frame: 'artifact_health',
-                speech: 'A tag on the amulet reads, "+1 HP to you, but +1 HP to your foes as well." Whatever that could mean.'
+                speech: 'A tag on the amulet reads, "+1 HP to you, but +1 HP to your each of your foes as well." Whatever that could mean.'
             }, {
                 frame: 'artifact_health',
                 speech: 'Whatever that could mean.'
