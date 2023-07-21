@@ -110,6 +110,8 @@ class Player extends Phaser.GameObjects.Sprite {
             player.isInvincible = true;
             player.health--;
 
+            this.portrait.setTexture('portrait_george_sad')
+
             if (player.health == 0) {
                 this.complete = true;
                 player.isAlive = false;
@@ -169,6 +171,7 @@ class Player extends Phaser.GameObjects.Sprite {
                     yoyo: true,
                     ease: 'Sine.easeInOut',
                     onComplete: () => {
+                        this.portrait.setTexture('portrait_george')
                         if (player.isAlive) { player.isInvincible = false; }
                         player.setAlpha(1);
                         player.aim.setAlpha(1);

@@ -34,8 +34,19 @@ class Level3 extends Phaser.Scene {
 
         this.physics.add.collider([this.player, this.player.aim], this.ground);
         
-        this.add.rectangle(-5, -5, 200, 96, 0xCCF0E4).setOrigin(0).setStrokeStyle(4, 0x10302A);
-        this.UIText = this.add.text(10, 20, "HP: " + this.player.health + "\nSCORE: " + this.player.score, { color: '#10302A', fontSize: '24px', fontFamily: 'Pangolin'}).setOrigin(0);
+        this.add.rectangle(-5, -5, 250, 109, 0xCCF0E4).setOrigin(0).setStrokeStyle(4, 0x10302A);
+        this.healthText = this.add.text(100, 30, "", { color: '#10302A', fontSize: '24px', fontFamily: 'Pangolin'}).setOrigin(0);
+        this.currHealth = this.player.health;
+        this.setHealthText();
+
+        let size = this.healthText.style.fontSize;
+        let newSize = Number(size.slice(0, size.length - 2));
+        while (this.healthText.width > 135) {
+            this.healthText.setFontSize(--newSize);
+        }
+
+        this.scoreText = this.add.text(100, 65, this.player.score + " pts", { color: '#10302A', fontSize: '24px', fontFamily: 'Pangolin'}).setOrigin(0);
+        this.portrait = this.add.sprite(0, 0, 'portrait_george').setOrigin(0).setScale(0.4);
 
         this.progressBar = this.add.rectangle(game.config.width/2, 50, game.config.width * 0.5, 10, 0xCCF0E4).setOrigin(0.5).setStrokeStyle(4, 0x10302A);
         this.progress = this.add.rectangle(this.progressBar.x - game.config.width * 0.25, 50, 0, 10, 0x2A8261).setOrigin(0.5).setStrokeStyle(4, 0x10302A);
@@ -102,7 +113,8 @@ class Level3 extends Phaser.Scene {
             }
         })
 
-        this.UIText.setText("HP: " + this.player.health + "\nSCORE: " + this.player.score);
+        if (this.currHealth != this.player.health) { this.setHealthText() };
+        this.scoreText.setText(this.player.score + " pts");
 
         this.black.setDepth(1);
 
@@ -173,5 +185,15 @@ class Level3 extends Phaser.Scene {
                 enemy.kill(this);
             }
         }
+    }
+
+    setHealthText() {
+        let healthString = "";
+
+        for (let i = 0; i < this.player.health; i++) {
+            healthString += "❤"
+        }
+        this.currHealth = this.player.health;
+        this.healthText.setText(healthString);
     }
 }
