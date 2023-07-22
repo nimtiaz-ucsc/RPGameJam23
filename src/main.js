@@ -2,7 +2,7 @@ let config = {
     width:  1080,
     height: 720,
     backgroundColor: '0x000000',
-    scene: [Preload, MainMenu, Switcher, Pause, HowToPlay, Scene1, Level1, Scene2, Level2, Scene3, Level3, Scene4, TheEnd, Epilogue, Endless, EndlessShop],
+    scene: [Preload, MainMenu, Switcher, Pause, HowToPlay, Credits, Scene1, Level1, Scene2, Level2, Scene3, Level3, Scene4, TheEnd, Epilogue, Endless, EndlessShop],
     physics: {
         default: 'arcade',
         arcade: {

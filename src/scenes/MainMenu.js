@@ -99,7 +99,12 @@ class MainMenu extends Phaser.Scene {
             this.scene.pause('mainMenu');
         });
 
-        new Button(this, 4 * game.config.width/5 + 25, 5 * game.config.height/6 - 30, 250, 75, 0xCCF0E4, 6, 0x10302A, 'text', 'CREDITS (TBA)', () => {});
+        new Button(this, 4 * game.config.width/5 + 25, 5 * game.config.height/6 - 30, 250, 75, 0xCCF0E4, 6, 0x10302A, 'text', 'CREDITS', () => {
+            this.scene.launch('credits', {level: 'mainMenu'});
+            this.scene.setVisible(true, 'credits');
+            this.scene.bringToTop('credits');
+            this.scene.pause('mainMenu');
+        });
 
         this.black = this.add.rectangle(0, 0, game.config.width, game.config.height, 0x000000).setOrigin(0).setAlpha(0).setDepth(1);
     }
