@@ -17,10 +17,13 @@ class Switcher extends Phaser.Scene {
 
         this.position = 0
 
+        this.sfx_george = this.sound.add('sfx_switch_george');
         this.sfx_bob = this.sound.add('sfx_switch_bob');
         this.sfx_chuck = this.sound.add('sfx_switch_chuck');
         this.sfx_sam = this.sound.add('sfx_switch_sam');
         this.sfx_confirm = this.sound.add('sfx_switch_confirm');
+
+        this.sfx_george.play();
         
         this.tweens.add({
             targets: [this.switcher],
@@ -63,6 +66,9 @@ class Switcher extends Phaser.Scene {
             if (Math.abs(this.input.x - this.switcher.x) <= 35 && Math.abs(this.input.y - this.switcher.y) <= 35) {
                 this.switcher.play({key: 'switch', startFrame: 0});
                 this.switcher_bg.fillColor = 0xede6c4;
+                if (this.position != 0) {
+                    this.sfx_george.play()
+                }
                 this.position = 0;
 
             } else if (this.input.y > this.switcher.y + 35) {

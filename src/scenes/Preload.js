@@ -100,6 +100,7 @@ class Preload extends Phaser.Scene {
         this.load.audio('sfx_speech1', './assets/audio/speech1.wav');
         this.load.audio('sfx_speech2', './assets/audio/speech2.wav');
         this.load.audio('sfx_speech3', './assets/audio/speech3.wav');
+        this.load.audio('sfx_switch_george', './assets/audio/switch_george.wav');
         this.load.audio('sfx_switch_bob', './assets/audio/switch_bob.wav');
         this.load.audio('sfx_switch_chuck', './assets/audio/switch_chuck.wav');
         this.load.audio('sfx_switch_sam', './assets/audio/switch_sam.wav');
