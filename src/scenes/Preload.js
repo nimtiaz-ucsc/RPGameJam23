@@ -90,7 +90,7 @@ class Preload extends Phaser.Scene {
         this.load.spritesheet('how_to', './assets/how_to_play.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
 
         this.load.spritesheet('friend_bob', './assets/friends/friend_bob.png', {frameWidth: 256, frameHeight: 256, startFrame: 0, endFrame: 4});
-        this.load.spritesheet('friend_chuck', './assets/friends/friend_chuck.png', {frameWidth: 256, frameHeight: 256, startFrame: 0, endFrame: 5});
+        this.load.spritesheet('friend_chuck', './assets/friends/friend_chuck.png', {frameWidth: 256, frameHeight: 256, startFrame: 0, endFrame: 9});
         this.load.spritesheet('friend_sam', './assets/friends/friend_sam.png', {frameWidth: 256, frameHeight: 256, startFrame: 0, endFrame: 3});
         this.load.spritesheet('friend_switch', './assets/friends/friend_switch.png', {frameWidth: 256, frameHeight: 256, startFrame: 0, endFrame: 5});
 
@@ -414,10 +414,9 @@ class Preload extends Phaser.Scene {
         
         this.anims.create({
             key: 'friend_chuck_anim',
-            frames: this.anims.generateFrameNumbers('friend_chuck', {start: 0, end: 5, first: 0}),
+            frames: this.anims.generateFrameNumbers('friend_chuck', {start: 0, end: 9, first: 0}),
             frameRate: 12,
-            repeat: -1,
-            yoyo: true
+            repeat: -1
         });
 
         this.anims.create({

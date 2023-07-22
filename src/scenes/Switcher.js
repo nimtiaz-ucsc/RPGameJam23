@@ -16,6 +16,7 @@ class Switcher extends Phaser.Scene {
         this.switcher = this.add.sprite(this.input.x, this.input.y, 'switcher').setScale(0);
 
         this.position = 0
+        this.friend = null;
 
         this.sfx_george = this.sound.add('sfx_switch_george');
         this.sfx_bob = this.sound.add('sfx_switch_bob');
@@ -52,6 +53,7 @@ class Switcher extends Phaser.Scene {
                 duration: 100
             });
             
+            if (this.friend != null) { ally = this.friend; }
             this.scene.resume(this.level);
             this.time.delayedCall(100, () => {
                 this.scene.stop();
@@ -69,6 +71,7 @@ class Switcher extends Phaser.Scene {
                     this.sfx_george.play()
                 }
                 this.position = 0;
+                this.friend = null;
 
             } else if (this.input.y > this.switcher.y + 35) {
                 this.switcher.play({key: 'switch', startFrame: 3});
@@ -77,7 +80,7 @@ class Switcher extends Phaser.Scene {
                     this.sfx_bob.play()
                 }
                 this.position = 1;
-                ally = 'bob';
+                this.friend = 'bob';
 
             } else if (this.input.x > this.switcher.x + 35 && this.input.y < this.switcher.y + 35) {
                 this.switcher.play({key: 'switch', startFrame: 2});
@@ -86,7 +89,7 @@ class Switcher extends Phaser.Scene {
                     this.sfx_chuck.play()
                 }
                 this.position = 2;
-                ally = 'chuck';
+                this.friend = 'chuck';
 
             } else if (this.input.x < this.switcher.x - 35 && this.input.y < this.switcher.y + 35) {
                 this.switcher.play({key: 'switch', startFrame: 1});
@@ -95,7 +98,7 @@ class Switcher extends Phaser.Scene {
                     this.sfx_sam.play()
                 }
                 this.position = 3;
-                ally = 'sam';
+                this.friend = 'sam';
 
             }
         }
