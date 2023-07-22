@@ -28,7 +28,10 @@ class Level2 extends Phaser.Scene {
 
 
         this.ground = this.add.rectangle(0, game.config.height, game.config.width, 32, 0x733e39).setOrigin(0, 1).setVisible(false);
-        this.physics.add.existing(this.ground, true);     
+        this.physics.add.existing(this.ground, true);
+        
+        this.friend = this.add.sprite(128, game.config.height - 50, 'friend_' + ally).setOrigin(0.5, 1).play('friend_' + ally + '_anim').setScale(0.75);
+        this.friendSwitch = this.add.sprite(this.friend.x, this.friend.y, 'friend_switch').setOrigin(0.5, 1).setVisible(false).setScale(0.75);
         
         this.player = new Player(this, game.config.width/8, game.config.height - 96);
 
@@ -59,12 +62,13 @@ class Level2 extends Phaser.Scene {
             this.scene.pause('level2');
         });
 
+        this.sfx_hit = this.sound.add('sfx_hit');
+        this.sfx_spawn = this.sound.add('sfx_spawn');
+        this.sfx_confirm = this.sound.add('sfx_switch_confirm');
+
         this.enemies = this.physics.add.group();
         this.enemies.defaults = {};
         this.spawnEnemy();
-
-        this.sfx_hit = this.sound.add('sfx_hit');
-        this.sfx_spawn = this.sound.add('sfx_spawn');
 
         this.physics.add.overlap(this.player, this.enemies, this.player.damage, undefined, this);
         this.physics.add.overlap(this.player.projectiles, this.enemies, this.destroyEnemy, undefined, this);
@@ -139,7 +143,17 @@ class Level2 extends Phaser.Scene {
             })
         }
         
-        
+        this.friend.x = this.player.x - 64;
+        this.friendSwitch.x = this.friend.x;
+        if (this.friend.texture.key.slice(7) != ally) {
+            this.friend.setTexture('friend_' + ally).play('friend_' + ally + "_anim")
+            this.sfx_confirm.play();
+            this.friendSwitch.setVisible(true);
+            this.friendSwitch.play('friend_switch_anim');
+            this.friendSwitch.on('animationcomplete', () => {
+                this.friendSwitch.setVisible(false);
+            });
+        }        
     }
 
     spawnEnemy() {
@@ -180,7 +194,7 @@ class Level2 extends Phaser.Scene {
             projectile.body.destroy();
             projectile.setAlpha(0);
 
-            let explosion = this.add.sprite(projectile.x, projectile.y, 'expolsion_' + projectileAlly).setOrigin(0.5).play('explode_' + projectileAlly);
+            let explosion = this.add.sprite(projectile.x, projectile.y, 'explosion_' + projectileAlly).setOrigin(0.5).play('explode_' + projectileAlly);
             explosion.on('animationcomplete', () => {
                 projectile.destroy();
                 explosion.destroy();

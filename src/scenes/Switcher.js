@@ -21,7 +21,7 @@ class Switcher extends Phaser.Scene {
         this.sfx_bob = this.sound.add('sfx_switch_bob');
         this.sfx_chuck = this.sound.add('sfx_switch_chuck');
         this.sfx_sam = this.sound.add('sfx_switch_sam');
-        this.sfx_confirm = this.sound.add('sfx_switch_confirm');
+        
 
         this.sfx_george.play();
         
@@ -53,7 +53,6 @@ class Switcher extends Phaser.Scene {
             });
             
             this.scene.resume(this.level);
-            this.sfx_confirm.play();
             this.time.delayedCall(100, () => {
                 this.scene.stop();
             })
