@@ -18,7 +18,7 @@ class Credits extends Phaser.Scene {
         this.image = this.add.sprite(game.config.width/2, game.config.height/2 - 10, 'how_to').setOrigin(0.5).setScale(0.9).setAlpha(0).play({key: 'how_to_anim', startFrame: 0});
 
         this.text1 = this.add.text(game.config.width/2, game.config.height/2, 'Design, Programming, Narrative, Art, SFX:\nARiverInEgypt\n\n--\n\nDeveloped in Phaser 3\n\nAll art assets created in Pixel Studio\n\nAll SFX created in Bfxr\n\n--\n\nSubmission to Robot Party Jam 2023\nBased on concepts by Kyle Bosman and chat', { color: '#10302A', fontSize: '30px', fontFamily: 'Pangolin', align: 'center', wordWrap: {width: 1000}}).setOrigin(0.5).setAlpha(0);
-        this.text2 = this.add.text(game.config.width/2, game.config.height/2, 'Music Credits\n\n--\n\n"8-Bit Dream Land"\nby moodmode (pixabay.com)\n\n"8-Bit Arcade"\nby moodmode (pixabay.com)\n\n"Bit Shift"\nby Kevin Macleod (incompetech.com)\n\n--\n\nAll royalty-free music licensed under Creative Commons', { color: '#10302A', fontSize: '30px', fontFamily: 'Pangolin', align: 'center', wordWrap: {width: 1000}}).setOrigin(0.5).setAlpha(0);
+        this.text2 = this.add.text(game.config.width/2, game.config.height/2, 'Music Credits\n\n--\n\n"8-Bit Dream Land"\nby moodmode (pixabay.com)\n\n"8-Bit Arcade"\nby moodmode (pixabay.com)\n\n"Bit Shift"\nby Kevin MacLeod (incompetech.com)\n\n--\n\nAll royalty-free music licensed under Creative Commons', { color: '#10302A', fontSize: '30px', fontFamily: 'Pangolin', align: 'center', wordWrap: {width: 1000}}).setOrigin(0.5).setAlpha(0);
 
 
         this.continue = this.add.sprite(game.config.width - 75, game.config.height - 60, 'dialog_continue').play('continue_anim');
