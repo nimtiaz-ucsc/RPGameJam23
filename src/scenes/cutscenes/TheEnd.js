@@ -9,6 +9,8 @@ class TheEnd extends Phaser.Scene {
     }
 
     create() {
+        this.game.sound.stopAll();
+        
         this.complete = false;
 
         this.sequence = [ {speech: 'Hee hee-hee!'}, {speech: 'Hee.'}, {end: true}]
@@ -48,7 +50,7 @@ class TheEnd extends Phaser.Scene {
                                                 targets: [this.add.rectangle(0, 0, game.config.width, game.config.height, 0x000000).setOrigin(0).setAlpha(0).setDepth(1)],
                                                 alpha: 1,
                                                 duration: 1000,
-                                                onComplete: () => { this.scene.start('epilogue'); }
+                                                onComplete: () => { this.scene.start('credits', {level: 'theEnd'}); }
                                             })
                                         });
                                     });

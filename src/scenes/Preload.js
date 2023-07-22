@@ -110,6 +110,10 @@ class Preload extends Phaser.Scene {
         this.load.audio('sfx_switch_chuck', './assets/audio/switch_chuck.wav');
         this.load.audio('sfx_switch_sam', './assets/audio/switch_sam.wav');
         this.load.audio('sfx_switch_confirm', './assets/audio/switch_confirm.wav');
+
+        this.load.audio('bgm_mainMenu', './assets/audio/music/MainMenu.mp3');
+        this.load.audio('bgm_scene', './assets/audio/music/Scene.mp3');
+        this.load.audio('bgm_level', './assets/audio/music/Level.mp3');
     }
 
     create() {

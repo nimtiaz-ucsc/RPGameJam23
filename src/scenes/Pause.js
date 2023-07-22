@@ -39,7 +39,7 @@ class Pause extends Phaser.Scene {
         }).setAlpha(0);
         this.instructions.label.setAlpha(0);
 
-        this.exit = new Button(this, game.config.width/2, game.config.height/2 + 190, 150, 50, 0xffbffb, 4, 0x61305f, 'text', 'MAIN MENU', () => { 
+        this.exit = new Button(this, game.config.width/2, game.config.height/2 + 190, 150, 50, 0xffbffb, 4, 0x61305f, 'text', 'MAIN MENU', () => {
             this.scene.stop(this.level);
             this.scene.stop();
             this.scene.start('mainMenu');

@@ -9,6 +9,8 @@ class Scene4 extends Phaser.Scene {
     }
 
     create() {
+        this.game.sound.stopAll();
+        
         this.complete = false;
 
         this.sequence = [

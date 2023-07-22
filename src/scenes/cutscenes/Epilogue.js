@@ -9,6 +9,8 @@ class Epilogue extends Phaser.Scene {
     }
 
     create() {
+        this.game.sound.stopAll();
+        
         this.complete = false;
 
         this.sequence = [
@@ -45,7 +47,7 @@ class Epilogue extends Phaser.Scene {
                 speech: 'Hmmm... something\'s off about the air here... It\'s too still...'
             }, {
                 frame: 'village_foam',
-                speech: 'The salesman peers off in the distance, and notices what looks like a town or village settlement, but completely covered in a sickly green foamy substance.'
+                speech: 'The salesman peers off in the distance, and notices what looks like a tiny little village settlement, but completely covered in a sickly green foamy substance.'
             }, {
                 portrait: 'dsd',
                 speech: 'As he continues to scan his surroundings, something shiny lays still in the grass near his shop\'s landing zone, catching his eye.'

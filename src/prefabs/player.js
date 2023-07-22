@@ -119,6 +119,7 @@ class Player extends Phaser.GameObjects.Sprite {
             this.portrait.setTexture('portrait_george_sad')
 
             if (player.health == 0) {
+                this.bgm.stop();
                 player.sfx_death.play();
                 this.complete = true;
                 player.isAlive = false;

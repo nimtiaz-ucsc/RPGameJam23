@@ -114,7 +114,7 @@ class Dialog extends Phaser.GameObjects.Container {
             this.typing = scene.time.addEvent({
                 callback: () => {
                     this.isTyping = true;
-                    eval('this.sfx_speech' + Phaser.Math.Between(1, 2) + '.play({volume: 0.2})');
+                    eval('this.sfx_speech' + Phaser.Math.Between(1, 3) + '.play({volume: 0.1})');
                     this.bodyText.text += currLine.speech[i];
                     i++;
                     if (i == currLine.speech.length) {

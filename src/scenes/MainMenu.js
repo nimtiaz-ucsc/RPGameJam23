@@ -8,6 +8,11 @@ class MainMenu extends Phaser.Scene {
     }
 
     create() {
+        this.game.sound.stopAll();
+
+        this.bgm = this.sound.add('bgm_mainMenu').setLoop(true);
+        this.bgm.play({volume: 0.5});
+
         healthBuff = 0;
         speedBuff = 1;
         enemySpeedBuff = 1;

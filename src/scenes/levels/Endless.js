@@ -8,6 +8,11 @@ class Endless extends Phaser.Scene {
     }
 
     create() {
+        this.game.sound.stopAll();
+
+        this.bgm = this.sound.add('bgm_level').setLoop(true);
+        this.bgm.play({volume: 0.25})
+
         if (endlessLevel % 3 == 0) {
             this.sky = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'sky1').setOrigin(0);
             this.sun = this.add.sprite(56, 0, 'sun').setOrigin(0).play('sun_anim');
@@ -34,7 +39,6 @@ class Endless extends Phaser.Scene {
 
         this.dirt = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'dirt').setOrigin(0);
         this.dirt_sprite = this.add.sprite(0, 0, 'dirt').setVisible(false).play('dirt_anim');
-
 
         this.ground = this.add.rectangle(0, game.config.height, game.config.width, 32, 0x733e39).setOrigin(0, 1).setVisible(false);
         this.physics.add.existing(this.ground, true);

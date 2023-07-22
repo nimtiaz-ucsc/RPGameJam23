@@ -9,6 +9,11 @@ class Scene2 extends Phaser.Scene {
     }
 
     create() {
+        this.game.sound.stopAll();
+
+        this.bgm = this.sound.add('bgm_scene').setLoop(true);
+        this.bgm.play({volume: 0.25});
+        
         this.complete = false;
 
         this.sequence = [

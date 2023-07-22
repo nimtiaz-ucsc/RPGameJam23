@@ -8,6 +8,11 @@ class Level3 extends Phaser.Scene {
     }
 
     create() {
+        this.game.sound.stopAll();
+
+        this.bgm = this.sound.add('bgm_level').setLoop(true);
+        this.bgm.play({volume: 0.25})
+        
         this.sky = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'sky3').setOrigin(0);
         this.moon = this.add.sprite(56, 0, 'moon').setOrigin(0).play('moon_anim');
 

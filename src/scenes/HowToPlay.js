@@ -40,7 +40,6 @@ class HowToPlay extends Phaser.Scene {
                         this.scene.resume(this.level);
                         this.scene.stop();
                     }
-
                 }
             });
             
