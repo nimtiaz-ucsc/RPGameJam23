@@ -27,12 +27,12 @@ class HowToPlay extends Phaser.Scene {
 
         this.continue = this.add.sprite(game.config.width - 75, game.config.height - 60, 'dialog_continue').play('continue_anim');
         this.exit = new Button(this,  50, 40, 50, 50, 0xffbffb, 4, 0x61305f, 'text', 'X', () => {
+            this.exiting = true;
             this.tweens.add({
                 targets: [this.bg, this.box, this.exit, this.exit.label, this.image, this.page1Text1, this.page1Text2, this.page1Text3, this.page2Text1, this.page2Text2, this.page2Text3, this.continue],
                 alpha: 0,
                 duration: 100,
                 onComplete: () => {
-                    this.exiting = true;
                     if (this.level == 'scene1') {
                         this.scene.start('level1'),
                         this.scene.stop();
@@ -62,7 +62,10 @@ class HowToPlay extends Phaser.Scene {
         this.page = 0;
         this.exiting = false
 
+        this.sfx_page = this.sound.add('sfx_speech3')
+
         this.input.on('pointerup', () => {
+            this.sfx_page.play({volume: 0.25})
             this.input.mouse.disableContextMenu();
             this.page++;
         });

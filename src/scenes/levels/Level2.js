@@ -63,6 +63,9 @@ class Level2 extends Phaser.Scene {
         this.enemies.defaults = {};
         this.spawnEnemy();
 
+        this.sfx_hit = this.sound.add('sfx_hit');
+        this.sfx_spawn = this.sound.add('sfx_spawn');
+
         this.physics.add.overlap(this.player, this.enemies, this.player.damage, undefined, this);
         this.physics.add.overlap(this.player.projectiles, this.enemies, this.destroyEnemy, undefined, this);
 
@@ -141,6 +144,8 @@ class Level2 extends Phaser.Scene {
 
     spawnEnemy() {
         if (Phaser.Math.Between(1, spawnChanceMax) <= spawnChanceMin) {
+            this.sfx_spawn.play();
+            
             let enemyType = Phaser.Math.Between(1, 3);
             let spawnHeight;
             if (enemyType == 1 || enemyType == 2) {
@@ -169,6 +174,8 @@ class Level2 extends Phaser.Scene {
     destroyEnemy(projectile, enemy) {
         let projectileAlly = projectile.texture.key.slice(11)
         if (projectileAlly == enemy.weakness) {
+            this.sfx_hit.play({volume: 0.75});
+
             projectile.body.setVelocity(0);
             projectile.body.destroy();
             projectile.setAlpha(0);

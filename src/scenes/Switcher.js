@@ -14,6 +14,13 @@ class Switcher extends Phaser.Scene {
     create() {
         this.switcher_bg = this.add.rectangle(0, 0, game.config.width, game.config.height, 0xede6c4).setOrigin(0).setAlpha(0);
         this.switcher = this.add.sprite(this.input.x, this.input.y, 'switcher').setScale(0);
+
+        this.position = 0
+
+        this.sfx_bob = this.sound.add('sfx_switch_bob');
+        this.sfx_chuck = this.sound.add('sfx_switch_chuck');
+        this.sfx_sam = this.sound.add('sfx_switch_sam');
+        this.sfx_confirm = this.sound.add('sfx_switch_confirm');
         
         this.tweens.add({
             targets: [this.switcher],
@@ -43,6 +50,7 @@ class Switcher extends Phaser.Scene {
             });
             
             this.scene.resume(this.level);
+            this.sfx_confirm.play();
             this.time.delayedCall(100, () => {
                 this.scene.stop();
             })
@@ -55,18 +63,35 @@ class Switcher extends Phaser.Scene {
             if (Math.abs(this.input.x - this.switcher.x) <= 35 && Math.abs(this.input.y - this.switcher.y) <= 35) {
                 this.switcher.play({key: 'switch', startFrame: 0});
                 this.switcher_bg.fillColor = 0xede6c4;
+                this.position = 0;
+
             } else if (this.input.y > this.switcher.y + 35) {
                 this.switcher.play({key: 'switch', startFrame: 3});
                 this.switcher_bg.fillColor = 0xff8552;
+                if (this.position != 1) {
+                    this.sfx_bob.play()
+                }
+                this.position = 1;
                 ally = 'bob';
+
             } else if (this.input.x > this.switcher.x + 35 && this.input.y < this.switcher.y + 35) {
                 this.switcher.play({key: 'switch', startFrame: 2});
                 this.switcher_bg.fillColor = 0x484349
+                if (this.position != 2) {
+                    this.sfx_chuck.play()
+                }
+                this.position = 2;
                 ally = 'chuck';
+
             } else if (this.input.x < this.switcher.x - 35 && this.input.y < this.switcher.y + 35) {
                 this.switcher.play({key: 'switch', startFrame: 1});
                 this.switcher_bg.fillColor = 0x6adb65
+                if (this.position != 3) {
+                    this.sfx_sam.play()
+                }
+                this.position = 3;
                 ally = 'sam';
+
             }
         }
     }

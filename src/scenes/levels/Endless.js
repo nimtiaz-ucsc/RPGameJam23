@@ -70,7 +70,10 @@ class Endless extends Phaser.Scene {
 
         this.enemies = this.physics.add.group();
         this.enemies.defaults = {};
-        this.time.delayedCall(2500, () => { this.spawnEnemy(); });
+        this.spawnEnemy();
+
+        this.sfx_hit = this.sound.add('sfx_hit');
+        this.sfx_spawn = this.sound.add('sfx_spawn');
 
         this.physics.add.overlap(this.player, this.enemies, this.player.damage, undefined, this);
         this.physics.add.overlap(this.player.projectiles, this.enemies, this.destroyEnemy, undefined, this);
@@ -148,6 +151,8 @@ class Endless extends Phaser.Scene {
 
     spawnEnemy() {
         if (Phaser.Math.Between(1, spawnChanceMax) <= spawnChanceMin) {
+            this.sfx_spawn.play();
+            
             let enemyType = Phaser.Math.Between(1, 3);
             let spawnHeight;
             if (enemyType == 1 || enemyType == 2) {
@@ -176,6 +181,8 @@ class Endless extends Phaser.Scene {
     destroyEnemy(projectile, enemy) {
         let projectileAlly = projectile.texture.key.slice(11)
         if (projectileAlly == enemy.weakness) {
+            this.sfx_hit.play({volume: 0.75});
+
             projectile.body.setVelocity(0);
             projectile.body.destroy();
             projectile.setAlpha(0);

@@ -19,6 +19,8 @@ class Button extends Phaser.GameObjects.Rectangle {
             }
         }
 
+        this.sfx_select = scene.sound.add('sfx_select');
+
         this.setDepth(1);
         this.label.setDepth(1);
 
@@ -43,6 +45,7 @@ class Button extends Phaser.GameObjects.Rectangle {
             })
 
             this.on('pointerup', () => {
+                this.sfx_select.play({volume: 0.75});
                 this.setScale(1);
                 this.label.setScale(1);
                 this.callback();

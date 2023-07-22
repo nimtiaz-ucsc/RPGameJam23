@@ -22,6 +22,12 @@ class Player extends Phaser.GameObjects.Sprite {
         this.projectiles = new Phaser.GameObjects.Group;
         this.isShooting = false
         this.score = totalScore;
+
+        this.sfx_shoot = scene.sound.add('sfx_shoot');
+        this.sfx_hurt = scene.sound.add('sfx_hurt');
+        this.sfx_death = scene.sound.add('sfx_death');
+        this.sfx_jump = scene.sound.add('sfx_jump');
+        this.sfx_land = scene.sound.add('sfx_land');
         
 
         scene.input.on('pointerdown', () => {
@@ -113,6 +119,7 @@ class Player extends Phaser.GameObjects.Sprite {
             this.portrait.setTexture('portrait_george_sad')
 
             if (player.health == 0) {
+                player.sfx_death.play();
                 this.complete = true;
                 player.isAlive = false;
                 player.isInvincible = true;
@@ -145,7 +152,7 @@ class Player extends Phaser.GameObjects.Sprite {
                                     } else {
                                         encourageText.setText('But that\'s okay! Try again!')
                                     }
-                                    new Button(this, game.config.width/2, 3 * game.config.height/4 - 25, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'RESTART', () => {
+                                    new Button(this, game.config.width/2, 3 * game.config.height/4 - 25, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'RETRY', () => {
                                         if (this.scene.key == 'endless') {
                                             healthBuff = 0;
                                             speedBuff = 1;
@@ -155,7 +162,7 @@ class Player extends Phaser.GameObjects.Sprite {
                                         }
                                         this.scene.restart() 
                                     });
-                                    new Button(this, game.config.width/2, 3 * game.config.height/4 + 50, 150, 50, 0xCCF0E4, 4, 0x10302A, 'text', 'MAIN MENU', () => { this.scene.start('mainMenu') });
+                                    new Button(this, game.config.width/2, 3 * game.config.height/4 + 50, 150, 50, 0xffbffb, 4, 0x61305f, 'text', 'MAIN MENU', () => { this.scene.start('mainMenu') });
                                 })
                             })
                         }
@@ -163,6 +170,7 @@ class Player extends Phaser.GameObjects.Sprite {
                 });
 
             } else {
+                player.sfx_hurt.play();
                 this.tweens.add({
                     targets:[player, player.aim],
                     alpha: 0,
@@ -192,6 +200,7 @@ class Player extends Phaser.GameObjects.Sprite {
     }
 
     shoot(scene) {
+        this.sfx_shoot.play({volume: 0.5});
         this.isShooting = true;
         let velocity = scene.physics.velocityFromAngle(this.aim.angle, 1);
         this.projectiles.add(new Projectile(scene, this.x, this.y, 
@@ -221,6 +230,7 @@ class Player extends Phaser.GameObjects.Sprite {
                     this.on('animationcomplete', () => { this.anims.play(key) })
                 }
             } else if (key === 'georgeRise') {
+                this.sfx_jump.play();
                 if (currentAnim === 'georgeRun') {
                     this.anims.play('georgeSquat');
                     this.on('animationcomplete', () => { this.anims.play(key) })
@@ -232,6 +242,7 @@ class Player extends Phaser.GameObjects.Sprite {
                 }
             } else if (key === 'georgeRun') {
                 if (currentAnim === 'georgeFall' || currentAnim === 'georgeFloat') {
+                    if(this.isAlive) { this.sfx_land.play({volume: 0.5}); }
                     this.anims.play('georgeLand');
                     this.on('animationcomplete', () => { this.anims.play(key) })
                 }

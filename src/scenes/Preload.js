@@ -88,6 +88,22 @@ class Preload extends Phaser.Scene {
         this.load.spritesheet('switcher', './assets/switcher.png', {frameWidth: 200, frameHeight: 200, startFrame: 0, endFrame: 3});
 
         this.load.spritesheet('how_to', './assets/how_to_play.png', {frameWidth: 1024, frameHeight: 720, startFrame: 0, endFrame: 1});
+
+        this.load.audio('sfx_death', './assets/audio/death.wav');
+        this.load.audio('sfx_hit', './assets/audio/hit.wav');
+        this.load.audio('sfx_hurt', './assets/audio/hurt.wav');
+        this.load.audio('sfx_jump', './assets/audio/jump.wav');
+        this.load.audio('sfx_land', './assets/audio/land.wav');
+        this.load.audio('sfx_select', './assets/audio/select.wav');
+        this.load.audio('sfx_shoot', './assets/audio/shoot.wav');
+        this.load.audio('sfx_spawn', './assets/audio/spawn.wav');
+        this.load.audio('sfx_speech1', './assets/audio/speech1.wav');
+        this.load.audio('sfx_speech2', './assets/audio/speech2.wav');
+        this.load.audio('sfx_speech3', './assets/audio/speech3.wav');
+        this.load.audio('sfx_switch_bob', './assets/audio/switch_bob.wav');
+        this.load.audio('sfx_switch_chuck', './assets/audio/switch_chuck.wav');
+        this.load.audio('sfx_switch_sam', './assets/audio/switch_sam.wav');
+        this.load.audio('sfx_switch_confirm', './assets/audio/switch_confirm.wav');
     }
 
     create() {
@@ -378,7 +394,6 @@ class Preload extends Phaser.Scene {
             frameRate: 0,
             repeat: 0
         })
-
 
         this.scene.start('mainMenu');
     }

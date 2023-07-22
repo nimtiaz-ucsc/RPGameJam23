@@ -46,6 +46,10 @@ class Dialog extends Phaser.GameObjects.Container {
             }
 
         });
+
+        this.sfx_speech1 = scene.sound.add('sfx_speech1')
+        this.sfx_speech2 = scene.sound.add('sfx_speech2')
+        this.sfx_speech3 = scene.sound.add('sfx_speech3')
     }
 
     update() {
@@ -110,6 +114,7 @@ class Dialog extends Phaser.GameObjects.Container {
             this.typing = scene.time.addEvent({
                 callback: () => {
                     this.isTyping = true;
+                    eval('this.sfx_speech' + Phaser.Math.Between(1, 2) + '.play({volume: 0.2})');
                     this.bodyText.text += currLine.speech[i];
                     i++;
                     if (i == currLine.speech.length) {
