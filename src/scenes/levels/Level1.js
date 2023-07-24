@@ -60,6 +60,29 @@ class Level1 extends Phaser.Scene {
         this.progress = this.add.rectangle(this.progressBar.x - game.config.width * 0.25, 50, 0, 10, 0x2A8261).setOrigin(0.5).setStrokeStyle(4, 0x10302A);
         this.progressSprite = this.add.sprite(this.progressBar.x - game.config.width * 0.25, 25, 'dialog_continue').play('continue_anim');
 
+        this.progressTween = this.tweens.add({
+            targets: [this.progressSprite, this.progress],
+            x: this.progressBar.width + game.config.width * 0.25,
+            duration: 60000,
+            onComplete: () => {
+                this.complete = true;
+                this.player.isAlive = false;
+                this.player.isInvincible = true;
+                totalScore += this.player.score;
+                this.tweens.add({
+                    targets: [this.black],
+                    alpha: 1,
+                    duration: 1000,
+                });
+                this.tweens.add({
+                    targets: [this.player],
+                    x: game.config.width + 128,
+                    duration: 1000,
+                    onComplete: () => { this.scene.start('scene2')}
+                })
+            }
+        })
+
         new Button(this, game.config.width - 50, 50, 50, 50, 0xffbffb, 4, 0x61305f, 'text', 'II', () => {
             this.scene.launch('pause', {level: 'level1'});
             this.scene.setVisible(true, 'pause');
@@ -88,8 +111,7 @@ class Level1 extends Phaser.Scene {
                     this.scene.launch('switcher', {level: 'level1'});
                     this.scene.setVisible(true, 'switcher');
                     this.scene.bringToTop('switcher')
-                    this.scene.pause('level1');
-                    
+                    this.scene.pause('level1');                    
                 }
             }
         }, this)
@@ -100,10 +122,6 @@ class Level1 extends Phaser.Scene {
     update() {
         this.player.update();
 
-        if(this.player.isAlive) {
-            this.progressSprite.x += bgSpeed/20;
-            this.progress.x += bgSpeed/20;
-        }
         this.clouds1.setFrame(this.clouds1_sprite.frame.name);
         this.clouds2.setFrame(this.clouds2_sprite.frame.name);
         this.grass1.setFrame(this.grass1_sprite.frame.name);
@@ -129,24 +147,6 @@ class Level1 extends Phaser.Scene {
         this.scoreText.setText(this.player.score + " pts");
 
         this.black.setDepth(1);
-
-        if (this.progress.x >= this.progressBar.width + game.config.width * 0.25 && !this.complete) {
-            this.complete = true;
-            this.player.isAlive = false;
-            this.player.isInvincible = true;
-            totalScore += this.player.score;
-            this.tweens.add({
-                targets: [this.black],
-                alpha: 1,
-                duration: 1000,
-            });
-            this.tweens.add({
-                targets: [this.player],
-                x: game.config.width + 128,
-                duration: 1000,
-                onComplete: () => { this.scene.start('scene2')}
-            })
-        }
         
         this.friend.x = this.player.x - 64;
         this.friendSwitch.x = this.friend.x;
